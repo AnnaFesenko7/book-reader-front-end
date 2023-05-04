@@ -18,7 +18,7 @@ import {
   PrivateHeader,
 } from './Header.styled';
 
-export const Header = () => {
+export const Header = ({ openModal }) => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   const isLoggedIn = true;
   const loggedInName = 'Anna';
@@ -46,7 +46,9 @@ export const Header = () => {
             <CustomLink icon={FaBookOpen} to="/" />
             <CustomLink icon={FaHome} to="/training" />
             {isMobileDevice && <UserName user={loggedInName} />}
-            <ExitButton type="button">{'Вихід'}</ExitButton>
+            <ExitButton onClick={openModal} type="button">
+              {'Вихід'}
+            </ExitButton>
           </StyledNav>
         </PrivateHeader>
       )}

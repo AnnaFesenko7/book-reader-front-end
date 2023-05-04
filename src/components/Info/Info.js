@@ -4,7 +4,7 @@ import { InfoItem } from './InfoItem';
 
 import { Wrapper } from './Info.styled';
 
-const modalContent = [
+const infolContent = [
   {
     step: 1,
     icon: FaBookOpen,
@@ -22,7 +22,7 @@ const modalContent = [
 export const Info = () => {
   return (
     <Wrapper>
-      {modalContent.map((item, index) => (
+      {infolContent.map((item, index) => (
         <li key={index}>
           <InfoItem item={item} />
         </li>

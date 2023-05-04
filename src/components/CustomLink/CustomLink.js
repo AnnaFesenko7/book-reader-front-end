@@ -15,13 +15,13 @@ const StyledLink = styled(Link)`
   width: 33px;
   height: 33px;
   border-radius: ${p => p.theme.radii.round};
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: ${p => p.theme.boxShadow.main};
   line-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${p =>
-    p.match ? p.theme.colors.secondaryText : p.theme.colors.iconColor};
+    p.match ? p.theme.colors.iconColor : p.theme.colors.notActiveText};
   &:hover {
     color: ${p => p.theme.colors.accentColor};
   }

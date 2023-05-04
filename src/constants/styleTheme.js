@@ -1,10 +1,11 @@
 export const theme = {
   colors: {
     white: '#ffffff',
-    secondaryText: '#242a37',
+    deepBlue: '#242a37',
     notActiveText: '#898f9f',
     accentColor: '#FF6B08',
     iconColor: '#a6abb9',
+    transparent: 'transparent',
   },
   // fontSize: {
   //   mainSize: '14px',
@@ -29,11 +30,11 @@ export const theme = {
 
   fontWeights: {
     light: 300,
-    normal: 400,
+    normal: 500,
     bold: 700,
   },
   lineHeights: {
-    body: 1.5,
+    body: 1.38,
     heading: 2.71,
   },
   borders: {
@@ -47,5 +48,14 @@ export const theme = {
     md: '8px',
     lg: '16px',
     round: '50%',
+  },
+  boxShadow: {
+    main: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+    btn: '0px 2px 4px rgba(0, 0, 0, 0.25)',
+  },
+
+  transform: {
+    invisible: 'scale(0)',
+    full: 'scale(1)',
   },
 };

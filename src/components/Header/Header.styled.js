@@ -18,7 +18,7 @@ export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${p => p.theme.colors.whit};
+  background-color: ${p => p.theme.colors.white};
   margin: 0;
   padding-top: 14px;
   padding-bottom: 13px;
@@ -32,7 +32,7 @@ export const StyledHeader = styled.header`
 
 export const LogoLink = styled(Link)`
   text-align: center;
-  color: ${p => p.theme.colors.secondaryText};
+  color: ${p => p.theme.colors.deepBlue};
   font-family: 'Abril Fatface';
   font-weight: ${p => p.theme.fontWeights.normal};
 
@@ -59,8 +59,7 @@ export const StyledNav = styled.nav`
 export const ExitButton = styled.button`
   background-color: transparent;
   border: none;
-  border-bottom: ${p =>
-    `${p.theme.borders.normal} ${p.theme.colors.secondaryText}`};
+  border-bottom: ${p => `${p.theme.borders.normal} ${p.theme.colors.deepBlue}`};
 
   &:hover,
   &:focus {
@@ -110,17 +109,6 @@ export const ExitButton = styled.button`
 //   padding-left: 22px;
 //   padding-right: 22px;
 //   box-shadow: 10px 10px 20px rgba(9, 30, 63, 0.2);
-// }
-
-// .modal_text {
-//   font-family: 'Montserrat';
-//   font-style: normal;
-//   font-weight: 500;
-//   font-size: 16px;
-//   line-height: 1.38;
-//   text-align: center;
-//   margin: 0 0 20px 0;
-//   color: #242a37;
 // }
 
 // .btn_modal {
