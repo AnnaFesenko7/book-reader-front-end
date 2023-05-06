@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const BackDropModal = styled.div`
   height: 100vh;
   width: 100vw;
-  background: rgba(0, 0, 0, 0.4);
+  background: ${p => p.theme.colors.transparent};
   position: fixed;
   left: 0;
   top: 0;
@@ -12,6 +12,7 @@ export const BackDropModal = styled.div`
   justify-content: center;
   transform: ${p =>
     p.active ? p.theme.transform.full : p.theme.transform.invisible};
+  transition: 0.5s;
 `;
 
 export const ModalContent = styled.div`
@@ -19,4 +20,9 @@ export const ModalContent = styled.div`
 
   padding: ${p => p.theme.space[6]}px;
   border-radius: ${p => p.theme.radii.sm};
+  transform: ${p =>
+    p.active ? p.theme.transform.full : p.theme.transform.invisible};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;

@@ -20,8 +20,10 @@ const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: ${p => p.theme.fontWeights.bold};
+
   color: ${p =>
-    p.match ? p.theme.colors.iconColor : p.theme.colors.notActiveText};
+    p.match ? p.theme.colors.notActiveText : p.theme.colors.iconColor};
   &:hover {
     color: ${p => p.theme.colors.accentColor};
   }

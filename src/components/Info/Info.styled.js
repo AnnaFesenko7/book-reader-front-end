@@ -1,8 +1,23 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.ul`
+export const Wrapper = styled.div`
+  display: flex;
+
+  background: ${p => p.theme.colors.white};
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: ${p => p.theme.space[6]}px;
+  box-shadow: ${p => p.theme.boxShadow.infoBox};
+  @media screen and (min-width: ${p => p.theme.media.tablet}px) {
+    width: 608px;
+  }
+`;
+
+export const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
+  justify-self: center;
   gap: ${p => p.theme.space[4]}px;
   margin-bottom: ${p => p.theme.space[5]}px;
 `;

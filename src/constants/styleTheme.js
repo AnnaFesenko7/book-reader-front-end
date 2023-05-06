@@ -6,6 +6,7 @@ export const theme = {
     accentColor: '#FF6B08',
     iconColor: '#a6abb9',
     transparent: 'transparent',
+    backgroundBody: '#f6f7fb',
   },
   // fontSize: {
   //   mainSize: '14px',
@@ -21,7 +22,7 @@ export const theme = {
     l: '32px',
     xl: '64px',
   },
-  space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
+  space: [0, 2, 4, 8, 16, 20, 40, 64, 128, 256],
   fonts: {
     body: 'system-ui, sans-serif',
     heading: 'system-ui, sans-serif',
@@ -34,12 +35,13 @@ export const theme = {
     bold: 700,
   },
   lineHeights: {
-    body: 1.38,
+    body: 1.21,
     heading: 2.71,
   },
   borders: {
     none: 'none',
     normal: '1px solid',
+    // test: '3px red',
   },
 
   radii: {
@@ -52,10 +54,18 @@ export const theme = {
   boxShadow: {
     main: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     btn: '0px 2px 4px rgba(0, 0, 0, 0.25)',
+    inputTitle: '0px 1px 2px rgba(29, 29, 27, 0.15)',
+    infoBox: '0px 2px 3px rgba(9, 30, 63, 0.1)',
   },
 
   transform: {
     invisible: 'scale(0)',
     full: 'scale(1)',
+  },
+
+  media: {
+    phone: '320',
+    tablet: '768',
+    desktop: '1280',
   },
 };

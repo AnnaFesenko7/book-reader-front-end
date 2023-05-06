@@ -2,7 +2,7 @@ import React from 'react';
 import { FaBookOpen, FaFlag } from 'react-icons/fa';
 import { InfoItem } from './InfoItem';
 
-import { Wrapper } from './Info.styled';
+import { Wrapper, StyledList } from './Info.styled';
 
 const infolContent = [
   {
@@ -22,11 +22,13 @@ const infolContent = [
 export const Info = () => {
   return (
     <Wrapper>
-      {infolContent.map((item, index) => (
-        <li key={index}>
-          <InfoItem item={item} />
-        </li>
-      ))}
+      <StyledList>
+        {infolContent.map((item, index) => (
+          <li key={index}>
+            <InfoItem item={item} />
+          </li>
+        ))}
+      </StyledList>
     </Wrapper>
   );
 };
