@@ -6,16 +6,16 @@ export const StyledContainer = styled.div`
   padding: ${p => p.theme.space[4]}px;
   background: ${p => p.theme.colors.backgroundBody};
   max-width: ${p => p.theme.media.phone}px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  @media screen and (min-width: ${p => p.theme.media.tablet}px) {
-    max-width: ${p => p.theme.media.tablet}px;
+  @media ${p => p.theme.media.tablet} {
+    max-width: ${p => p.theme.mediaWidth.tablet}px;
   }
-  /* @media screen and (min-width: 768px) {
-    max-width: ${p => p.theme.media.tablet}px;
-  } */
 
-  @media screen and (min-width: ${p => p.theme.media.desktop}px) {
-    max-width: ${p => p.theme.media.desktop}px;
+  @media ${p => p.theme.media.desktop} {
+    max-width: ${p => p.theme.mediaWidth.desktop}px;
   }
 `;
 

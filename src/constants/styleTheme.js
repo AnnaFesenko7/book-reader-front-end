@@ -64,8 +64,13 @@ export const theme = {
   },
 
   media: {
+    phone: '(min-width: 320px)',
+    tablet: '(min-width: 768px)',
+    desktop: '(min-width: 1280px)',
+  },
+  mediaWidth: {
     phone: '320',
-    tablet: '768',
-    desktop: '1280',
+    tablet: ' 768px',
+    desktop: ' 1280px',
   },
 };

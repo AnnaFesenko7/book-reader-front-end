@@ -34,12 +34,21 @@ export const PrivateHeader = styled.div`
   justify-content: space-between;
   font-weight: ${p => p.theme.fontWeights.light};
   font-size: ${p => p.theme.fontSizes.s};
+
+  @media ${p => p.theme.media.tablet} {
+    width: 450px;
+  }
+  /* @media ${p => p.theme.media.desktop} {
+    width: 700px;
+  } */
 `;
 
 export const StyledNav = styled.nav`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: ${p => p.theme.space[4]}px;
+  width: ${p => p.size}px;
   cursor: pointer;
 `;
 

@@ -2,14 +2,13 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
-
   background: ${p => p.theme.colors.white};
   width: 280px;
   margin-left: auto;
   margin-right: auto;
-  padding: ${p => p.theme.space[6]}px;
+  padding: ${p => p.theme.space[7]}px;
   box-shadow: ${p => p.theme.boxShadow.infoBox};
-  @media screen and (min-width: ${p => p.theme.media.tablet}px) {
+  @media ${p => p.theme.media.tablet} {
     width: 608px;
   }
 `;

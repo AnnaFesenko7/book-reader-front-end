@@ -8,10 +8,10 @@ export const StyledForm = styled(Form)`
   gap: ${p => p.theme.space[4]}px;
   align-items: center;
 
-  @media screen and (min-width: ${p => p.theme.media.table}px) {
+  @media ${p => p.theme.media.table} {
     width: 704px;
   }
-  @media screen and (min-width: ${p => p.theme.media.desktop}px) {
+  @media ${p => p.theme.media.desktop} {
     width: 1141px;
     flex-direction: row;
     align-items: flex-end;
@@ -29,12 +29,12 @@ export const WrapperGroupOfInputs = styled.div`
   flex-direction: column;
   display: flex;
   margin-bottom: ${p => p.theme.space[6]}px;
+  flex-wrap: wrap;
 
-  @media screen and (min-width: 768px) {
-    /* @media screen and (min-width: ${p => p.theme.media.table}px) { */
+  @media ${p => p.theme.media.tablet} {
     width: 704px;
     flex-direction: row;
-    background-color: 'red';
+    justify-content: space-between;
   }
 `;
 
@@ -44,13 +44,15 @@ export const StyledLabel = styled.label`
   line-height: ${p => p.theme.lineHeights.body};
   color: ${p => p.theme.colors.notActiveText};
   margin-bottom: ${p => p.theme.space[5]}px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 export const StyledField = styled(Field)`
   width: 100%;
   height: ${p => p.theme.space[6]}px;
   margin-top: ${p => p.theme.space[3]}px;
-
   outline: none;
   box-shadow: ${p =>
     p.name === 'title' && `inset ${p => p.theme.boxShadow.inputTitle}`};
@@ -60,4 +62,18 @@ export const StyledField = styled(Field)`
       : `1px solid ${theme.colors.iconColor} `;
   }};
   background: ${p => p.name !== 'title' && `transparent`};
+
+  @media screen and (min-width: 768px) {
+    width: ${p => setSizeForMediaTablet(p.name)}px;
+  }
 `;
+const setSizeForMediaTablet = name => {
+  switch (name) {
+    case 'title':
+      return 704;
+    case 'author':
+      return 336;
+    default:
+      return 152;
+  }
+};
