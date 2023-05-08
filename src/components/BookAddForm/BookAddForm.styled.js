@@ -14,7 +14,7 @@ export const StyledForm = styled(Form)`
   @media ${p => p.theme.media.desktop} {
     width: 1141px;
     flex-direction: row;
-    align-items: flex-end;
+    /* align-items: flex-end; */
   }
 
   svg {
@@ -28,13 +28,19 @@ export const WrapperGroupOfInputs = styled.div`
   width: 280px;
   flex-direction: column;
   display: flex;
-  margin-bottom: ${p => p.theme.space[6]}px;
+  /* margin-bottom: ${p => p.theme.space[6]}px; */
   flex-wrap: wrap;
 
   @media ${p => p.theme.media.tablet} {
     width: 704px;
     flex-direction: row;
     justify-content: space-between;
+  }
+  @media ${p => p.theme.media.desktop} {
+    width: 930px;
+    flex-wrap: nowrap;
+    gap: ${p => p.theme.space[4]}px;
+    margin-right: ${p => p.theme.space[7]}px;
   }
 `;
 
@@ -63,8 +69,12 @@ export const StyledField = styled(Field)`
   }};
   background: ${p => p.name !== 'title' && `transparent`};
 
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.tablet} {
     width: ${p => setSizeForMediaTablet(p.name)}px;
+  }
+
+  @media ${p => p.theme.media.desktop} {
+    width: ${p => setSizeForMediaDesktop(p.name)}px;
   }
 `;
 const setSizeForMediaTablet = name => {
@@ -75,5 +85,16 @@ const setSizeForMediaTablet = name => {
       return 336;
     default:
       return 152;
+  }
+};
+
+const setSizeForMediaDesktop = name => {
+  switch (name) {
+    case 'title':
+      return 346;
+    case 'author':
+      return 250;
+    default:
+      return 134;
   }
 };

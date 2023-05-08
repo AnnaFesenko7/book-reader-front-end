@@ -1,22 +1,28 @@
 import styled from 'styled-components';
 
-export const StyledContainer = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  padding: ${p => p.theme.space[4]}px;
+// export const StyledContainer = styled.div`
+//   margin-left: auto;
+//   margin-right: auto;
+//   padding: ${p => p.theme.space[4]}px;
+//
+//   max-width: ${p => p.theme.media.phone}px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+
+//   @media ${p => p.theme.media.tablet} {
+//     max-width: ${p => p.theme.mediaWidth.tablet}px;
+//   }
+
+//   @media ${p => p.theme.media.desktop} {
+//     max-width: ${p => p.theme.mediaWidth.desktop}px;
+//   }
+// `;
+
+export const WrapperBody = styled.div`
   background: ${p => p.theme.colors.backgroundBody};
-  max-width: ${p => p.theme.media.phone}px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  @media ${p => p.theme.media.tablet} {
-    max-width: ${p => p.theme.mediaWidth.tablet}px;
-  }
-
-  @media ${p => p.theme.media.desktop} {
-    max-width: ${p => p.theme.mediaWidth.desktop}px;
-  }
+  padding-top: ${p => p.theme.space[6]}px;
+  padding-bottom: ${p => p.theme.space[6]}px;
 `;
 
 export const WarningText = styled.div`

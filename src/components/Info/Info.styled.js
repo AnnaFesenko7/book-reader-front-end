@@ -6,8 +6,10 @@ export const Wrapper = styled.div`
   width: 280px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: ${p => p.theme.space[6]}px;
   padding: ${p => p.theme.space[7]}px;
   box-shadow: ${p => p.theme.boxShadow.infoBox};
+
   @media ${p => p.theme.media.tablet} {
     width: 608px;
   }

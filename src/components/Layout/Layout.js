@@ -2,11 +2,8 @@ import { Outlet } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Modal } from 'components/Modal/Modal';
-import {
-  StyledContainer,
-  WarningText,
-  WrapperModalButtons,
-} from './Layout.styled';
+import { WarningText, WrapperModalButtons, WrapperBody } from './Layout.styled';
+import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { Header } from 'components/Header/Header';
 import { Info } from 'components/Info/Info';
 import { Button } from 'components/StyledButton/StyledButton ';
@@ -21,9 +18,12 @@ export const Layout = () => {
   const openModal = () => setModalActive(true);
   const handleCloseInfo = () => setModalInfoOpen(false);
   return (
-    <StyledContainer>
+    <>
       <Header openModal={openModal} isLoggedIn={isLoggedIn} />
-      <Outlet />
+      {/* <StyledContainer> */}
+      <WrapperBody>
+        <Outlet />
+      </WrapperBody>
       <Modal active={modalActive} closeModal={closeModal}>
         <WarningText>
           Якщо Ви вийдете з програми незбережені дані будуть втрачені
@@ -49,6 +49,7 @@ export const Layout = () => {
           />
         </Modal>
       )}
-    </StyledContainer>
+      {/* </StyledContainer> */}
+    </>
   );
 };

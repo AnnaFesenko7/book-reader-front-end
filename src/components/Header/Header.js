@@ -10,12 +10,15 @@ import { UserName } from './UserName';
 // import { authSelectors } from '../../redux/auth';
 // import { useTranslation } from 'react-i18next';
 
+import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
+
 import {
   StyledHeader,
   LogoLink,
   StyledNav,
   ExitButton,
   PrivateHeader,
+  FlexBox,
 } from './Header.styled';
 
 export const Header = ({ openModal }) => {
@@ -34,24 +37,28 @@ export const Header = ({ openModal }) => {
 
   return (
     <StyledHeader>
-      <LogoLink to="/">BR</LogoLink>
+      <StyledContainer>
+        <FlexBox>
+          <LogoLink to="/">BR</LogoLink>
 
-      {/* <LangSwitch onChangeLanguage={changeLanguage} /> */}
+          {/* <LangSwitch onChangeLanguage={changeLanguage} /> */}
 
-      {isLoggedIn && (
-        <PrivateHeader>
-          {!isMobileDevice && <UserName user={loggedInName} />}
+          {isLoggedIn && (
+            <PrivateHeader>
+              {!isMobileDevice && <UserName user={loggedInName} />}
 
-          <StyledNav>
-            <CustomLink icon={FaBookOpen} to="/" />
-            <CustomLink icon={FaHome} to="/training" />
-            {isMobileDevice && <UserName user={loggedInName} />}
-            <ExitButton onClick={openModal} type="button">
-              {'Вихід'}
-            </ExitButton>
-          </StyledNav>
-        </PrivateHeader>
-      )}
+              <StyledNav>
+                <CustomLink icon={FaBookOpen} to="/" />
+                <CustomLink icon={FaHome} to="/training" />
+                {isMobileDevice && <UserName user={loggedInName} />}
+                <ExitButton onClick={openModal} type="button">
+                  {'Вихід'}
+                </ExitButton>
+              </StyledNav>
+            </PrivateHeader>
+          )}
+        </FlexBox>
+      </StyledContainer>
     </StyledHeader>
   );
 };
