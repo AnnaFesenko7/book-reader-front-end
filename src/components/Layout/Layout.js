@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Modal } from 'components/Modal/Modal';
 import { WarningText, WrapperModalButtons, WrapperBody } from './Layout.styled';
-import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
+
 import { Header } from 'components/Header/Header';
 import { Info } from 'components/Info/Info';
 import { Button } from 'components/StyledButton/StyledButton ';
