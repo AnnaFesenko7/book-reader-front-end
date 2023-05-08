@@ -17,18 +17,13 @@ export const StyledForm = styled(Form)`
     /* align-items: flex-end; */
   }
 
-  svg {
-    color: ${p => p.theme.colors.accentColor};
-    display: block;
-    margin-bottom: 40px;
-  }
+ 
 `;
 
 export const WrapperGroupOfInputs = styled.div`
   width: 280px;
   flex-direction: column;
   display: flex;
-  /* margin-bottom: ${p => p.theme.space[6]}px; */
   flex-wrap: wrap;
 
   @media ${p => p.theme.media.tablet} {

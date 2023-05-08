@@ -20,7 +20,7 @@ export const Layout = () => {
   return (
     <>
       <Header openModal={openModal} isLoggedIn={isLoggedIn} />
-      {/* <StyledContainer> */}
+     
       <WrapperBody>
         <Outlet />
       </WrapperBody>
@@ -49,7 +49,7 @@ export const Layout = () => {
           />
         </Modal>
       )}
-      {/* </StyledContainer> */}
+     
     </>
   );
 };

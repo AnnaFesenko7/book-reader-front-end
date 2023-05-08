@@ -16,3 +16,10 @@ export const StyledContainer = styled.div`
     width: ${p => p.theme.mediaWidth.desktop}px;
   }
 `;
+export const SvgContainer = styled.div`
+  color: ${p => p.theme.colors.accentColor};
+  display: block;
+  margin-bottom: 40px;
+  align-self: start;
+  margin-left: 16px;
+`;
