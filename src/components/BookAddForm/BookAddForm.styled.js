@@ -16,8 +16,6 @@ export const StyledForm = styled(Form)`
     flex-direction: row;
     /* align-items: flex-end; */
   }
-
- 
 `;
 
 export const WrapperGroupOfInputs = styled.div`
@@ -44,10 +42,18 @@ export const StyledLabel = styled.label`
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.body};
   color: ${p => p.theme.colors.notActiveText};
-  margin-bottom: ${p => p.theme.space[5]}px;
+  flex-wrap: wrap;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
+  @media ${p => p.theme.media.tablet} {
+    width: ${p => setSizeForMediaTablet(p.htmlFor)}px;
+  }
+
+  @media ${p => p.theme.media.desktop} {
+    width: ${p => setSizeForMediaDesktop(p.htmlFor)}px;
+  }
 `;
 
 export const StyledField = styled(Field)`
@@ -55,6 +61,7 @@ export const StyledField = styled(Field)`
   height: ${p => p.theme.space[6]}px;
   margin-top: ${p => p.theme.space[3]}px;
   outline: none;
+
   box-shadow: ${p =>
     p.name === 'title' && `inset ${p => p.theme.boxShadow.inputTitle}`};
   border: ${({ name, theme }) => {
@@ -93,3 +100,15 @@ const setSizeForMediaDesktop = name => {
       return 134;
   }
 };
+
+export const ButtonContainer = styled.div`
+  width: 170px;
+  height: 40px;
+`;
+
+export const ErrorContainer = styled.div`
+  margin-top: ${p => p.theme.space[3]}px;
+  color: ${p => p.theme.colors.accentColor};
+  height: ${p => p.theme.space[5]}px;
+  display: flex;
+`;

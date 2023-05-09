@@ -5,13 +5,15 @@ import { librarySchema } from 'validSchrmas/librarySchema';
 // import { useTranslation } from 'react-i18next';
 // import { SpinnerCircular } from 'spinners-react';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { TextError } from 'components/TextError/TextError';
+
 import { Button } from 'components/StyledButton/StyledButton ';
 import {
   StyledForm,
   StyledLabel,
   StyledField,
   WrapperGroupOfInputs,
+  ErrorContainer,
+  ButtonContainer,
 } from './BookAddForm.styled';
 
 export const BookAddForm = () => {
@@ -76,7 +78,9 @@ export const BookAddForm = () => {
               type="text"
               placeholder="..."
             />
-            <ErrorMessage name="title" component={TextError} />
+            <ErrorContainer>
+              <ErrorMessage name="title" />
+            </ErrorContainer>
           </StyledLabel>
 
           <StyledLabel htmlFor="author">
@@ -87,13 +91,17 @@ export const BookAddForm = () => {
               type="text"
               placeholder="..."
             />
-            <ErrorMessage name="author" component={TextError} />
+            <ErrorContainer>
+              <ErrorMessage name="author" />
+            </ErrorContainer>
           </StyledLabel>
 
           <StyledLabel htmlFor="year">
             Publication date
             <StyledField id="year" name="year" type="text" placeholder="..." />
-            <ErrorMessage name="year" component={TextError} />
+            <ErrorContainer>
+              <ErrorMessage name="year" />
+            </ErrorContainer>
           </StyledLabel>
 
           <StyledLabel htmlFor="pages">
@@ -104,10 +112,15 @@ export const BookAddForm = () => {
               type="text"
               placeholder="..."
             />
-            <ErrorMessage name="pages" component={TextError} />
+            <ErrorContainer>
+              <ErrorMessage name="pages" />
+            </ErrorContainer>
           </StyledLabel>
         </WrapperGroupOfInputs>
-        <Button type="submit" textContent="Add" size="170" height="40" />
+        <ButtonContainer>
+          <Button type="submit" textContent="Add" />
+          <ErrorContainer />
+        </ButtonContainer>
       </StyledForm>
       {/* {isLoading && <p>Is Adding</p>} */}
     </Formik>
