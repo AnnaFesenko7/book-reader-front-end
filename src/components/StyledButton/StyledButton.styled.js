@@ -11,7 +11,7 @@ export const StyledButton = styled.button`
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 10px;
-  box-shadow: ${p => p.theme.boxShadow.main};
+  /* box-shadow: ${p => p.theme.boxShadow.main}; */
   border-radius: ${p => p.theme.radii.sm};
   border: ${p => `${p.theme.borders.normal} ${p.theme.colors.deepBlue}`};
   box-shadow: ${p => p.theme.boxShadow.btn};

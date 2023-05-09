@@ -12,19 +12,24 @@ export const Layout = () => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   const isLoggedIn = true;
   // const isLoggedInName = 'Anna';
+
   const [modalInfoOpen, setModalInfoOpen] = useState(true);
   const [modalActive, setModalActive] = useState(false);
-  const closeModal = () => setModalActive(false);
-  const openModal = () => setModalActive(true);
+
+  const toggleModal = () => {
+        setModalActive(!modalActive);
+  };
+ 
   const handleCloseInfo = () => setModalInfoOpen(false);
+
   return (
     <>
-      <Header openModal={openModal} isLoggedIn={isLoggedIn} />
-     
+      <Header openModal={toggleModal} isLoggedIn={isLoggedIn} />
+
       <WrapperBody>
         <Outlet />
       </WrapperBody>
-      <Modal active={modalActive} closeModal={closeModal}>
+      <Modal active={modalActive} closeModal={toggleModal}>
         <WarningText>
           Якщо Ви вийдете з програми незбережені дані будуть втрачені
         </WarningText>
@@ -33,23 +38,24 @@ export const Layout = () => {
             textContent="Відміна"
             type="button"
             size="130"
-            onClick={closeModal}
+            onClick={toggleModal}
           />
           <Button textContent="Вийти" type="button" size="130" />
         </WrapperModalButtons>
       </Modal>
+
       {isMobileDevice && (
         <Modal active={modalInfoOpen} closeModal={handleCloseInfo}>
           <Info />
           <Button
             modal
+            size="127"
             textContent="OK"
             type="button"
             onClick={handleCloseInfo}
           />
         </Modal>
       )}
-     
     </>
   );
 };

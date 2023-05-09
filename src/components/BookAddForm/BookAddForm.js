@@ -118,7 +118,7 @@ export const BookAddForm = () => {
           </StyledLabel>
         </WrapperGroupOfInputs>
         <ButtonContainer>
-          <Button type="submit" textContent="Add" />
+          <Button type="submit" textContent="Add" size="175" height="40" />
           <ErrorContainer />
         </ButtonContainer>
       </StyledForm>

@@ -18,7 +18,7 @@ export const BackDropModal = styled.div`
 export const ModalContent = styled.div`
   background: ${p => p.theme.colors.white};
 
-  /* padding: ${p => p.theme.space[6]}px; */
+  padding: ${p => p.theme.space[6]}px;
   border-radius: ${p => p.theme.radii.sm};
   transform: ${p =>
     p.active ? p.theme.transform.full : p.theme.transform.invisible};

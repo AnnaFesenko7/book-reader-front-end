@@ -110,5 +110,4 @@ export const ErrorContainer = styled.div`
   margin-top: ${p => p.theme.space[3]}px;
   color: ${p => p.theme.colors.accentColor};
   height: ${p => p.theme.space[5]}px;
-  display: flex;
 `;
