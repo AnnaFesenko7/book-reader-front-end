@@ -8,8 +8,9 @@ const StarsRatingContainer = styled.div`
   gap: ${p => p.theme.space[2]}px;
   svg {
     color: ${p => p.theme.colors.accentColor};
-    width: ${p => p.theme.space[4]};
-    height: ${p => p.theme.space[4]};
+    width: ${p => p.theme.space[4]}px;
+    height: ${p => p.theme.space[4]}px;
+    line-height: 0;
   }
 `;
 

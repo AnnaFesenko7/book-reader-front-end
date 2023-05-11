@@ -3,38 +3,40 @@ import styled from 'styled-components';
 export const StyledTbody = styled.tbody``;
 
 export const StyledTr = styled.tr`
-  padding: 20px 26px 32px 20px;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
+
+  background-color: ${p => p.theme.colors.white};
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  /* padding-left: ${p => p.theme.space[5]}px; */
 
   @media ${p => p.theme.media.tablet} {
-    height: 62px;
+    height: ${p => p.theme.space[7]}px;
   }
 
-  @media ${p => p.theme.media.desktop} {
-    height: 62px;
-  }
+  /* @media ${p => p.theme.media.desktop} {
+    height: ${p => p.theme.space[7]}px;
+  } */
 `;
 export const StyledTd = styled.td`
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.25;
-  color: #242a37;
-
-  &:first-child {
-    margin-bottom: 15px;
-    margin-left: 0;
-  }
-  &:last-child {
-    margin-bottom: 32px;
-    margin-left: 36px;
-  }
-
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.xs};
+  line-height: ${p => p.theme.lineHeights.body};
+  color: ${p => p.theme.colors.deepBlue};
+  /* background-color: ${p => p.theme.colors.white};
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  padding-left: ${p => p.theme.space[5]}px;
   svg {
-    width: ${p => p.theme.space[5]}px;
+    height: auto;
     color: ${p =>
-      p.status === 'haveRead'
+      p.status === 'reading'
         ? p.theme.colors.accentColor
         : p.theme.colors.tableIconColor};
   }
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${p => p.theme.space[5]}px;
 `;

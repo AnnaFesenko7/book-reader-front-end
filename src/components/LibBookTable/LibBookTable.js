@@ -1,8 +1,14 @@
 import React from 'react';
 import s from './bookTable.module.css';
 
-import { StyledSection } from './StyledLibBookTable';
 import { BodyBookTable } from 'components/BodyBookTable/BodyBookTable';
+import { HeadBookTable } from 'components/HeadBookTable/HeadBookTable';
+
+import {
+  StyledSection,
+  StyledTable,
+  StyledCaption,
+} from './LibBookTable.styled';
 // import {
 //   useGetAllBooksQuery,
 //   useDeleteBookMutation,
@@ -42,66 +48,27 @@ export const LibBookTable = () => {
         {statusObj.haveRead && (
           <div className={s.table}>
             {/* <h3 className={s.title}> {t('alreadyRead')}</h3> */}
-            <h3 className={s.title}> alreadyRead</h3>
-            <table className={s.subTable}>
-              <thead className={s.head}>
-                <tr>
-                  <th className={s.topic} width="30%">
-                    {/* {t('book_title')} */}
-                    book_title
-                  </th>
-                  <th className={s.topic} width="25%">
-                    {/* {t('book_author')} */}
-                    book_author
-                  </th>
-                  <th className={s.topic} width="10%">
-                    {/* {t('book_year')} */}
-                    book_year
-                  </th>
-                  <th className={s.topic} width="10%">
-                    {/* {t('book_pages')} */}
-                    book_pages
-                  </th>
-                  <th className={s.topic} width="25%">
-                    {/* {t('book_rating')} */}
-                    book_rating
-                  </th>
-                </tr>
-              </thead>
+
+            <StyledTable>
+              <StyledCaption> alreadyRead</StyledCaption>
+              <HeadBookTable status="haveRead" />
               <BodyBookTable books={statusObj.haveRead} />
-            </table>
+            </StyledTable>
           </div>
         )}
 
         {statusObj.reading && (
           <div className={s.table}>
             {/* <h3 className={s.title}> {t('readingNow')}</h3> */}
-            <h3 className={s.title}> readingNow</h3>
-            <table className={s.subTable}>
-              <thead className={s.head}>
-                <tr>
-                  <th className={s.topic} width="55%">
-                    {/* {t('book_title')} */}
-                    book_title
-                  </th>
-                  <th className={s.topic} width="25%">
-                    {/* {t('book_author')} */}
-                    book_author
-                  </th>
-                  <th className={s.topic} width="10%">
-                    {/* {t('book_year')} */}
-                    book_year
-                  </th>
-                  <th className={s.topic} width="10%">
-                    {/* {t('book_pages')} */}
-                    book_pages
-                  </th>
-                </tr>
-              </thead>
+
+            <StyledTable>
+              <StyledCaption> readingNow</StyledCaption>
+              <HeadBookTable status="reading" />
               <BodyBookTable books={statusObj.reading} />
-            </table>
+            </StyledTable>
           </div>
         )}
+
         {statusObj.toRead && (
           <div className={s.table}>
             {/* <h3 className={s.title}> {t('goingToRead')} </h3> */}

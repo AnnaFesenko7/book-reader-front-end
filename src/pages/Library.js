@@ -45,7 +45,7 @@ export const data = {
         _id: 4,
         author: 'Жуль Верн',
         pages: 250,
-        title: '15-тирічний капітан',
+        title: '15-ти    річний капітанyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
         year: 2008,
         rating: 5,
         resume: '',

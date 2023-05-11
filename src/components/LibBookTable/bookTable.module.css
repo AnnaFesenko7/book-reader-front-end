@@ -126,7 +126,7 @@
   }
   .subTable {
     width: 100%;
-    border-spacing: 0 10px;
+    border-spacing: 10px 10px;
   }
   .subtitleRating {
     display: flex;
