@@ -7,6 +7,7 @@ export const theme = {
     iconColor: '#a6abb9',
     transparent: 'transparent',
     backgroundBody: '#f6f7fb',
+    tableIconColor: '6D7A8D',
   },
   // fontSize: {
   //   mainSize: '14px',
@@ -22,7 +23,7 @@ export const theme = {
     l: '32px',
     xl: '64px',
   },
-  space: [0, 2, 4, 8, 16, 20, 40, 64, 128, 256],
+  space: [0, 2, 4, 8, 16, 20, 40, 64, 96, 128, 256],
   fonts: {
     body: 'system-ui, sans-serif',
     heading: 'system-ui, sans-serif',

@@ -3,16 +3,21 @@ import styled from 'styled-components';
 
 export const StyledForm = styled(Form)`
   width: 280px;
+  /* width: 100%; */
   flex-direction: column;
   display: flex;
   gap: ${p => p.theme.space[4]}px;
   align-items: center;
+  justify-content: flex-start;
+  padding-right: ${p => p.theme.space[4]}px;
+  padding-left: ${p => p.theme.space[4]}px;
 
   @media ${p => p.theme.media.table} {
-    width: 704px;
+    /* width: 704px; */
+    width: 100%;
   }
   @media ${p => p.theme.media.desktop} {
-    width: 1141px;
+    width: 100%;
     flex-direction: row;
     /* align-items: flex-end; */
   }

@@ -6,7 +6,8 @@ export const StyledContainer = styled.div`
   width: ${p => p.theme.mediaWidth.phone}px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+
+  /* padding-right: ${p => p.theme.space[4]}px; */
 
   @media ${p => p.theme.media.tablet} {
     width: ${p => p.theme.mediaWidth.tablet}px;
@@ -15,11 +16,4 @@ export const StyledContainer = styled.div`
   @media ${p => p.theme.media.desktop} {
     width: ${p => p.theme.mediaWidth.desktop}px;
   }
-`;
-export const SvgContainer = styled.div`
-  color: ${p => p.theme.colors.accentColor};
-  display: block;
-  margin-bottom: 40px;
-  align-self: start;
-  margin-left: 16px;
 `;
