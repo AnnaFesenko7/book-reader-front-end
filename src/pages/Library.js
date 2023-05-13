@@ -21,7 +21,7 @@ export const data = {
         resume: '',
       },
       {
-        status: 'haveRead',
+        status: 'reading',
         _id: 2,
         author: 'J.K.Roling',
         pages: 400,
@@ -41,11 +41,22 @@ export const data = {
         resume: '',
       },
       {
+        status: 'haveRead',
+        _id: 4,
+        author: 'Жуль Верн',
+        pages: 250,
+        title: '15-ти    річний капітан',
+        year: 2008,
+        rating: 5,
+        resume: '',
+      },
+      {
         status: 'reading',
         _id: 4,
         author: 'Жуль Верн',
         pages: 250,
-        title: '15-ти    річний капітанyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
+        title:
+          '15-ти    річний капітанyyyyyyyyyygggggggggggggggggggggggfffffffffffffffffffffffyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
         year: 2008,
         rating: 5,
         resume: '',

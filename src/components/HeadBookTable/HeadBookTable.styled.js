@@ -1,24 +1,24 @@
 import styled from 'styled-components';
 
 export const StyledThead = styled.thead`
-  /* width: 100%; */
   margin-bottom: 8px;
+  width: 100%;
 `;
 
 export const StyledTh = styled.th`
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.21;
-  color: #898f9f;
-
-  display: inline-block;
-  /* vertical-align: top; */
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: ${p => p.theme.lineHeights.secondBody};
+  color: ${p => p.theme.colors.notActiveText};
   width: 60px;
 
   @media ${p => p.theme.media.tablet} {
     text-align: left;
     padding-left: ${p => p.theme.space[5]}px;
-    /* width: ${p => setSizeForMediaTablet(p.name)}px; */
+    width: ${p =>
+      p.status === 'haveRead'
+        ? setSizeForMediaHaveReadTablet(p.name)
+        : setSizeForMediaTablet(p.name)}%;
   }
 
   @media ${p => p.theme.media.desktop} {
@@ -55,10 +55,23 @@ const setSizeForMediaDesktop = name => {
 const setSizeForMediaTablet = name => {
   switch (name) {
     case 'title':
-      return 346;
+      return 50;
     case 'author':
-      return 250;
+      return 30;
     default:
-      return 134;
+      return 10;
+  }
+};
+
+const setSizeForMediaHaveReadTablet = name => {
+  switch (name) {
+    case 'title':
+      return 25;
+    case 'author':
+      return 20;
+    case 'rating':
+      return 35;
+    default:
+      return 10;
   }
 };

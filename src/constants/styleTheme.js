@@ -7,14 +7,9 @@ export const theme = {
     iconColor: '#a6abb9',
     transparent: 'transparent',
     backgroundBody: '#f6f7fb',
-    tableIconColor: '6D7A8D',
+    tableIconColor: '#6D7A8D',
   },
-  // fontSize: {
-  //   mainSize: '14px',
-  //   smallSize: '12px',
-  //   secondarySize: '16px',
-  //   mainTitleSize: '19px',
-  // },
+
   fontSizes: {
     xs: '12px',
     s: '14px',
@@ -37,6 +32,7 @@ export const theme = {
   },
   lineHeights: {
     body: 1.25,
+    secondBody: 1.21,
     heading: 2.71,
   },
   borders: {
@@ -65,12 +61,12 @@ export const theme = {
   },
 
   media: {
-    phone: '(min-width: 320px)',
+    mobile: '(min-width: 320px)',
     tablet: '(min-width: 768px)',
     desktop: '(min-width: 1280px)',
   },
   mediaWidth: {
-    phone: 320,
+    mobile: 320,
     tablet: 768,
     desktop: 1280,
   },

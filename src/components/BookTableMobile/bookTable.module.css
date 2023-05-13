@@ -1,15 +1,8 @@
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .section {
-    padding-top: 20px;
-    width: 100%;
-    margin-bottom: 28px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .table {
-    width: 280px;
-    margin-left: auto;
-    margin-right: auto;
+    min-width: 320px;
+    width: calc(100% - 2 * 20px);
+    margin-bottom: 40px;
   }
   .table + .table {
     margin-top: 20px;
@@ -18,39 +11,30 @@
     margin: 0 0 20px 0;
   }
   .item {
-    padding: 20px 26px 32px 20px;
-    margin-left: auto;
-    margin-right: auto;
+    padding-bottom: 32px;
   }
   .item + .item {
     margin-top: 16px;
   }
   .subtitle:first-child {
     margin-bottom: 15px;
-    margin-left: 0;
+    margin-left: 20px;
   }
   .subtitle {
     margin-bottom: 15px;
-    margin-left: 36px;
+    margin-left: 54px;
   }
   .subtitle:last-child {
     margin-bottom: 32px;
-    margin-left: 36px;
-  }
-  .subtitleRating {
-    display: flex;
-    margin-bottom: 32px;
-    margin-left: 36px;
+    margin-left: 54px;
   }
   .img {
-    margin-left: 0;
-    margin-right: 14px;
+    margin-right: 15px;
   }
   .topic {
     display: inline-block;
-    vertical-align: top;
-    width: 60px;
-    margin-right: 20px;
+    width: 46px;
+    margin-right: 35px;
   }
   .btn {
     width: 127px;
@@ -59,21 +43,12 @@
     margin-left: auto;
     margin-right: auto;
   }
-  .rating {
-    display: inline-block;
-  }
 }
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .section {
     max-width: 768px;
-    width: 100%;
-    margin-bottom: 40px;
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-  .subTable {
-    width: 100%;
-    border-spacing: 0 10px;
+    width: calc(100% - 2 * 32px);
+    margin-bottom: 50px;
   }
   .table + .table {
     margin-top: 40px;
@@ -81,86 +56,85 @@
   .title {
     margin: 0 0 24px 0;
   }
-  .subtitleRating {
-    display: flex;
-    text-align: center;
-    align-items: center;
-    height: 60px;
-  }
 
   .head {
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
   .topic {
     margin-bottom: 8px;
   }
   .item {
-    height: 62px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .item + .item {
+    margin-top: 10px;
   }
 
+  .subtitle {
+    display: inline-block;
+    width: calc(100% / 5);
+  }
+  .table + .table {
+    margin-top: 32px;
+  }
   .img {
-    margin-left: 20px;
     margin-right: 18px;
   }
 
   .btn {
     width: 80px;
     height: 40px;
+    display: block;
     text-align: center;
-    margin-left: 5px;
+    margin: auto 0 auto auto;
   }
 }
 @media screen and (min-width: 1280px) {
   .section {
     max-width: 1280px;
-    width: 100%;
-    margin-bottom: 40px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  .table + .table {
-    margin-top: 32px;
+    width: calc(100% - 2 * 16px);
+    margin-bottom: 50px;
   }
   .title {
     margin: 0 0 24px 0;
   }
-  .subTable {
-    width: 100%;
-    border-spacing: 10px 10px;
-  }
-  .subtitleRating {
-    display: flex;
-    text-align: center;
-    align-items: center;
-    height: 60px;
-  }
 
   .head {
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
   .topic {
     margin-bottom: 8px;
   }
   .item {
-    height: 62px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .item + .item {
+    margin-top: 10px;
   }
 
+  .subtitle {
+    display: inline-block;
+    min-width: calc(100% / 5);
+  }
   .img {
-    margin-left: 20px;
     margin-right: 18px;
   }
   .btn {
     width: 130px;
     height: 40px;
+    display: block;
     text-align: center;
-    margin-left: 40px;
+    margin: auto 0 auto auto;
   }
 }
-/* .section {
-  padding-left: 32px;
-  padding-right: 32px;
-  margin: 0;
-} */
+.section {
+  margin-left: auto;
+  margin-right: auto;
+}
 .title {
   font-family: 'Montserrat';
   font-style: normal;
@@ -192,7 +166,6 @@
 }
 .item {
   background-color: #ffffff;
-  list-style-type: none;
 }
 .btn {
   font-family: 'Montserrat';
@@ -201,30 +174,10 @@
   font-size: 14px;
   line-height: 1.21;
   color: #ffffff;
-  background-color: #6d7a8d;
-  border: none;
+  background: #6d7a8d;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.btn:hover,
-.btn:focus {
-  background-color: #898f9f;
-}
-
-.btnDelete {
-  background-color: inherit;
-  border: 0;
   cursor: pointer;
 }
 li {
   list-style-type: none;
-}
-.meaning {
-  display: inline-block;
-  width: 110px;
-}
-.meaningTitle {
-  display: inline-block;
-  width: 160px;
 }

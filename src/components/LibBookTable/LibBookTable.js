@@ -1,13 +1,14 @@
 import React from 'react';
-import s from './bookTable.module.css';
-
+import { useMediaQuery } from 'react-responsive';
 import { BodyBookTable } from 'components/BodyBookTable/BodyBookTable';
 import { HeadBookTable } from 'components/HeadBookTable/HeadBookTable';
+import { BookTableMobile } from 'components/BookTableMobile/BookTableMobile';
 
 import {
   StyledSection,
   StyledTable,
   StyledCaption,
+  WrapperTable,
 } from './LibBookTable.styled';
 // import {
 //   useGetAllBooksQuery,
@@ -21,82 +22,65 @@ import {
 import { data } from 'pages/Library';
 
 export const LibBookTable = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   // const { data } = useGetAllBooksQuery();
   // const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
   // const { t, i18n } = useTranslation();
 
   const books = data?.payload.books;
-  // const status = stat => {
-  //   return books.some(book => book.status === stat);
-  // };
+
   const statusObj = books.reduce((obj, book) => {
     const stat = book.status;
     return { ...obj, [stat]: obj[stat] ? [...obj[stat], book] : [book] };
   }, {});
 
-  // const [id, serId] = useState(null);
-  // const [open, setOpen] = useState(false);
-  // const handleOpen = id => {
-  //   serId(id);
-  //   setOpen(true);
-  // };
-  // const handleClose = () => setOpen(false);
-
   return (
     <>
       <StyledSection>
         {statusObj.haveRead && (
-          <div className={s.table}>
+          <StyledTable>
             {/* <h3 className={s.title}> {t('alreadyRead')}</h3> */}
-
-            <StyledTable>
-              <StyledCaption> alreadyRead</StyledCaption>
-              <HeadBookTable status="haveRead" />
-              <BodyBookTable books={statusObj.haveRead} />
-            </StyledTable>
-          </div>
+            <StyledCaption> alreadyRead</StyledCaption>
+            {isMobile ? (
+              <BookTableMobile books={statusObj.haveRead} />
+            ) : (
+              <>
+                <HeadBookTable status="haveRead" />
+                <BodyBookTable books={statusObj.haveRead} />
+              </>
+            )}
+          </StyledTable>
         )}
 
         {statusObj.reading && (
-          <div className={s.table}>
-            {/* <h3 className={s.title}> {t('readingNow')}</h3> */}
-
-            <StyledTable>
-              <StyledCaption> readingNow</StyledCaption>
-              <HeadBookTable status="reading" />
-              <BodyBookTable books={statusObj.reading} />
-            </StyledTable>
-          </div>
+          <StyledTable>
+            <StyledCaption> readingNow</StyledCaption>
+            {isMobile ? (
+              <BookTableMobile books={statusObj.reading} />
+            ) : (
+              <>
+                <HeadBookTable status="reading" />
+                <BodyBookTable books={statusObj.reading} />
+              </>
+            )}
+          </StyledTable>
         )}
 
         {statusObj.toRead && (
-          <div className={s.table}>
+          <WrapperTable>
             {/* <h3 className={s.title}> {t('goingToRead')} </h3> */}
-            <h3 className={s.title}> goingToRead </h3>
-            <table className={s.subTable}>
-              <thead className={s.head}>
-                <tr>
-                  <th className={s.topic} width="55%">
-                    {/* {t('book_title')} */}
-                    book_title
-                  </th>
-                  <th className={s.topic} width="25%">
-                    {/* {t('book_author')} */}
-                    book_author
-                  </th>
-                  <th className={s.topic} width="10%">
-                    {/* {t('book_year')} */}
-                    book_year
-                  </th>
-                  <th className={s.topic} width="5%">
-                    {/* {t('book_pages')} */}
-                    book_pages
-                  </th>
-                  <th className={s.topic} width="5%"></th>
-                </tr>
-              </thead>
-              <BodyBookTable books={statusObj.toRead} />
-            </table>
+
+            <StyledTable>
+              <StyledCaption>goingToRead</StyledCaption>
+              {isMobile ? (
+                <BookTableMobile books={statusObj.toRead} />
+              ) : (
+                <>
+                  <HeadBookTable status="toRead" />
+                  <BodyBookTable books={statusObj.toRead} />
+                </>
+              )}
+            </StyledTable>
             {/* <DeleteModal
               open={open}
               handleClose={handleClose}
@@ -106,7 +90,7 @@ export const LibBookTable = () => {
               }}
               isDeleting={isDeleting}
             /> */}
-          </div>
+          </WrapperTable>
         )}
       </StyledSection>
     </>
