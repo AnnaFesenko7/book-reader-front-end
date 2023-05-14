@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaArrowLeft } from 'react-icons/fa';
-const SvgContainer = styled.div`
+
+const StyledLink = styled(Link)`
   color: ${p => p.theme.colors.accentColor};
   display: block;
   margin-bottom: 40px;
@@ -8,12 +10,10 @@ const SvgContainer = styled.div`
   margin-left: 16px;
 `;
 
-export const {
-  MobileFormSvg,
-} = () => {
+export const MobileLinkToLib = ({ to }) => {
   return (
-    <SvgContainer>
+    <StyledLink to={to}>
       <FaArrowLeft />
-    </SvgContainer>
+    </StyledLink>
   );
 };

@@ -17,9 +17,9 @@ export const Layout = () => {
   const [modalActive, setModalActive] = useState(false);
 
   const toggleModal = () => {
-        setModalActive(!modalActive);
+    setModalActive(!modalActive);
   };
- 
+
   const handleCloseInfo = () => setModalInfoOpen(false);
 
   return (
@@ -43,7 +43,6 @@ export const Layout = () => {
           <Button textContent="Вийти" type="button" size="130" />
         </WrapperModalButtons>
       </Modal>
-
       {isMobileDevice && (
         <Modal active={modalInfoOpen} closeModal={handleCloseInfo}>
           <Info />

@@ -4,7 +4,7 @@ import { Info } from 'components/Info/Info';
 import { BookAddForm } from 'components/BookAddForm/BookAddForm';
 import { useMediaQuery } from 'react-responsive';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
-import { MobileFormSvg } from 'components/MobileFormSvg/MobileFormSvg';
+import { MobileLinkToLib } from 'components/MobileLinkToLib/MobileLinkToLib';
 import { LibBookTable } from 'components/LibBookTable/LibBookTable';
 // export const data = null;
 export const data = {
@@ -65,22 +65,22 @@ export const data = {
   },
 };
 
-const Library = () => {
+export const Library = () => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
-
+  const isBookInLibrary = data?.payload.books.length > 0;
   return (
     <StyledContainer>
-      {isMobileDevice && <MobileFormSvg />}
-      <BookAddForm />
-      {data?.payload.books.length > 0 ? (
-        <LibBookTable />
-      ) : isMobileDevice ? (
-        <></>
+      {isMobileDevice ? (
+        <>
+          <MobileLinkToLib to="/mobileLibBookTable" />
+          <BookAddForm />
+        </>
       ) : (
-        <Info />
+        <>
+          <BookAddForm />
+          {isBookInLibrary ? <LibBookTable /> : <Info />}
+        </>
       )}
     </StyledContainer>
   );
 };
-
-export default Library;

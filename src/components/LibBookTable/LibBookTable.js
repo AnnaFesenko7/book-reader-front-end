@@ -3,6 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import { BodyBookTable } from 'components/BodyBookTable/BodyBookTable';
 import { HeadBookTable } from 'components/HeadBookTable/HeadBookTable';
 import { BookTableMobile } from 'components/BookTableMobile/BookTableMobile';
+// import { MobileLinkToForm } from 'components/MobileLinkToForm/MobileLinkToForm';
 
 import {
   StyledSection,
@@ -73,7 +74,10 @@ export const LibBookTable = () => {
             <StyledTable>
               <StyledCaption>goingToRead</StyledCaption>
               {isMobile ? (
-                <BookTableMobile books={statusObj.toRead} />
+                <>
+                  <BookTableMobile books={statusObj.toRead} />
+                  {/* <MobileLinkToForm to="/" /> */}
+                </>
               ) : (
                 <>
                   <HeadBookTable status="toRead" />

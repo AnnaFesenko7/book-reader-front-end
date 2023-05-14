@@ -1,25 +1,31 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from '../GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
-const Library = lazy(() => import('../pages/Library'));
+// const Library = lazy(() => import('../pages/Library'));
+import { Library } from 'pages/Library';
+import { MobileLibBookTable } from 'pages/MobileLibBookTable';
 
 export const App = () => {
   return (
     <>
-      <Suspense>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route
-              index
-              element={
-                // <PrivateRoute>
-                <Library />
-                // </PrivateRoute>
-              }
-            />
+      {/* <Suspense> */}
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route
+            index
+            element={
+              // <PrivateRoute>
+              <Library />
+              // </PrivateRoute>
+            }
+          />
+          <Route
+            path="mobileLibBookTable"
+            element={<MobileLibBookTable />}
+          ></Route>
 
-            {/* <Route
+          {/* <Route
               path="training"
               element={
                 <PrivateRoute>
@@ -27,9 +33,9 @@ export const App = () => {
                  </PrivateRoute>
               }
             /> */}
-          </Route>
+        </Route>
 
-          {/* <Route
+        {/* <Route
               path="/login"
               element={
                 <PublicRoute restricted>
@@ -38,7 +44,7 @@ export const App = () => {
               }
             /> */}
 
-          {/* <Route
+        {/* <Route
               path="/register"
               element={
                 <PublicRoute restricted>
@@ -46,7 +52,7 @@ export const App = () => {
                 </PublicRoute>
               }
             /> */}
-          {/* 
+        {/* 
             <Route
               path="/changePassword"
               element={
@@ -56,10 +62,10 @@ export const App = () => {
               }
             /> */}
 
-          <Route path="*" element={<p>There is nothing here: 404!</p>} />
-        </Routes>
-        <GlobalStyle />
-      </Suspense>
+        <Route path="*" element={<p>There is nothing here: 404!</p>} />
+      </Routes>
+      <GlobalStyle />
+      {/* </Suspense> */}
     </>
   );
 };
