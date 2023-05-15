@@ -1,83 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import s from './bookTable.module.css';
-import star from './symbol-defs.svg';
+
+import { ResumeButton } from 'components/ResumeButton/ResumeButton';
+import { FaBookOpen } from 'react-icons/fa';
+import {
+  StyledList,
+  StyledListItem,
+  StyledBookTitle,
+  Wrapper,
+  StyledBookDescription,
+} from './BookTableMobile.styled';
 
 export const BookTableMobile = ({ books }) => {
   return (
-    <ul className={s.table}>
+    <StyledList>
       {books.map(({ _id, status, title, author, year, pages, rating }) => {
         return (
-          <li key={_id} className={s.item}>
-            <p className={s.subtitle}>
-              <svg width={22} height={17} className={s.img}>
-                <use href={`${star}#white_book`}></use>
-              </svg>
-              {title}
-            </p>
-            <p className={s.subtitle}>
-              <span className={s.topic}>Author:</span> {author}
-            </p>
-            <p className={s.subtitle}>
-              <span className={s.topic}>Year:</span>
-              {year}
-            </p>
-            <p className={s.subtitle}>
-              <span className={s.topic}>Pages:</span>
-              {pages}
-            </p>
-            <p className={s.subtitle}>
-              <span className={s.topic}>Rating</span>
-              {rating >= 1 ? (
-                <svg width={17} height={17}>
-                  <use href={`${star}#yellow_star`}></use>
-                </svg>
-              ) : (
-                <svg width={17} height={17}>
-                  <use href={`${star}#white_star`}></use>
-                </svg>
-              )}
-              {rating >= 2 ? (
-                <svg width={17} height={17}>
-                  <use href={`${star}#yellow_star`}></use>
-                </svg>
-              ) : (
-                <svg width={17} height={17}>
-                  <use href={`${star}#white_star`}></use>
-                </svg>
-              )}
-              {rating >= 3 ? (
-                <svg width={17} height={17}>
-                  <use href={`${star}#yellow_star`}></use>
-                </svg>
-              ) : (
-                <svg width={17} height={17}>
-                  <use href={`${star}#white_star`}></use>
-                </svg>
-              )}
-              {rating >= 4 ? (
-                <svg width={17} height={17}>
-                  <use href={`${star}#yellow_star`}></use>
-                </svg>
-              ) : (
-                <svg width={17} height={17}>
-                  <use href={`${star}#white_star`}></use>
-                </svg>
-              )}
-              {rating >= 5 ? (
-                <svg width={17} height={17}>
-                  <use href={`${star}#yellow_star`}></use>
-                </svg>
-              ) : (
-                <svg width={17} height={17}>
-                  <use href={`${star}#white_star`}></use>
-                </svg>
-              )}
-            </p>
-            <button type="button" className={s.btn}>
-              Resume
-            </button>
-          </li>
+          <StyledListItem key={_id}>
+            <FaBookOpen size={'22px'} />
+            <Wrapper>
+              <StyledBookTitle>{title}</StyledBookTitle>
+              <StyledBookDescription>
+                <span>Author:</span> {author}
+              </StyledBookDescription>
+              <StyledBookDescription>
+                <span>Year:</span>
+                {year}
+              </StyledBookDescription>
+              <StyledBookDescription>
+                <span>Pages:</span>
+                {pages}
+              </StyledBookDescription>
+
+              {status === 'haveRead' && <ResumeButton />}
+            </Wrapper>
+          </StyledListItem>
         );
       })}
 
@@ -151,7 +108,7 @@ export const BookTableMobile = ({ books }) => {
             </ul>
           </div>
         )} */}
-    </ul>
+    </StyledList>
   );
 };
 BookTableMobile.propTypes = {

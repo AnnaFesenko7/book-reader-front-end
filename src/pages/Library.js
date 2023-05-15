@@ -11,7 +11,7 @@ export const data = {
   payload: {
     books: [
       {
-        status: 'haveRead',
+        status: 'toRead',
         _id: 1,
         author: 'Гюго',
         pages: 300,
@@ -40,23 +40,23 @@ export const data = {
         rating: 4,
         resume: '',
       },
-      {
-        status: 'haveRead',
-        _id: 4,
-        author: 'Жуль Верн',
-        pages: 250,
-        title: '15-ти    річний капітан',
-        year: 2008,
-        rating: 5,
-        resume: '',
-      },
+      // {
+      //   status: 'haveRead',
+      //   _id: 4,
+      //   author: 'Жуль Верн',
+      //   pages: 250,
+      //   title: '15-ти    річний капітан',
+      //   year: 2008,
+      //   rating: 5,
+      //   resume: '',
+      // },
       {
         status: 'reading',
         _id: 4,
         author: 'Жуль Верн',
         pages: 250,
         title:
-          '15-ти    річний капітанyyyyyyyyyygggggggggggggggggggggggfffffffffffffffffffffffyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
+          '15-ти    річний капітан yyyyyyyy yygggggg gggggggggggggg gggfffffff fffffffffffffff fyyyyyyyyy yyyyyyyy yyyyyyyyyyy',
         year: 2008,
         rating: 5,
         resume: '',

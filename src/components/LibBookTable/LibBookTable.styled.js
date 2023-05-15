@@ -24,12 +24,13 @@ export const StyledSection = styled.div`
 `;
 
 export const StyledTable = styled.table`
-  width: 100%;
-  border-spacing: 0 10px;
-  padding-bottom: 20px;
-
+  display: block;
   @media ${p => p.theme.media.tablet} {
+    display: table;
     padding-bottom: 40px;
+    width: 100%;
+    border-spacing: 0 10px;
+    padding-bottom: 20px;
   }
   @media ${p => p.theme.media.desktop} {
     padding-bottom: 32px;
