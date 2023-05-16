@@ -1,48 +1,63 @@
 import styled from 'styled-components';
 
-export const StyledList = styled.ul``;
-
-export const StyledListItem = styled.li`
-  padding: 20px;
-  display: flex;
-
-  svg {
-    vertical-align: top;
-    color: ${p =>
-      p.status === 'reading'
-        ? p.theme.colors.accentColor
-        : p.theme.colors.iconColor};
-  }
+export const StyledList = styled.div`
+  margin-bottom: ${p => p.theme.space[6]}px;
 `;
 
-export const Wrapper = styled.div`
+export const StyledListItem = styled.div`
+  position: relative;
+  padding: ${p => p.theme.space[5]}px;
+  padding-left: 54px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  margin-left: 12px;
-  align-items: flex-start;
 
-  font-weight: ${p => p.theme.fontWeights.normal};
-  font-size: ${p => p.theme.fontSizes.s};
-  line-height: ${p => p.theme.lineHeights.body};
-`;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: ${p => p.theme.colors.white};
+  margin-bottom: ${p => p.theme.space[4]}px;
 
-export const StyledBookTitle = styled.p`
-  margin-bottom: 16px;
-  margin-top: 4px;
-  font-weight: ${p => p.theme.fontWeights.normal};
-  font-size: ${p => p.theme.fontSizes.s};
-  line-height: ${p => p.theme.lineHeights.body};
-  color: ${p => p.theme.colors.deepBlue};
-`;
-
-export const StyledBookDescription = styled.div`
-  display: flex;
-
-  color: ${p => p.theme.colors.deepBlue};
-
-  span {
-    /* color: ${p => p.theme.colors.deepBlue}; */
-    color: ${p => p.theme.colors.notActiveText};
+  svg {
   }
+`;
+
+export const BookIcon = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: ${p =>
+    p.status === 'reading'
+      ? p.theme.colors.accentColor
+      : p.theme.colors.iconColor};
+`;
+
+export const StyledTable = styled.table`
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: ${p => p.theme.lineHeights.body};
+`;
+
+export const StyledBookTitle = styled.caption`
+  text-align: start;
+  margin-bottom: ${p => p.theme.space[4]}px;
+  margin-top: ${p => p.theme.space[2]}px;
+  color: ${p => p.theme.colors.deepBlue};
+`;
+
+export const StyledTr = styled.tr``;
+
+export const StyledTh = styled.th`
+  text-align: start;
+  color: ${p => p.theme.colors.notActiveText};
+  padding-bottom: ${p => p.theme.space[4]}px;
+`;
+
+export const StyledTd = styled.td`
+  padding-left: ${p => p.theme.space[6]}px;
+  text-align: start;
+  color: ${p => p.theme.colors.deepBlue};
+  padding-bottom: ${p => p.theme.space[4]}px;
+`;
+export const Wrapper = styled.div`
+  display: block;
+  justify-content: center;
+  align-self: center;
 `;
