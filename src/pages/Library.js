@@ -4,7 +4,7 @@ import { Info } from 'components/Info/Info';
 import { BookAddForm } from 'components/BookAddForm/BookAddForm';
 import { useMediaQuery } from 'react-responsive';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
-import { MobileLinkToLib } from 'components/MobileLinkToLib/MobileLinkToLib';
+import { MobileLinkToSecondPage } from 'components/MobileLinkToSecondPage/MobileLinkToSecondPage';
 import { LibBookTable } from 'components/LibBookTable/LibBookTable';
 // export const data = null;
 export const data = {
@@ -72,7 +72,7 @@ export const Library = () => {
     <StyledContainer>
       {isMobileDevice ? (
         <>
-          <MobileLinkToLib to="/mobileLibBookTable" />
+          <MobileLinkToSecondPage to="/mobileLibBookTable" />
           <BookAddForm />
         </>
       ) : (

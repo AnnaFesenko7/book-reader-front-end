@@ -10,7 +10,7 @@ const StyledLink = styled(Link)`
   margin-left: 16px;
 `;
 
-export const MobileLinkToLib = ({ to }) => {
+export const MobileLinkToSecondPage = ({ to }) => {
   return (
     <StyledLink to={to}>
       <FaArrowLeft />

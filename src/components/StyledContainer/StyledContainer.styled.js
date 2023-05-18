@@ -6,10 +6,6 @@ export const StyledContainer = styled.div`
   width: ${p => p.theme.mediaWidth.mobile}px;
   display: flex;
   flex-direction: column;
-  /* max-height: 100vh; */
-  /* position: relative; */
-
-  /* padding-right: ${p => p.theme.space[4]}px; */
 
   @media ${p => p.theme.media.tablet} {
     width: ${p => p.theme.mediaWidth.tablet}px;

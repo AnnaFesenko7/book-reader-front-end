@@ -4,6 +4,7 @@ import { GlobalStyle } from '../GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
 // const Library = lazy(() => import('../pages/Library'));
 import { Library } from 'pages/Library';
+import { Training } from 'pages/Training';
 import { MobileLibBookTable } from 'pages/MobileLibBookTable';
 
 export const App = () => {
@@ -25,14 +26,14 @@ export const App = () => {
             element={<MobileLibBookTable />}
           ></Route>
 
-          {/* <Route
-              path="training"
-              element={
-                <PrivateRoute>
-                <Training />
-                 </PrivateRoute>
-              }
-            /> */}
+          <Route
+            path="training"
+            element={
+              // <PrivateRoute>
+              <Training />
+              //  </PrivateRoute>
+            }
+          />
         </Route>
 
         {/* <Route

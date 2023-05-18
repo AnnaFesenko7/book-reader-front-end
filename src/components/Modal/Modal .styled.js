@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const BackDropModal = styled.div`
+  z-index: 100;
   height: 100vh;
   width: 100vw;
   background: ${p => p.theme.colors.transparent};
