@@ -19,9 +19,7 @@ import {
 // import RatingBookWrapper from 'components/RatingBookWrapper';
 
 // import DeleteModal from './deleteModal';
-
 import { data } from 'pages/Library';
-
 export const LibBookTable = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   // const { data } = useGetAllBooksQuery();

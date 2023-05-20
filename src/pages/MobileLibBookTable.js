@@ -3,11 +3,11 @@ import { MobileLinkToForm } from 'components/MobileLinkToForm/MobileLinkToForm';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { useMediaQuery } from 'react-responsive';
 
-export const MobileLibBookTable = () => {
+export const MobileLibBookTable = ({ data }) => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   return (
     <StyledContainer>
-      <LibBookTable />
+      <LibBookTable data={data} />
       {isMobileDevice && <MobileLinkToForm to="/" />}
     </StyledContainer>
   );

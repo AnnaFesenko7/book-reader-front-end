@@ -78,7 +78,11 @@ export const Library = () => {
       ) : (
         <>
           <BookAddForm />
-          {isBookInLibrary ? <LibBookTable /> : <Info />}
+          {isBookInLibrary ? (
+            <LibBookTable data={data?.payload.books} />
+          ) : (
+            <Info />
+          )}
         </>
       )}
     </StyledContainer>

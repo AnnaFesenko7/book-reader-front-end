@@ -1,9 +1,9 @@
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState } from 'react';
-import { Button } from 'components/StyledButton/StyledButton ';
+
 import { TrainingTitle } from 'components/TrainingTitle/TrainingTitle';
-import { SeleckBooks } from 'components/SeleckBooks/SeleckBooks';
+import { SelectBooks } from 'components/SelectBooks/SelectBooks';
 import {
   StyledControlsWrapper,
   TrainingWrapper,
@@ -12,7 +12,13 @@ import {
 export const TrainingDataSelection = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  // const [arrSelectedBooks, setArrSelectedBooks] = useState([]);
+
+  const [selectedBooksIdList, setSelectedBooksIdList] = useState([]);
+
+  const onAddBtnClick = bookId => {
+    setSelectedBooksIdList(prevList => [...prevList, bookId]);
+    console.log(selectedBooksIdList);
+  };
 
   return (
     <>
@@ -45,8 +51,7 @@ export const TrainingDataSelection = () => {
             placeholderText="Завершення"
           />
         </StyledControlsWrapper>
-        <SeleckBooks />
-        <Button size={170} textContent="Add" type="submit" />
+        <SelectBooks onAddBtnClick={onAddBtnClick} />
       </TrainingWrapper>
     </>
   );
