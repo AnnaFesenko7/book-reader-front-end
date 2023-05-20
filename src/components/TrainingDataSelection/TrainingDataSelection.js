@@ -33,7 +33,7 @@ export const TrainingDataSelection = () => {
             showTimeSelect
             dateFormat="MMMM d, yyyy h:mm aa"
             selectsStart
-            minDate={new Date()}
+            minDate={Date.now()}
             showDisabledMonthNavigation
             placeholderText="Початок"
           />
