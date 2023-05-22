@@ -27,6 +27,9 @@ export const StyledForm = styled(Form)`
     @media ${p => p.theme.media.tablet} {
       width: 483px;
     }
+    @media ${p => p.theme.media.desktop} {
+      width: 715px;
+    }
   }
 `;
 export const Wrapper = styled.div`
@@ -34,5 +37,9 @@ export const Wrapper = styled.div`
 
   @media ${p => p.theme.media.tablet} {
     width: 483px;
+  }
+
+  @media ${p => p.theme.media.desktop} {
+    width: 715px;
   }
 `;

@@ -10,10 +10,12 @@ export const TrainingWrapper = styled.div`
   gap: 20px;
   @media ${p => p.theme.media.tablet} {
     gap: 24px;
+
     /* flex-direction: column-reverse; */
   }
   @media ${p => p.theme.media.desktop} {
-    flex-direction: row;
+    /* flex-direction: row; */
+    width: 928px;
     gap: 32px;
   }
 `;
@@ -52,8 +54,8 @@ export const StyledControlsWrapper = styled.div`
     align-self: flex-start;
   }
   @media ${p => p.theme.media.desktop} {
-    justify-content: center;
-    gap: 44px;
+    align-self: center;
+    gap: 40px;
   }
 `;
 
