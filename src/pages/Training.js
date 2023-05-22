@@ -15,7 +15,7 @@ export const Training = () => {
     <StyledContainer>
       {isMobileDevice ? (
         <>
-          <MobileLinkToSecondPage to="/mobileLibBookTable" />
+          <MobileLinkToSecondPage to="/mobileTraingBookTable " />
           <TrainingDataSelection />
         </>
       ) : (

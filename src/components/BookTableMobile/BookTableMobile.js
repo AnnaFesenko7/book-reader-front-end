@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import { ResumeButton } from 'components/ResumeButton/ResumeButton';
 import { FaBookOpen } from 'react-icons/fa';
@@ -62,11 +62,11 @@ export const BookTableMobile = ({ books }) => {
     </StyledList>
   );
 };
-BookTableMobile.propTypes = {
-  title: PropTypes.string,
-  author: PropTypes.string,
-  year: PropTypes.number,
-  pages: PropTypes.number,
-  rating: PropTypes.number,
-  status: PropTypes.string,
-};
+// BookTableMobile.propTypes = {
+//   title: PropTypes.string,
+//   author: PropTypes.string,
+//   year: PropTypes.number,
+//   pages: PropTypes.number,
+//   rating: PropTypes.number,
+//   status: PropTypes.string,
+// };

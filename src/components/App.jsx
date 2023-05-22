@@ -6,6 +6,7 @@ import { Layout } from 'components/Layout/Layout';
 import { Library } from 'pages/Library';
 import { Training } from 'pages/Training';
 import { MobileLibBookTable } from 'pages/MobileLibBookTable';
+import { MobileTraingBookTable } from 'pages/MobileTraingBookTable ';
 
 export const App = () => {
   return (
@@ -21,10 +22,7 @@ export const App = () => {
               // </PrivateRoute>
             }
           />
-          <Route
-            path="mobileLibBookTable"
-            element={<MobileLibBookTable />}
-          ></Route>
+          <Route path="mobileLibBookTable" element={<MobileLibBookTable />} />
 
           <Route
             path="training"
@@ -34,9 +32,13 @@ export const App = () => {
               //  </PrivateRoute>
             }
           />
-        </Route>
 
-        {/* <Route
+          <Route
+            path="mobileTraingBookTable"
+            element={<MobileTraingBookTable />}
+          />
+
+          {/* <Route
               path="/login"
               element={
                 <PublicRoute restricted>
@@ -45,7 +47,7 @@ export const App = () => {
               }
             /> */}
 
-        {/* <Route
+          {/* <Route
               path="/register"
               element={
                 <PublicRoute restricted>
@@ -53,7 +55,7 @@ export const App = () => {
                 </PublicRoute>
               }
             /> */}
-        {/* 
+          {/* 
             <Route
               path="/changePassword"
               element={
@@ -62,7 +64,7 @@ export const App = () => {
                 </PublicRoute>
               }
             /> */}
-
+        </Route>
         <Route path="*" element={<p>There is nothing here: 404!</p>} />
       </Routes>
       <GlobalStyle />
