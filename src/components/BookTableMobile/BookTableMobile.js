@@ -18,17 +18,16 @@ import {
 
 export const BookTableMobile = ({ books }) => {
   return (
-    <>
-      <StyledList>
-        {books.map(({ _id, status, title, author, year, pages, rating }) => {
-          return (
-            <StyledListItem key={_id}>
-              <BookIcon status={status}>
-                <FaBookOpen size={'22px'} />
-              </BookIcon>
-              <StyledTable>
-                <StyledBookTitle>{title}</StyledBookTitle>
-
+    <StyledList>
+      {books.map(({ _id, status, title, author, year, pages, rating }) => {
+        return (
+          <StyledListItem key={_id}>
+            <BookIcon status={status}>
+              <FaBookOpen size={'22px'} />
+            </BookIcon>
+            <StyledTable>
+              <StyledBookTitle>{title}</StyledBookTitle>
+              <tbody>
                 <StyledTr>
                   <StyledTh>Author: </StyledTh>
                   <StyledTd>{author}</StyledTd>
@@ -50,17 +49,17 @@ export const BookTableMobile = ({ books }) => {
                     </StyledTd>
                   </StyledTr>
                 )}
-              </StyledTable>
-              {status === 'haveRead' && (
-                <Wrapper>
-                  <ResumeButton />
-                </Wrapper>
-              )}
-            </StyledListItem>
-          );
-        })}
-      </StyledList>
-    </>
+              </tbody>
+            </StyledTable>
+            {status === 'haveRead' && (
+              <Wrapper>
+                <ResumeButton />
+              </Wrapper>
+            )}
+          </StyledListItem>
+        );
+      })}
+    </StyledList>
   );
 };
 BookTableMobile.propTypes = {

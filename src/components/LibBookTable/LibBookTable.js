@@ -19,8 +19,8 @@ import {
 // import RatingBookWrapper from 'components/RatingBookWrapper';
 
 // import DeleteModal from './deleteModal';
-import { data } from 'pages/Library';
-export const LibBookTable = () => {
+// import { data } from 'pages/Library';
+export const LibBookTable = ({ data }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   // const { data } = useGetAllBooksQuery();
   // const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
@@ -41,7 +41,7 @@ export const LibBookTable = () => {
             {/* <h3 className={s.title}> {t('alreadyRead')}</h3> */}
             <StyledCaption> alreadyRead</StyledCaption>
             {isMobile ? (
-              <BookTableMobile books={statusObj.haveRead} />
+              <></>
             ) : (
               <>
                 <HeadBookTable status="haveRead" />
@@ -50,6 +50,7 @@ export const LibBookTable = () => {
             )}
           </StyledTable>
         )}
+        {isMobile && <BookTableMobile books={statusObj.haveRead} />}
 
         {statusObj.reading && (
           <StyledTable>
