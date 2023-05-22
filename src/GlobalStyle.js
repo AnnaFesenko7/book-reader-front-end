@@ -14,12 +14,9 @@ body {
   
 }
 
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
 
-p {
+
+p, h2 {
   margin: 0;
 }
 

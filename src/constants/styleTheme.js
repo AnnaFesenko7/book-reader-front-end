@@ -8,6 +8,7 @@ export const theme = {
     transparent: 'transparent',
     backgroundBody: '#f6f7fb',
     tableIconColor: '#6D7A8D',
+    backgroundTitle: '#b1b5c2',
   },
 
   fontSizes: {
@@ -61,9 +62,9 @@ export const theme = {
   },
 
   media: {
-    mobile: '(min-width: 320px)',
-    tablet: '(min-width: 768px)',
-    desktop: '(min-width: 1280px)',
+    mobile: 'screen and (min-width: 320px)',
+    tablet: 'screen and (min-width: 768px)',
+    desktop: 'screen and (min-width: 1280px)',
   },
   mediaWidth: {
     mobile: 320,

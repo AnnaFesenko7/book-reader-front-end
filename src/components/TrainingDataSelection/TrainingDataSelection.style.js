@@ -4,11 +4,13 @@ export const TrainingWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-weight: 500;
+  font-weight: ${p => p.theme.fontWeights.normal};
   font-size: 14px;
   line-height: 1.21;
+  gap: 20px;
   @media ${p => p.theme.media.tablet} {
-    flex-direction: column-reverse;
+    gap: 24px;
+    /* flex-direction: column-reverse; */
   }
   @media ${p => p.theme.media.desktop} {
     flex-direction: row;
@@ -44,12 +46,12 @@ export const StyledControlsWrapper = styled.div`
     fill: ${p => p.theme.colors.iconColor};
   }
 
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.tablet} {
     display: flex;
     gap: 40px;
-    margin-bottom: 24px;
+    align-self: flex-start;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${p => p.theme.media.desktop} {
     justify-content: center;
     gap: 44px;
   }

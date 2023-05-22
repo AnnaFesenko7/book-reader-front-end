@@ -7,6 +7,13 @@ export const StyledForm = styled(Form)`
   flex-direction: column;
   align-items: center;
   gap: 16px;
+
+  @media ${p => p.theme.media.tablet} {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
   select {
     display: block;
     width: 100%;
@@ -16,5 +23,16 @@ export const StyledForm = styled(Form)`
     outline: none;
     border: none;
     color: ${p => p.theme.colors.deepBlue};
+
+    @media ${p => p.theme.media.tablet} {
+      width: 483px;
+    }
+  }
+`;
+export const Wrapper = styled.div`
+  width: 100%;
+
+  @media ${p => p.theme.media.tablet} {
+    width: 483px;
   }
 `;

@@ -1,8 +1,10 @@
-import { StyledForm } from './SelectBooks.styled';
+import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Button } from 'components/StyledButton/StyledButton ';
 import { ErrorContainer } from 'components/ErrorContainer/ErrorContainer.styled';
-import { Formik, Field, ErrorMessage } from 'formik';
+
+import { StyledForm, Wrapper } from './SelectBooks.styled';
+
 export const books = [
   {
     status: 'toRead',
@@ -78,19 +80,21 @@ export const SelectBooks = ({ onAddBtnClick }) => {
       validationSchema={validationSchema}
     >
       <StyledForm>
-        <Field name="book" as="select">
-          <option value="" hidden disabled>
-            {defaultValue}
-          </option>
-          {books.map(book => (
-            <option value={book._id} key={book._id}>
-              {book.title}
+        <Wrapper>
+          <Field name="book" as="select">
+            <option value="" hidden disabled>
+              {defaultValue}
             </option>
-          ))}
-        </Field>
-        <ErrorContainer>
-          <ErrorMessage name="book" />
-        </ErrorContainer>
+            {books.map(book => (
+              <option value={book._id} key={book._id}>
+                {book.title}
+              </option>
+            ))}
+          </Field>
+          <ErrorContainer>
+            <ErrorMessage name="book" />
+          </ErrorContainer>
+        </Wrapper>
 
         <Button size={170} textContent="Add" type="submit" />
       </StyledForm>

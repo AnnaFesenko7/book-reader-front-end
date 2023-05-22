@@ -6,7 +6,7 @@ import { Layout } from 'components/Layout/Layout';
 import { Library } from 'pages/Library';
 import { Training } from 'pages/Training';
 import { MobileLibBookTable } from 'pages/MobileLibBookTable';
-import { MobileTraingBookTable } from 'pages/MobileTraingBookTable ';
+import { MobileTrainBookTable } from 'pages/MobileTrainBookTable ';
 
 export const App = () => {
   return (
@@ -35,7 +35,7 @@ export const App = () => {
 
           <Route
             path="mobileTraingBookTable"
-            element={<MobileTraingBookTable />}
+            element={<MobileTrainBookTable />}
           />
 
           {/* <Route

@@ -7,7 +7,7 @@ export const MobileLibBookTable = () => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   return (
     <StyledContainer>
-      <LibBookTable data={data} />
+      <LibBookTable data={data?.payload.books} />
       {isMobileDevice && <MobileLinkToForm to="/" />}
     </StyledContainer>
   );

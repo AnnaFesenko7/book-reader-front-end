@@ -2,6 +2,7 @@ import { useMediaQuery } from 'react-responsive';
 import { TrainingDataSelection } from 'components/TrainingDataSelection/TrainingDataSelection';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { MobileLinkToSecondPage } from 'components/MobileLinkToSecondPage/MobileLinkToSecondPage';
+
 // import { useGetAllBooksQuery } from 'redux/books/booksApi';
 // import { useAddTrainingMutation } from 'redux/books/trainingApi';
 // import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
@@ -20,8 +21,7 @@ export const Training = () => {
         </>
       ) : (
         <>
-          {/* <BookAddForm />
-          {isBookInLibrary ? <LibBookTable /> : <Info />} */}
+          <TrainingDataSelection />
         </>
       )}
     </StyledContainer>
