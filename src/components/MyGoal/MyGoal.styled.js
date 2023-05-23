@@ -123,18 +123,14 @@ export const MyGoalStatsText = styled.span`
   display: flex;
   justify-content: center;
   margin-top: 14px;
-  /* max-width: 66px; */
 
   @media ${p => p.theme.media.tablet} {
-    /* flex-wrap: wrap; */
     max-width: 100px;
     font-size: ${p => p.theme.fontSizes.ss};
     margin-top: 0;
   }
 
   @media ${p => p.theme.media.desktop} {
-    /* flex-wrap: wrap; */
-
     font-size: ${p =>
       p.isTrainingStarted
         ? `${p.theme.fontSizes.xs}`
