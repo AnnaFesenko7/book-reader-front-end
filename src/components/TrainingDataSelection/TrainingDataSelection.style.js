@@ -10,8 +10,6 @@ export const TrainingWrapper = styled.div`
   gap: 20px;
   @media ${p => p.theme.media.tablet} {
     gap: 24px;
-
-    /* flex-direction: column-reverse; */
   }
   @media ${p => p.theme.media.desktop} {
     /* flex-direction: row; */

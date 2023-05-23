@@ -29,6 +29,7 @@ export const Layout = () => {
       <WrapperBody>
         <Outlet />
       </WrapperBody>
+
       <Modal active={modalActive} closeModal={toggleModal}>
         <WarningText>
           Якщо Ви вийдете з програми незбережені дані будуть втрачені
@@ -43,6 +44,7 @@ export const Layout = () => {
           <Button textContent="Вийти" type="button" size="130" />
         </WrapperModalButtons>
       </Modal>
+
       {isMobileDevice && (
         <Modal active={modalInfoOpen} closeModal={handleCloseInfo}>
           <Info />

@@ -9,15 +9,20 @@ export const theme = {
     backgroundBody: '#f6f7fb',
     tableIconColor: '#6D7A8D',
     backgroundTitle: '#b1b5c2',
+    backgroundStatistic: '#F5F7FA',
+    statisticColor: '#091e3f',
   },
 
   fontSizes: {
+    ss: '10px',
     xs: '12px',
     s: '14px',
     xm: '16px',
     m: '20px',
     l: '32px',
-    xl: '64px',
+    xl: '40px',
+    xxl: '45px',
+    xxxl: '64px',
   },
   space: [0, 2, 4, 8, 16, 20, 40, 64, 96, 128, 256],
   fonts: {

@@ -1,8 +1,9 @@
 import { useMediaQuery } from 'react-responsive';
 import { TrainingDataSelection } from 'components/TrainingDataSelection/TrainingDataSelection';
+import { MyGoal } from 'components/MyGoal/MyGoal';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { MobileLinkToSecondPage } from 'components/MobileLinkToSecondPage/MobileLinkToSecondPage';
-
+import { TrainingContainer } from 'components/TrainingContainer/TrainingContainer';
 // import { useGetAllBooksQuery } from 'redux/books/booksApi';
 // import { useAddTrainingMutation } from 'redux/books/trainingApi';
 // import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
@@ -20,9 +21,10 @@ export const Training = () => {
           <TrainingDataSelection />
         </>
       ) : (
-        <>
+        <TrainingContainer>
           <TrainingDataSelection />
-        </>
+          <MyGoal />
+        </TrainingContainer>
       )}
     </StyledContainer>
   );
