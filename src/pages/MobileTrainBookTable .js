@@ -4,8 +4,6 @@ import { MobileLinkToForm } from 'components/MobileLinkToForm/MobileLinkToForm';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { useMediaQuery } from 'react-responsive';
 
-// import { BookTableMobile } from 'components/BookTableMobile/BookTableMobile';
-
 import { data } from 'pages/Library';
 const MobileTrainBookTable = () => {
   useLogOutRedirect();
@@ -15,7 +13,6 @@ const MobileTrainBookTable = () => {
       <LibBookTable data={data?.payload.books} />
       {isMobileDevice && (
         <>
-          {/* <BookTableMobile books={data?.payload.books} /> */}
           <MobileLinkToForm to="/training" />
         </>
       )}
