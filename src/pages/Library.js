@@ -1,11 +1,12 @@
 import React from 'react';
-
+import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
 import { Info } from 'components/Info/Info';
 import { BookAddForm } from 'components/BookAddForm/BookAddForm';
 import { useMediaQuery } from 'react-responsive';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { MobileLinkToSecondPage } from 'components/MobileLinkToSecondPage/MobileLinkToSecondPage';
 import { LibBookTable } from 'components/LibBookTable/LibBookTable';
+import { WrapperBody } from 'components/WrapperBody/WrapperBody.styled';
 // export const data = null;
 export const data = {
   payload: {
@@ -65,26 +66,32 @@ export const data = {
   },
 };
 
-export const Library = () => {
+const Library = () => {
+  useLogOutRedirect();
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   const isBookInLibrary = data?.payload.books.length > 0;
   return (
-    <StyledContainer>
-      {isMobileDevice ? (
-        <>
-          <MobileLinkToSecondPage to="/mobileLibBookTable" />
-          <BookAddForm />
-        </>
-      ) : (
-        <>
-          <BookAddForm />
-          {isBookInLibrary ? (
-            <LibBookTable data={data?.payload.books} />
+    <section>
+      <StyledContainer>
+        <WrapperBody>
+          {isMobileDevice ? (
+            <>
+              <MobileLinkToSecondPage to="/mobileLibBookTable" />
+              <BookAddForm />
+            </>
           ) : (
-            <Info />
+            <>
+              <BookAddForm />
+              {isBookInLibrary ? (
+                <LibBookTable data={data?.payload.books} />
+              ) : (
+                <Info />
+              )}
+            </>
           )}
-        </>
-      )}
-    </StyledContainer>
+        </WrapperBody>
+      </StyledContainer>
+    </section>
   );
 };
+export default Library;

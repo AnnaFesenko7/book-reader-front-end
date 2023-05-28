@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from '../GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
-// const Library = lazy(() => import('../pages/Library'));
-import { Library } from 'pages/Library';
-import { Training } from 'pages/Training';
-import { MobileLibBookTable } from 'pages/MobileLibBookTable';
-import { MobileTrainBookTable } from 'pages/MobileTrainBookTable ';
+const Library = lazy(() => import('pages/Library'));
+const Training = lazy(() => import('pages/Training'));
+const MobileLibBookTable = lazy(() => import('pages/MobileLibBookTable'));
+const MobileTrainBookTable = lazy(() => import('pages/MobileTrainBookTable '));
+const LoginPage = lazy(() => import('pages/LoginPage'));
 
 export const App = () => {
   return (
     <>
-      {/* <Suspense> */}
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
@@ -38,14 +37,14 @@ export const App = () => {
             element={<MobileTrainBookTable />}
           />
 
-          {/* <Route
-              path="/login"
-              element={
-                <PublicRoute restricted>
-                  <LoginPage />
-                </PublicRoute>
-              }
-            /> */}
+          <Route
+            path="/login"
+            element={
+              // <PublicRoute restricted>
+              <LoginPage />
+              // </PublicRoute>
+            }
+          />
 
           {/* <Route
               path="/register"
@@ -68,7 +67,6 @@ export const App = () => {
         <Route path="*" element={<p>There is nothing here: 404!</p>} />
       </Routes>
       <GlobalStyle />
-      {/* </Suspense> */}
     </>
   );
 };

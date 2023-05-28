@@ -6,7 +6,7 @@ import { CustomLink } from 'components/CustomLink/CustomLink';
 import { UserName } from './UserName';
 
 // import { authOperations } from '../../redux/auth';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import { authSelectors } from '../../redux/auth';
 // import { useTranslation } from 'react-i18next';
 
@@ -23,9 +23,9 @@ import {
 
 export const Header = ({ openModal }) => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
-  const isLoggedIn = true;
+
   const loggedInName = 'Anna';
-  // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   // const isLoggedInName = useSelector(authSelectors.getUsername);
 
   // const { t, i18n } = useTranslation();

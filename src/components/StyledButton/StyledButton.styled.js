@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledButton = styled.button`
   font-size: ${p => p.theme.fontSizes.s};
-  font-weight: 500;
+  font-weight: ${p => p.theme.fontWeights.normal};
   color: ${p =>
     p.modal ? `${p.theme.colors.white} ` : `${p.theme.colors.deepBlue}`};
   background-color: ${({ modal, theme }) =>
