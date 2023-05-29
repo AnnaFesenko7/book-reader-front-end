@@ -7,6 +7,7 @@ const Training = lazy(() => import('pages/Training'));
 const MobileLibBookTable = lazy(() => import('pages/MobileLibBookTable'));
 const MobileTrainBookTable = lazy(() => import('pages/MobileTrainBookTable '));
 const LoginPage = lazy(() => import('pages/LoginPage'));
+const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 
 export const App = () => {
   return (
@@ -46,14 +47,14 @@ export const App = () => {
             }
           />
 
-          {/* <Route
-              path="/register"
-              element={
-                <PublicRoute restricted>
-                  <RegistrationPage />
-                </PublicRoute>
-              }
-            /> */}
+          <Route
+            path="/register"
+            element={
+              // <PublicRoute restricted>
+              <RegistrationPage />
+              // </PublicRoute>
+            }
+          />
           {/* 
             <Route
               path="/changePassword"

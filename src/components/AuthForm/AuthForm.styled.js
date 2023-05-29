@@ -45,7 +45,7 @@ export const FormContainer = styled.div`
 export const StyledForm = styled(Form)`
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: ${p => p.theme.space[3]}px;
   flex-direction: column;
   /* text-align: center; */
   max-width: 280px;
@@ -68,7 +68,7 @@ export const StyledLabel = styled.label`
   line-height: ${p => p.theme.lineHeights.body};
   color: ${p => p.theme.colors.white};
   margin: 0;
-  margin-bottom: ${p => p.theme.space[3]}px;
+  /* margin-bottom: ${p => p.theme.space[3]}px; */
 
   @media ${p => p.theme.media.tablet} {
     color: ${p => p.theme.colors.notActiveText};

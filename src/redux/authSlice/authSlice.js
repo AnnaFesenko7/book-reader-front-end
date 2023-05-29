@@ -5,6 +5,7 @@ const initialState = {
   //   token: null,
   //   avatarGoogle: null,
   isLoggedIn: false,
+  password: '',
   logIn: '',
   //   loginError: null,
   //   trainingStatus: false,
@@ -23,6 +24,13 @@ export const authSlice = createSlice({
       state.logIn = '';
       state.isLoggedIn = false;
     },
+    registration(state, action) {
+      state.userName = action.payload.name;
+      state.logIn = action.payload.email;
+      state.password = action.payload.password;
+
+      state.isRegistered = true;
+    },
   },
 });
-export const { logIn, logOut } = authSlice.actions;
+export const { logIn, logOut, registration } = authSlice.actions;

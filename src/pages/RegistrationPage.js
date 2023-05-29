@@ -1,12 +1,17 @@
 import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/authSlice/authSlice';
+import { registration } from 'redux/authSlice/authSlice';
 import { useNavigate } from 'react-router-dom';
-import { loginSchema } from 'validSchemas/loginSchema';
+import { registrationSchema } from 'validSchemas/registrationSchema';
 import { AuthForm } from 'components/AuthForm/AuthForm';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { AuthWrapper } from 'components/AuthWrapper/AuthWrapper.styled';
 
 const fieldsArray = [
+  {
+    labelText: 'Ім’я',
+    placeholder: '...',
+    name: 'name',
+  },
   {
     labelText: 'Електронна адреса ',
     placeholder: 'your@email.com',
@@ -17,19 +22,26 @@ const fieldsArray = [
     placeholder: 'Пароль',
     name: 'password',
   },
+  {
+    labelText: 'Підтвердити пароль',
+    placeholder: 'Пароль',
+    name: 'confirmPassword',
+  },
 ];
 
-const LoginPage = () => {
+const RegistrationPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const initialValues = {
+    name: '',
     email: '',
     password: '',
+    confirmPassword: '',
   };
 
   const handelSubmit = values => {
     console.log(values);
-    dispatch(logIn(values.email));
+    dispatch(registration(values));
     navigate('/', { replace: true });
   };
 
@@ -39,9 +51,9 @@ const LoginPage = () => {
         <AuthWrapper>
           <AuthForm
             fieldsArray={fieldsArray}
-            btnTextContent={'Увійти'}
+            btnTextContent={'Зареєструватися'}
             initialValues={initialValues}
-            validationSchema={loginSchema}
+            validationSchema={registrationSchema}
             handelSubmit={handelSubmit}
           />
 
@@ -59,4 +71,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegistrationPage;
