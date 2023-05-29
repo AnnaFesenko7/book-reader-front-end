@@ -115,3 +115,16 @@ export const StyledButton = styled.button`
   box-shadow: ${p => p.theme.boxShadow.btn};
   text-align: center;
 `;
+
+export const StyledLink = styled.div`
+  text-align: center;
+  font-size: ${p => p.theme.fontSizes.xs};
+  color: ${p => p.theme.colors.notActiveText};
+
+  a {
+    display: inline-block;
+    color: ${p => p.theme.colors.accentColor};
+    margin-left: ${p => p.theme.space[2]}px;
+    text-decoration: underline;
+  }
+`;

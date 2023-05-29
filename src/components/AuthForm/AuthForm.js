@@ -1,4 +1,5 @@
 import { Formik, ErrorMessage } from 'formik';
+import { Link } from 'react-router-dom';
 import { ErrorContainer } from 'components/ErrorContainer/ErrorContainer.styled';
 import {
   FormContainer,
@@ -7,6 +8,7 @@ import {
   StyledField,
   LabelText,
   StyledButton,
+  StyledLink,
 } from './AuthForm.styled';
 
 export const AuthForm = ({
@@ -15,6 +17,7 @@ export const AuthForm = ({
   initialValues,
   validationSchema,
   handelSubmit,
+  type,
 }) => {
   const onSubmit = (values, { resetForm }) => {
     console.log(values);
@@ -28,6 +31,7 @@ export const AuthForm = ({
         validationSchema={validationSchema}
         initialValues={initialValues}
         onSubmit={onSubmit}
+        type={type}
       >
         <StyledForm autoComplete="off">
           {fieldsArray.map(({ labelText, placeholder, name }) => {
@@ -47,6 +51,17 @@ export const AuthForm = ({
             );
           })}
           <StyledButton type="submit">{btnTextContent}</StyledButton>
+
+          {type === 'login' ? (
+            <StyledLink>
+              <Link to="/register">Реєстрація</Link>
+            </StyledLink>
+          ) : (
+            <StyledLink>
+              Вже з нами?
+              <Link to="/login">Увійти</Link>
+            </StyledLink>
+          )}
         </StyledForm>
       </Formik>
     </FormContainer>

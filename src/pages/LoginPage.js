@@ -43,6 +43,7 @@ const LoginPage = () => {
             initialValues={initialValues}
             validationSchema={loginSchema}
             handelSubmit={handelSubmit}
+            type="login"
           />
 
           {/* <div className={styles.right__block}>
