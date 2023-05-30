@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const StyledResumeButton = styled.button`
+export const StyledResumeButton = styled.span`
+  display: block;
   font-weight: ${p => p.theme.fontWeights.normal};
   line-height: ${p => p.theme.lineHeights.secondBody};
   font-size: ${p => p.theme.fontSizes.s};

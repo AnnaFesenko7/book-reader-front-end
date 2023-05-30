@@ -8,10 +8,9 @@ export const StyledButton = styled.button`
   background-color: ${({ modal, theme }) =>
     modal ? `${theme.colors.accentColor} ` : `${theme.colors.backgroundBody}`};
   padding-top: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: auto;
+  padding-right: auto;
   padding-bottom: 10px;
-  /* box-shadow: ${p => p.theme.boxShadow.main}; */
   border-radius: ${p => p.theme.radii.sm};
   border: ${p => `${p.theme.borders.normal} ${p.theme.colors.deepBlue}`};
   box-shadow: ${p => p.theme.boxShadow.btn};

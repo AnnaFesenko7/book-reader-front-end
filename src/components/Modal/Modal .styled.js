@@ -19,7 +19,7 @@ export const BackDropModal = styled.div`
 export const ModalContent = styled.div`
   background: ${p => p.theme.colors.white};
   gap: ${p => p.theme.space[5]}px;
-  padding: ${p => p.theme.space[6]}px;
+  /* padding: ${p => p.theme.space[6]}px; */
   border-radius: ${p => p.theme.radii.sm};
   display: flex;
   flex-direction: column;
@@ -27,4 +27,5 @@ export const ModalContent = styled.div`
   transform: ${p =>
     p.active ? p.theme.transform.full : p.theme.transform.invisible};
   transition: 0.5s;
+  box-shadow: 10px 10px 20px rgba(9, 30, 63, 0.2);
 `;

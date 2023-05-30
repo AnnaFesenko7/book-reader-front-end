@@ -3,7 +3,9 @@ import { useMediaQuery } from 'react-responsive';
 import { BodyBookTable } from 'components/BodyBookTable/BodyBookTable';
 import { HeadBookTable } from 'components/HeadBookTable/HeadBookTable';
 import { BookTableMobile } from 'components/BookTableMobile/BookTableMobile';
-// import { MobileLinkToForm } from 'components/MobileLinkToForm/MobileLinkToForm';
+import { Modal } from 'components/Modal/Modal';
+import { useModal } from 'hooks/useModal';
+import { ResumeModalContent } from 'components/ResumeModalContent/ResumeModalContent';
 
 import {
   StyledSection,
@@ -21,7 +23,7 @@ import {
 // import { data } from 'pages/Library';
 export const LibBookTable = ({ data }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
-  // const { data } = useGetAllBooksQuery();
+  const { isModalOpen, toggleModal } = useModal();
   // const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
   // const { t, i18n } = useTranslation();
 
@@ -45,7 +47,10 @@ export const LibBookTable = ({ data }) => {
               ) : (
                 <>
                   <HeadBookTable status="haveRead" />
-                  <BodyBookTable books={statusObj.haveRead} />
+                  <BodyBookTable
+                    books={statusObj.haveRead}
+                    toggleModal={toggleModal}
+                  />
                 </>
               )}
             </StyledTable>
@@ -89,6 +94,10 @@ export const LibBookTable = ({ data }) => {
           </>
         )}
       </StyledSection>
+
+      <Modal active={isModalOpen} closeModal={toggleModal}>
+        <ResumeModalContent closeModal={toggleModal} />
+      </Modal>
     </>
   );
 };
