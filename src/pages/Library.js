@@ -69,8 +69,10 @@ export const data = {
 };
 
 const Library = () => {
-  const [updateUi, setUpdateUi] = useState(false);
   useLogOutRedirect();
+
+  const [updateUi, setUpdateUi] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
