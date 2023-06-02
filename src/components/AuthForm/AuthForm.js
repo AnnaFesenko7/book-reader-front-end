@@ -20,7 +20,7 @@ export const AuthForm = ({
   type,
 }) => {
   const onSubmit = (values, { resetForm }) => {
-    console.log(values);
+    // console.log(values);
     handelSubmit(values);
     resetForm();
   };

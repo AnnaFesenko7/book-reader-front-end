@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form, Field } from 'formik';
+import { Form } from 'formik';
 
 export const StyledForm = styled(Form)`
   width: 280px;
@@ -26,12 +26,12 @@ export const StyledLabel = styled.label`
   flex-direction: column;
 `;
 
-export const StyledTextarea = styled(Field)`
-  width: 100%;
-  height: 170px;
-  resize: none;
-  border: 1px solid #a6abb9;
-`;
+// export const StyledTextarea = styled.div`
+//   width: 100%;
+//   height: 170px;
+//   resize: none;
+//   border: 1px solid #a6abb9;
+// `;
 
 export const BtnWrapper = styled.div`
   display: flex;

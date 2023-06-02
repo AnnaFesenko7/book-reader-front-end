@@ -12,22 +12,12 @@ import {
   StyledTable,
   StyledCaption,
 } from './LibBookTable.styled';
-// import {
-//   useGetAllBooksQuery,
-//   useDeleteBookMutation,
-// } from 'redux/books/booksApi';
-// import { useTranslation } from 'react-i18next';
-// import RatingBookWrapper from 'components/RatingBookWrapper';
 
-// import DeleteModal from './deleteModal';
-// import { data } from 'pages/Library';
 export const LibBookTable = ({ data }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const { isModalOpen, toggleModal } = useModal();
   // const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
   // const { t, i18n } = useTranslation();
-
-  // const books = data?.payload.books;
 
   const statusObj = data.reduce((obj, book) => {
     const stat = book.status;
@@ -101,11 +91,3 @@ export const LibBookTable = ({ data }) => {
     </>
   );
 };
-// LibBookTable.propTypes = {
-//   title: PropTypes.string,
-//   author: PropTypes.string,
-//   year: PropTypes.number,
-//   pages: PropTypes.number,
-//   rating: PropTypes.number,
-//   status: PropTypes.string,
-// };

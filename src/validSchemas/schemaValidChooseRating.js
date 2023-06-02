@@ -5,5 +5,6 @@ export const schemaValidChooseRating = Yup.object().shape({
   resume: Yup.string()
     .min(1, 'Too short resume!')
     .max(1000, 'You have exceeded the word limit')
-    .typeError('Must be a string!'),
+    .typeError('Must be a string!')
+    .required('this field is required'),
 });

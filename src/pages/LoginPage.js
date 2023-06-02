@@ -28,7 +28,7 @@ const LoginPage = () => {
   };
 
   const handelSubmit = values => {
-    console.log(values);
+    // console.log(values);
     dispatch(logIn(values.email));
     navigate('/', { replace: true });
   };

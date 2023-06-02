@@ -1,4 +1,6 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { booksSelectors, booksOperations } from 'redux/books';
 import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
 import { Info } from 'components/Info/Info';
 import { BookAddForm } from 'components/BookAddForm/BookAddForm';
@@ -7,7 +9,7 @@ import { StyledContainer } from 'components/StyledContainer/StyledContainer.styl
 import { MobileLinkToSecondPage } from 'components/MobileLinkToSecondPage/MobileLinkToSecondPage';
 import { LibBookTable } from 'components/LibBookTable/LibBookTable';
 import { WrapperBody } from 'components/WrapperBody/WrapperBody.styled';
-// export const data = null;
+
 export const data = {
   payload: {
     books: [
@@ -16,7 +18,7 @@ export const data = {
         _id: 1,
         author: 'Гюго',
         pages: 300,
-        title: 'Людина що сміється',
+        title: 'Стааааааарий',
         year: 1980,
         rating: 2,
         resume: '',
@@ -67,9 +69,19 @@ export const data = {
 };
 
 const Library = () => {
+  const [updateUi, setUpdateUi] = useState(false);
   useLogOutRedirect();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(booksOperations.getBooks());
+  }, [dispatch, updateUi]);
+
+  const books = useSelector(booksSelectors.getBooksSelector);
+
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
-  const isBookInLibrary = data?.payload.books.length > 0;
+
+  const isBookInLibrary = books.length > 0;
   return (
     <section>
       <StyledContainer>
@@ -81,12 +93,8 @@ const Library = () => {
             </>
           ) : (
             <>
-              <BookAddForm />
-              {isBookInLibrary ? (
-                <LibBookTable data={data?.payload.books} />
-              ) : (
-                <Info />
-              )}
+              <BookAddForm updateUi={setUpdateUi} />
+              {isBookInLibrary ? <LibBookTable data={books} /> : <Info />}
             </>
           )}
         </WrapperBody>

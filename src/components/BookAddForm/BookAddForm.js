@@ -1,4 +1,5 @@
-import React from 'react';
+import { useDispatch } from 'react-redux';
+import { booksOperations } from 'redux/books';
 import { Formik, ErrorMessage } from 'formik';
 import { librarySchema } from 'validSchemas/librarySchema';
 // import { useAddBookMutation, useGetAllBooksQuery } from 'redux/books/booksApi';
@@ -15,10 +16,9 @@ import {
   ButtonContainer,
 } from './BookAddForm.styled';
 
-export const BookAddForm = () => {
-  // const [addBook, { isLoading, error }] = useAddBookMutation();
+export const BookAddForm = ({ updateUi }) => {
+  const dispatch = useDispatch();
   // const { t, i18n } = useTranslation();
-  // const { data } = useGetAllBooksQuery();
 
   //   onSubmit: async ({ title, author, year, pages }, { resetForm }) => {
   //     if (year === '') {
@@ -54,6 +54,8 @@ export const BookAddForm = () => {
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
     resetForm();
+    dispatch(booksOperations.addBook(values));
+    updateUi(true);
   };
   const initialValues = {
     title: '',
