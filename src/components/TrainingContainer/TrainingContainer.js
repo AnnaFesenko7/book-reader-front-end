@@ -8,5 +8,6 @@ export const TrainingContainer = styled.div`
   @media ${p => p.theme.media.desktop} {
     flex-direction: row;
     justify-content: space-between;
+    padding: ${p => p.theme.space[5]}px;
   }
 `;

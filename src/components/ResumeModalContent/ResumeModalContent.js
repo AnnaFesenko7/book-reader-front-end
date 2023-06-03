@@ -26,7 +26,7 @@ export const ResumeModalContent = ({ closeModal }) => {
 
   return (
     <Formik
-      initialValues={{ resume: '', rating: 0 }}
+      initialValues={{ resume: '', rating: rating }}
       onSubmit={handleSubmit}
       validationSchema={schemaValidChooseRating}
     >
@@ -48,7 +48,7 @@ export const ResumeModalContent = ({ closeModal }) => {
                   }}
                   activeColor="#FF6B08"
                   size={17}
-                  // value={value}
+                  value={rating}
                   color="#A6ABB9"
                   // a11y={true}
                 />

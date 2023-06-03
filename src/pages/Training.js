@@ -13,8 +13,9 @@ import { WrapperBody } from 'components/WrapperBody/WrapperBody.styled';
 // import Statistics from '../statistics/statistics';
 
 const Training = () => {
-  const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   useLogOutRedirect();
+  const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
+
   return (
     <StyledContainer>
       <WrapperBody>

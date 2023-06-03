@@ -8,13 +8,15 @@ export const TrainingWrapper = styled.div`
   font-size: 14px;
   line-height: 1.21;
   gap: 20px;
+  padding: ${p => p.theme.space[5]}px;
+
   @media ${p => p.theme.media.tablet} {
     gap: 24px;
   }
   @media ${p => p.theme.media.desktop} {
-    /* flex-direction: row; */
     width: 928px;
     gap: 32px;
+    padding: 0;
   }
 `;
 
