@@ -7,10 +7,13 @@ export const selectedBooksSlice = createSlice({
   initialState,
   reducers: {
     addBook(state, action) {
-      console.log(action);
-      console.log(state.list);
+      // console.log(state.list);
       state.list = [...state.list, action.payload];
+    },
+    deleteBook(state, action) {
+      // console.log('action', action);
+      state.list = state.list.filter(book => book._id !== action.payload);
     },
   },
 });
-export const { addBook } = selectedBooksSlice.actions;
+export const { addBook, deleteBook } = selectedBooksSlice.actions;

@@ -11,15 +11,10 @@ export const StyledSection = styled.div`
 
   @media ${p => p.theme.media.tablet} {
     width: ${p => p.theme.mediaWidth.tablet}px;
-    margin-bottom: 40px;
-    padding-left: 32px;
-    padding-right: 32px;
+    margin-bottom: ${p => p.theme.space[6]}px;
   }
   @media ${p => p.theme.media.desktop} {
     width: ${p => p.theme.mediaWidth.desktop}px;
-    margin-bottom: 40px;
-    padding-left: 16px;
-    padding-right: 16px;
   }
 `;
 

@@ -34,3 +34,9 @@ export const Wrapper = styled.div`
   align-items: center;
   gap: ${p => p.theme.space[5]}px;
 `;
+export const DeleteButton = styled.button`
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  line-height: 0;
+`;

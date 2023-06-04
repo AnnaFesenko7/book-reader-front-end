@@ -1,9 +1,13 @@
 import { useMediaQuery } from 'react-responsive';
+import { useSelector } from 'react-redux';
+
 import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
 import { TrainingDataSelection } from 'components/TrainingDataSelection/TrainingDataSelection';
 import { MyGoal } from 'components/MyGoal/MyGoal';
-import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
+import { LibBookTable } from 'components/LibBookTable/LibBookTable';
+
 import { MobileLinkToSecondPage } from 'components/MobileLinkToSecondPage/MobileLinkToSecondPage';
+import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { TrainingContainer } from 'components/TrainingContainer/TrainingContainer';
 import { WrapperBody } from 'components/WrapperBody/WrapperBody.styled';
 // import { useGetAllBooksQuery } from 'redux/books/booksApi';
@@ -15,6 +19,7 @@ import { WrapperBody } from 'components/WrapperBody/WrapperBody.styled';
 const Training = () => {
   useLogOutRedirect();
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
+  const books = useSelector(state => state.selectedBooks.list);
 
   return (
     <StyledContainer>
@@ -25,10 +30,13 @@ const Training = () => {
             <TrainingDataSelection />
           </>
         ) : (
-          <TrainingContainer>
-            <TrainingDataSelection />
-            <MyGoal />
-          </TrainingContainer>
+          <>
+            <TrainingContainer>
+              <TrainingDataSelection />
+              <MyGoal />
+            </TrainingContainer>
+            <LibBookTable data={books} training />
+          </>
         )}
       </WrapperBody>
     </StyledContainer>

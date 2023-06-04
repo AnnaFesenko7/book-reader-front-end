@@ -24,8 +24,7 @@ export const SelectBooks = () => {
   const defaultValue = 'Обрати книги з бібліотеки';
 
   const onSubmit = (val, { resetForm }) => {
-    console.log('🚀 ~ file: SelectBooks.js:79 ~ onSubmit ~ val:', val['book']);
-    const newBook = books.find(book => book._id === val['book']);
+    const newBook = books.find(book => book._id === val.book);
     console.log(newBook);
     resetForm();
     dispatch(addBook(newBook));

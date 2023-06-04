@@ -13,7 +13,7 @@ import {
   StyledCaption,
 } from './LibBookTable.styled';
 
-export const LibBookTable = ({ data }) => {
+export const LibBookTable = ({ data, training }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const { isModalOpen, toggleModal } = useModal();
   // const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
@@ -27,6 +27,12 @@ export const LibBookTable = ({ data }) => {
   return (
     <>
       <StyledSection>
+        {training && (
+          <StyledTable>
+            <HeadBookTable status="toRead" training />
+            <BodyBookTable books={statusObj.toRead} training />
+          </StyledTable>
+        )}
         {statusObj.haveRead && (
           <>
             <StyledTable>
@@ -65,7 +71,7 @@ export const LibBookTable = ({ data }) => {
           </>
         )}
 
-        {statusObj.toRead && (
+        {!training && statusObj.toRead && (
           <>
             {/* <h3 className={s.title}> {t('goingToRead')} </h3> */}
 
