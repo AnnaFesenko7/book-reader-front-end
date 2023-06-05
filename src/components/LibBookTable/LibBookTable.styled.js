@@ -12,6 +12,8 @@ export const StyledSection = styled.div`
   @media ${p => p.theme.media.tablet} {
     width: ${p => p.theme.mediaWidth.tablet}px;
     margin-bottom: ${p => p.theme.space[6]}px;
+    padding-right: ${p => p.theme.space[5]}px;
+    padding-left: ${p => p.theme.space[5]}px;
   }
   @media ${p => p.theme.media.desktop} {
     width: ${p => p.theme.mediaWidth.desktop}px;

@@ -25,7 +25,7 @@ export const StyledControlsWrapper = styled.div`
     display: block;
     width: 100%;
     height: 40px;
-    padding: 2px 31px 2px 45px;
+    padding: 2px 31px 2px 40px !important;
     background-color: ${p => p.theme.colors.backgroundBody};
     border: 1px solid #a6abb9;
     margin-bottom: 20px;

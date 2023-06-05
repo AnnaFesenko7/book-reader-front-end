@@ -12,10 +12,10 @@ export const librarySchema = Yup.object().shape({
 
   author: Yup.string()
     .max(50, 'Author name should be less than 50')
-    .matches(
-      /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я]*)*$/,
-      'Author name must contain letters'
-    )
+    // .matches(
+    //   /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я]*)*$/,
+    //   'Author name must contain letters'
+    // )
     .required('Author is required'),
 
   year: Yup.number()

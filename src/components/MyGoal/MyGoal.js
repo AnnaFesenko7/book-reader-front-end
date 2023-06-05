@@ -1,5 +1,6 @@
 // import { useTranslation } from 'react-i18next';
 // import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
+import { useSelector } from 'react-redux';
 import { TrainingTitle } from 'components/TrainingTitle/TrainingTitle';
 import {
   MyGoalMainBox,
@@ -12,11 +13,13 @@ import {
 
 export const MyGoal = ({
   days = 20,
-  books = 5,
+
   booksLeft = 1,
   isTrainingStarted = false,
 }) => {
   // const { t } = useTranslation();
+  const booksArr = useSelector(state => state.selectedBooks.list);
+  const books = booksArr.length;
 
   const statistic = [
     { param: 'books', text: 'Кількість книжок', amount: books },

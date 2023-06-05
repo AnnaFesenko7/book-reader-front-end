@@ -29,7 +29,7 @@ export const LibBookTable = ({ data, training }) => {
       <StyledSection>
         {training && (
           <StyledTable>
-            <HeadBookTable status="toRead" training />
+            <HeadBookTable status="training" />
             <BodyBookTable books={statusObj.toRead} training />
           </StyledTable>
         )}

@@ -58,12 +58,16 @@ export const BodyBookTable = ({ books, toggleModal, training }) => {
 
         {training && (
           <StyledTr>
-            <StyledTd status="toRead">
+            <StyledTd status="training">
               <Wrapper>
                 <FaBookOpen size={'22px'} />
                 ...
               </Wrapper>
             </StyledTd>
+            <StyledTd></StyledTd>
+            <StyledTd></StyledTd>
+            <StyledTd></StyledTd>
+            <StyledTd></StyledTd>
           </StyledTr>
         )}
       </tbody>

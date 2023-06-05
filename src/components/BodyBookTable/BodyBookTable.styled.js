@@ -9,17 +9,14 @@ export const StyledTr = styled.tr`
   @media ${p => p.theme.media.tablet} {
     height: ${p => p.theme.space[7]}px;
   }
-
-  /* @media ${p => p.theme.media.desktop} {
-    height: ${p => p.theme.space[7]}px;
-  } */
 `;
 export const StyledTd = styled.td`
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.body};
   color: ${p => p.theme.colors.deepBlue};
-  padding-left: ${p => p.theme.space[5]}px;
+  padding-left: ${p => p.theme.space[4]}px;
+  padding-right: ${p => p.theme.space[4]}px;
   svg {
     height: auto;
     color: ${p =>

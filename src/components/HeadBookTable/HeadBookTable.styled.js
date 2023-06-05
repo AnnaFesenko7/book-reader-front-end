@@ -14,21 +14,26 @@ export const StyledTh = styled.th`
 
   @media ${p => p.theme.media.tablet} {
     text-align: left;
-    padding-left: ${p => p.theme.space[5]}px;
+    padding-left: ${p => p.theme.space[4]}px;
+    padding-right: ${p => p.theme.space[4]}px;
     width: ${p =>
       p.status === 'haveRead'
-        ? setSizeForMediaHaveReadTablet(p.name)
+        ? setSizeForMediaTabletHaveRead(p.name)
+        : p.status === 'training'
+        ? setSizeForTrainingAddBooks(p.name)
         : setSizeForMediaTablet(p.name)}%;
   }
 
   @media ${p => p.theme.media.desktop} {
     width: ${p =>
       p.status === 'haveRead'
-        ? setSizeForMediaHaveReadDesktop(p.name)
+        ? setSizeForMediaDesktopHaveRead(p.name)
+        : p.status === 'training'
+        ? setSizeForTrainingAddBooks(p.name)
         : setSizeForMediaDesktop(p.name)}%;
   }
 `;
-const setSizeForMediaHaveReadDesktop = name => {
+const setSizeForMediaDesktopHaveRead = name => {
   switch (name) {
     case 'title':
       return 30;
@@ -63,7 +68,7 @@ const setSizeForMediaTablet = name => {
   }
 };
 
-const setSizeForMediaHaveReadTablet = name => {
+const setSizeForMediaTabletHaveRead = name => {
   switch (name) {
     case 'title':
       return 25;
@@ -73,5 +78,18 @@ const setSizeForMediaHaveReadTablet = name => {
       return 35;
     default:
       return 10;
+  }
+};
+
+const setSizeForTrainingAddBooks = name => {
+  switch (name) {
+    case 'title':
+      return 40;
+    case 'author':
+      return 24;
+    case 'year':
+      return 12;
+    default:
+      return 24;
   }
 };
