@@ -9,7 +9,7 @@ import {
   StyledSeparator,
 } from './Timer.style.js';
 import { useState, useEffect, useRef } from 'react';
-import convertMs from './convertMs';
+import convertMs from 'helpers/convertMs.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTrainingState } from 'redux/auth/auth-slice';
 import { setTrainingStatusJustCompleted } from 'redux/auth/auth-slice';

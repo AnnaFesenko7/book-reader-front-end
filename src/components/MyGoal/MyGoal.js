@@ -1,6 +1,7 @@
 // import { useTranslation } from 'react-i18next';
-// import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
+
 import { useSelector } from 'react-redux';
+import { convertMs } from 'helpers/convertMs';
 import { TrainingTitle } from 'components/TrainingTitle/TrainingTitle';
 import {
   MyGoalMainBox,
@@ -11,16 +12,22 @@ import {
   MyGoalStatsText,
 } from './MyGoal.styled';
 
-export const MyGoal = ({
-  days = 20,
-
-  booksLeft = 1,
-  isTrainingStarted = false,
-}) => {
+export const MyGoal = ({ booksLeft = 1, isTrainingStarted = false }) => {
   // const { t } = useTranslation();
-  const booksArr = useSelector(state => state.selectedBooks.list);
+  const booksArr = useSelector(state => state.selectedDates.list);
   const books = booksArr.length;
+  const startDate = Date.parse(
+    useSelector(state => state.selectedDates.startDate)
+  );
+  console.log('🚀 ~ file: MyGoal.js:22 ~ MyGoal ~ startDate:', startDate);
 
+  const endDate = Date.parse(useSelector(state => state.selectedDates.endDate));
+  console.log('🚀 ~ file: MyGoal.js:23 ~ MyGoal ~ endDate:', endDate);
+
+  const deltaTime = endDate ? endDate - startDate : 0;
+  console.log('🚀 ~ file: MyGoal.js:23 ~ MyGoal ~  deltaTime:', deltaTime);
+
+  const { days } = convertMs(0);
   const statistic = [
     { param: 'books', text: 'Кількість книжок', amount: books },
     { param: 'days', text: 'Кількість днів', amount: days },

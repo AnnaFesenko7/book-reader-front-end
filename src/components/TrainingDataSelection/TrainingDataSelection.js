@@ -1,6 +1,11 @@
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  startDateAction,
+  endDateAction,
+} from 'redux/selectedDates/selectedDatesSlice';
 
 import { TrainingTitle } from 'components/TrainingTitle/TrainingTitle';
 import { SelectBooks } from 'components/SelectBooks/SelectBooks';
@@ -10,15 +15,19 @@ import {
 } from './TrainingDataSelection.style';
 
 export const TrainingDataSelection = () => {
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const start = useSelector(state => state.selectedDates.startDate);
+  const end = useSelector(state => state.selectedDates.endDate);
+  const [startDate, setStartDate] = useState(start);
+  const [endDate, setEndDate] = useState(end);
 
-  const [selectedBooksIdList, setSelectedBooksIdList] = useState([]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(startDateAction(startDate));
+  }, [dispatch, startDate]);
 
-  const onAddBtnClick = bookId => {
-    setSelectedBooksIdList(prevList => [...prevList, bookId]);
-    console.log(selectedBooksIdList);
-  };
+  useEffect(() => {
+    dispatch(endDateAction(endDate));
+  }, [dispatch, endDate]);
 
   return (
     <>
@@ -27,7 +36,7 @@ export const TrainingDataSelection = () => {
         <StyledControlsWrapper>
           <DatePicker
             showIcon
-            selected={startDate}
+            selected={start}
             onChange={date => setStartDate(date)}
             closeOnScroll={true}
             showTimeSelect
@@ -40,7 +49,7 @@ export const TrainingDataSelection = () => {
 
           <DatePicker
             showIcon
-            selected={endDate}
+            selected={end}
             onChange={date => setEndDate(date)}
             closeOnScroll={true}
             showTimeSelect
@@ -51,7 +60,7 @@ export const TrainingDataSelection = () => {
             placeholderText="Завершення"
           />
         </StyledControlsWrapper>
-        <SelectBooks onAddBtnClick={onAddBtnClick} />
+        <SelectBooks />
       </TrainingWrapper>
     </>
   );

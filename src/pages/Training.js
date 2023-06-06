@@ -19,7 +19,7 @@ import { WrapperBody } from 'components/WrapperBody/WrapperBody.styled';
 const Training = () => {
   useLogOutRedirect();
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
-  const books = useSelector(state => state.selectedBooks.list);
+  const books = useSelector(state => state.selectedDates.list);
 
   return (
     <StyledContainer>

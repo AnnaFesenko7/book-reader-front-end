@@ -2,7 +2,7 @@ import EllipsisText from 'react-ellipsis-text';
 import { useMediaQuery } from 'react-responsive';
 import { FaBookOpen } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { deleteBook } from 'redux/selectedBooks/selectedBooksSlice';
+import { deleteBook } from 'redux/selectedDates/selectedDatesSlice';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { ShowRatingStars } from 'components/ShowRatingStars/ShowRatingStars';
 import { ResumeButton } from 'components/ResumeButton/ResumeButton';

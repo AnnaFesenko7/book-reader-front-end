@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { list: [] };
+const initialState = { list: [], startDate: Date.now(), endDate: '' };
 
-export const selectedBooksSlice = createSlice({
+export const selectedDatesSlice = createSlice({
   name: 'selectedBooks',
   initialState,
   reducers: {
@@ -14,6 +14,13 @@ export const selectedBooksSlice = createSlice({
       // console.log('action', action);
       state.list = state.list.filter(book => book._id !== action.payload);
     },
+    startDateAction(state, action) {
+      state.startDate = action.payload;
+    },
+    endDateAction(state, action) {
+      state.endDate = action.payload;
+    },
   },
 });
-export const { addBook, deleteBook } = selectedBooksSlice.actions;
+export const { addBook, deleteBook, startDateAction, endDateAction } =
+  selectedDatesSlice.actions;
