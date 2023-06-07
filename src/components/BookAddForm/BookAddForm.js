@@ -1,3 +1,5 @@
+import { useMediaQuery } from 'react-responsive';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch } from 'react-redux';
 import { booksOperations } from 'redux/books';
 import { Formik, ErrorMessage } from 'formik';
@@ -5,7 +7,7 @@ import { librarySchema } from 'validSchemas/librarySchema';
 
 // import { useTranslation } from 'react-i18next';
 // import { SpinnerCircular } from 'spinners-react';
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import { ErrorContainer } from 'components/ErrorContainer/ErrorContainer.styled';
 import { Button } from 'components/StyledButton/StyledButton ';
 import {
@@ -17,6 +19,7 @@ import {
 } from './BookAddForm.styled';
 
 export const BookAddForm = ({ updateUi }) => {
+  const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
   // const { t, i18n } = useTranslation();
 
@@ -56,7 +59,11 @@ export const BookAddForm = ({ updateUi }) => {
     resetForm();
     dispatch(booksOperations.addBook(values));
     updateUi(true);
+    if (isMobileDevice) {
+      Notify.success('book__add__message1');
+    }
   };
+
   const initialValues = {
     title: '',
     author: '',

@@ -4,9 +4,9 @@ export const StyledButton = styled.button`
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: ${p => p.theme.fontWeights.normal};
   color: ${p =>
-    p.modal ? `${p.theme.colors.white} ` : `${p.theme.colors.deepBlue}`};
-  background-color: ${({ modal, theme }) =>
-    modal ? `${theme.colors.accentColor} ` : `${theme.colors.backgroundBody}`};
+    p.active ? `${p.theme.colors.white} ` : `${p.theme.colors.deepBlue}`};
+  background-color: ${({ active, theme }) =>
+    active ? `${theme.colors.accentColor} ` : `${theme.colors.backgroundBody}`};
   padding-top: 10px;
   padding-left: auto;
   padding-right: auto;

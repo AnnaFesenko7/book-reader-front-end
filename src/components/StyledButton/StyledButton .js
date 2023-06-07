@@ -1,13 +1,22 @@
 import { StyledButton } from './StyledButton.styled';
 
-export const Button = ({ textContent, onClick, size, type, height, modal }) => {
+export const Button = ({
+  textContent,
+  onClick,
+  size,
+  type,
+  height,
+  active,
+  disabled,
+}) => {
   return (
     <StyledButton
-      modal={modal}
+      active={active}
       type={type}
       onClick={onClick}
       size={size}
       height={height}
+      disabled={disabled}
     >
       {textContent}
     </StyledButton>

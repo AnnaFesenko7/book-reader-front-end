@@ -94,7 +94,7 @@ export const MyGoalStatsDigitBox = styled.div`
   line-height: 1.18;
   text-align: center;
   color: ${p => {
-    console.log(p.booksLeft);
+    // console.log(p.booksLeft);
     return p.param === 'booksLeft'
       ? `${p.theme.colors.accentColor}`
       : `${p.theme.colors.statisticColor}`;

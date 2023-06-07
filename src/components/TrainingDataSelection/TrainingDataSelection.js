@@ -22,11 +22,15 @@ export const TrainingDataSelection = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(startDateAction(startDate));
+    const data = startDate.valueOf();
+
+    dispatch(startDateAction(data));
   }, [dispatch, startDate]);
 
   useEffect(() => {
-    dispatch(endDateAction(endDate));
+    const data = endDate.valueOf();
+
+    dispatch(endDateAction(data));
   }, [dispatch, endDate]);
 
   return (

@@ -14,20 +14,13 @@ import {
 
 export const MyGoal = ({ booksLeft = 1, isTrainingStarted = false }) => {
   // const { t } = useTranslation();
-  const booksArr = useSelector(state => state.selectedDates.list);
-  const books = booksArr.length;
-  const startDate = Date.parse(
-    useSelector(state => state.selectedDates.startDate)
-  );
-  console.log('🚀 ~ file: MyGoal.js:22 ~ MyGoal ~ startDate:', startDate);
 
-  const endDate = Date.parse(useSelector(state => state.selectedDates.endDate));
-  console.log('🚀 ~ file: MyGoal.js:23 ~ MyGoal ~ endDate:', endDate);
-
+  const books = useSelector(state => state.selectedDates.list).length;
+  const startDate = useSelector(state => state.selectedDates.startDate);
+  const endDate = useSelector(state => state.selectedDates.endDate);
   const deltaTime = endDate ? endDate - startDate : 0;
-  console.log('🚀 ~ file: MyGoal.js:23 ~ MyGoal ~  deltaTime:', deltaTime);
+  const { days } = convertMs(deltaTime);
 
-  const { days } = convertMs(0);
   const statistic = [
     { param: 'books', text: 'Кількість книжок', amount: books },
     { param: 'days', text: 'Кількість днів', amount: days },

@@ -19,12 +19,17 @@ const validationSchema = Yup.object({
 export const SelectBooks = () => {
   const dispatch = useDispatch();
   const booksList = useSelector(booksSelectors.getBooksSelector);
+  const selectedBooks = useSelector(state => state.selectedDates.list);
   const books = booksList.filter(book => book.status === 'toRead');
 
   const defaultValue = 'Обрати книги з бібліотеки';
 
-  const onSubmit = (val, { resetForm }) => {
-    const newBook = books.find(book => book._id === val.book);
+  const onSubmit = ({ book }, { resetForm }) => {
+    const isBookAlreadySelected = selectedBooks.some(({ _id }) => _id === book);
+    if (isBookAlreadySelected) {
+      throw Error('This book already selected');
+    }
+    const newBook = books.find(book => book._id === book);
     console.log(newBook);
     resetForm();
     dispatch(addBook(newBook));
@@ -49,6 +54,7 @@ export const SelectBooks = () => {
             ))}
           </Field>
           <ErrorContainer>
+            {/* {isBookAlreadySelected && <p>This book already selected</p>} */}
             <ErrorMessage name="book" />
           </ErrorContainer>
         </Wrapper>
