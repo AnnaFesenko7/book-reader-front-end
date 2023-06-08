@@ -22,6 +22,13 @@ const Training = () => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   const books = useSelector(state => state.selectedDates.list);
 
+  const endDate = useSelector(state => state.selectedDates.endDate);
+  let isTrainingBtnActive = true;
+
+  if (books.length > 0 && endDate !== '') {
+    isTrainingBtnActive = false;
+  }
+
   return (
     <StyledContainer>
       <WrapperBody>
@@ -41,12 +48,9 @@ const Training = () => {
               textContent="Почати тренування"
               active
               size={200}
-              disabled={true}
+              disabled={isTrainingBtnActive}
               type="button"
             />
-            {/* <button disabled={false} type="button">
-              Hi
-            </button> */}
           </CenterFlexBox>
         )}
       </WrapperBody>

@@ -83,7 +83,7 @@ export const ResumeModalContent = ({ closeModal }) => {
           />
           {/* {t('btnBack')} */}
 
-          <Button type="submit" textContent={'Зберегти'} size="115" modal />
+          <Button type="submit" textContent={'Зберегти'} size="115" active />
           {/* {t('btnSave')} */}
         </BtnWrapper>
       </StyledForm>

@@ -75,3 +75,6 @@ export const WrapperModalButtons = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+export const ModalContentWrapper = styled.div`
+  padding: 40px;
+`;

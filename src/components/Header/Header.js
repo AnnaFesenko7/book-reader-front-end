@@ -21,6 +21,7 @@ import {
   ExitButton,
   PrivateHeader,
   FlexBox,
+  ModalContentWrapper,
 } from './Header.styled';
 
 export const Header = () => {
@@ -62,23 +63,25 @@ export const Header = () => {
       </StyledHeader>
 
       <Modal active={isModalOpen} closeModal={toggleModal}>
-        <WarningText>
-          Якщо Ви вийдете з програми незбережені дані будуть втрачені
-        </WarningText>
-        <WrapperModalButtons>
-          <Button
-            textContent="Відміна"
-            type="button"
-            size="130"
-            onClick={toggleModal}
-          />
-          <Button
-            textContent="Вийти"
-            type="button"
-            size="130"
-            onClick={handleLogOut}
-          />
-        </WrapperModalButtons>
+        <ModalContentWrapper>
+          <WarningText>
+            Якщо Ви вийдете з програми незбережені дані будуть втрачені
+          </WarningText>
+          <WrapperModalButtons>
+            <Button
+              textContent="Відміна"
+              type="button"
+              size="130"
+              onClick={toggleModal}
+            />
+            <Button
+              textContent="Вийти"
+              type="button"
+              size="130"
+              onClick={handleLogOut}
+            />
+          </WrapperModalButtons>
+        </ModalContentWrapper>
       </Modal>
     </>
   );

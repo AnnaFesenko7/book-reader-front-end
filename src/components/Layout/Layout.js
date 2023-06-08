@@ -7,6 +7,7 @@ import { useModal } from 'hooks/useModal';
 import { Header } from 'components/Header/Header';
 import { Info } from 'components/Info/Info';
 import { Button } from 'components/StyledButton/StyledButton ';
+import { ModalContentWrapper } from './Layout.styled';
 
 export const Layout = () => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
@@ -23,14 +24,16 @@ export const Layout = () => {
 
       {isMobileDevice && isLoggedIn && (
         <Modal active={isModalOpen} closeModal={closeModal}>
-          <Info />
-          <Button
-            modal
-            size="127"
-            textContent="OK"
-            type="button"
-            onClick={closeModal}
-          />
+          <ModalContentWrapper>
+            <Info />
+            <Button
+              active
+              size="127"
+              textContent="OK"
+              type="button"
+              onClick={closeModal}
+            />
+          </ModalContentWrapper>
         </Modal>
       )}
     </>
