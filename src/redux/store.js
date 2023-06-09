@@ -1,7 +1,17 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { authSlice } from './authSlice/authSlice';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import { persistStore, persistReducer } from 'redux-persist';
+import { authSlice } from './auth/authSlice';
 import { booksReducer } from './books/booksReducer';
 import { selectedDatesSlice } from './selectedDates/selectedDatesSlice';
+import {
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 
 const rootReducer = combineReducers({
   auth: authSlice.reducer,
@@ -9,6 +19,21 @@ const rootReducer = combineReducers({
   selectedDates: selectedDatesSlice.reducer,
 });
 
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+export const persistor = persistStore(store);

@@ -10,7 +10,7 @@ import { useModal } from 'hooks/useModal';
 import { WarningText, WrapperModalButtons } from './Header.styled';
 // import { useTranslation } from 'react-i18next';
 
-import { logOut } from 'redux/authSlice/authSlice';
+import { logOut } from 'redux/auth/authSlice';
 
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 

@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { registration } from 'redux/authSlice/authSlice';
+import { registration } from 'redux/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { registrationSchema } from 'validSchemas/registrationSchema';
 import { AuthForm } from 'components/AuthForm/AuthForm';
