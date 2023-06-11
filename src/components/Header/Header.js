@@ -1,5 +1,5 @@
 import { useMediaQuery } from 'react-responsive';
-// import LangSwitch from 'components/langSwitch/langSwitch';
+import { LangSwitcher } from 'components/LangSwitcher/LangSwitcher';
 import { FaBookOpen, FaHome } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { CustomLink } from 'components/CustomLink/CustomLink';
@@ -8,7 +8,7 @@ import { Button } from 'components/StyledButton/StyledButton ';
 import { Modal } from 'components/Modal/Modal';
 import { useModal } from 'hooks/useModal';
 import { WarningText, WrapperModalButtons } from './Header.styled';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { logOut } from 'redux/auth/authSlice';
 
@@ -35,6 +35,11 @@ export const Header = () => {
     toggleModal();
     dispatch(logOut());
   };
+
+  const { t, i18n } = useTranslation();
+  const changeLanguage = language => {
+    i18n.changeLanguage(language);
+  };
   return (
     <>
       <StyledHeader>
@@ -42,7 +47,7 @@ export const Header = () => {
           <FlexBox>
             <LogoLink to="/">BR</LogoLink>
 
-            {/* <LangSwitch onChangeLanguage={changeLanguage} /> */}
+            <LangSwitcher onChangeLanguage={changeLanguage} />
 
             {isLoggedIn && (
               <PrivateHeader>
@@ -53,7 +58,7 @@ export const Header = () => {
                   <CustomLink icon={FaHome} to="/training" />
                   {isMobileDevice && <UserName user={loggedInName} />}
                   <ExitButton onClick={toggleModal} type="button">
-                    {'Вихід'}
+                    {t('logout')}
                   </ExitButton>
                 </StyledNav>
               </PrivateHeader>

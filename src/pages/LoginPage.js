@@ -3,6 +3,7 @@ import { logIn } from 'redux/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { loginSchema } from 'validSchemas/loginSchema';
 import { AuthForm } from 'components/AuthForm/AuthForm';
+import { LoginPhrase } from 'components/LoginPhrase/loginPhrase';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { AuthWrapper } from 'components/AuthWrapper/AuthWrapper.styled';
 
@@ -45,15 +46,7 @@ const LoginPage = () => {
             handelSubmit={handelSubmit}
             type="login"
           />
-
-          {/* <div className={styles.right__block}>
-            <div className={styles.log__text}>
-              <svg className={styles.svg__qutation}>
-                <use href={svgPath.quatation + '#quatation'}></use>
-              </svg>
-              <LoginPhrase />
-            </div>
-          </div> */}
+          <LoginPhrase />
         </AuthWrapper>
       </StyledContainer>
     </section>
