@@ -1,39 +1,27 @@
-import { useEffect, useState } from 'react';
+// import {  useState } from 'react';
 
 export const LangSwitcher = ({ onChangeLanguage }) => {
-  const [lang, setLang] = useState(true);
-  // const lang = localStorage.getItem('i18nextLng');
-  useEffect(() => {
-    if (lang === 'ua') {
-      setLang(true);
-    }
-  }, [lang]);
+  //   const [_, setLang] = useState(true);
 
   const handleChange = event => {
-    if (event.target.checked) {
+    if (event.target.value === 'ua') {
+      //   setLang(true);
       onChangeLanguage('ua');
     } else {
+      //   setLang(false);
       onChangeLanguage('en');
     }
-
-    /* true - ua, false - en */
-
-    setLang(event.target.checked);
   };
 
   return (
     <div>
-      <div direction="row" spacing={1} alignItems="center">
-        <div>
-          <span>{lang ? 'UA' : 'EN'}</span>
-        </div>
-        <div
-          inputProps={{ 'aria-label': 'ant design' }}
-          onChange={handleChange}
-          name="checkedA"
-          // checked={localStorage.getItem('i18nextLng') === 'ua' && true}
-        />
-      </div>
+      <button value="ua" type="button" onClick={handleChange}>
+        {'UA'}
+      </button>
+
+      <button value="en" type="button" onClick={handleChange}>
+        {'EN'}
+      </button>
     </div>
   );
 };
