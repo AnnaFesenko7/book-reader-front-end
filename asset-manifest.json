@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/book-reader-front-end/static/css/main.c3d5249d.css",
-    "main.js": "/book-reader-front-end/static/js/main.22116044.js",
+    "main.js": "/book-reader-front-end/static/js/main.6713a8cc.js",
     "static/js/186.eb39d23d.chunk.js": "/book-reader-front-end/static/js/186.eb39d23d.chunk.js",
     "static/js/325.ab924944.chunk.js": "/book-reader-front-end/static/js/325.ab924944.chunk.js",
     "static/js/47.721f2d28.chunk.js": "/book-reader-front-end/static/js/47.721f2d28.chunk.js",
@@ -21,7 +21,7 @@
     "index.html": "/book-reader-front-end/index.html",
     "static/media/getFetch.cjs": "/book-reader-front-end/static/media/getFetch.40f37ddea2378391108f.cjs",
     "main.c3d5249d.css.map": "/book-reader-front-end/static/css/main.c3d5249d.css.map",
-    "main.22116044.js.map": "/book-reader-front-end/static/js/main.22116044.js.map",
+    "main.6713a8cc.js.map": "/book-reader-front-end/static/js/main.6713a8cc.js.map",
     "186.eb39d23d.chunk.js.map": "/book-reader-front-end/static/js/186.eb39d23d.chunk.js.map",
     "325.ab924944.chunk.js.map": "/book-reader-front-end/static/js/325.ab924944.chunk.js.map",
     "47.721f2d28.chunk.js.map": "/book-reader-front-end/static/js/47.721f2d28.chunk.js.map",
@@ -38,6 +38,6 @@
   },
   "entrypoints": [
     "static/css/main.c3d5249d.css",
-    "static/js/main.22116044.js"
+    "static/js/main.6713a8cc.js"
   ]
 }
