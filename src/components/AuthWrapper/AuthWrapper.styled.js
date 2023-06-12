@@ -8,5 +8,6 @@ export const AuthWrapper = styled.div`
   @media ${p => p.theme.media.desktop} {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
   }
 `;
