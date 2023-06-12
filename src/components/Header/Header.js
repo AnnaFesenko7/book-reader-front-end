@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { LangSwitcher } from 'components/LangSwitcher/LangSwitcher';
 import { FaBookOpen, FaHome } from 'react-icons/fa';
@@ -10,7 +11,7 @@ import { useModal } from 'hooks/useModal';
 import { WarningText, WrapperModalButtons } from './Header.styled';
 import { useTranslation } from 'react-i18next';
 
-import { logOut } from 'redux/auth/authSlice';
+import { logOut, changeLanguageAction } from 'redux/auth/authSlice';
 
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 
@@ -27,8 +28,15 @@ import {
 export const Header = () => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
-  const loggedInName = 'Anna';
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+
+  const { isLoggedIn, userName, logIn, currentLang } = useSelector(
+    state => state.auth
+  );
+  const { t, i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(currentLang);
+  }, [currentLang, i18n]);
+
   const { isModalOpen, toggleModal } = useModal();
 
   const handleLogOut = () => {
@@ -36,9 +44,9 @@ export const Header = () => {
     dispatch(logOut());
   };
 
-  const { t, i18n } = useTranslation();
   const changeLanguage = language => {
-    i18n.changeLanguage(language);
+    // i18n.changeLanguage(language);
+    dispatch(changeLanguageAction(language));
   };
   return (
     <>
@@ -47,16 +55,19 @@ export const Header = () => {
           <FlexBox>
             <LogoLink to="/">BR</LogoLink>
 
-            <LangSwitcher onChangeLanguage={changeLanguage} />
+            <LangSwitcher
+              onChangeLanguage={changeLanguage}
+              currentLang={currentLang}
+            />
 
             {isLoggedIn && (
               <PrivateHeader>
-                {!isMobileDevice && <UserName user={loggedInName} />}
+                {!isMobileDevice && <UserName user={logIn} />}
 
                 <StyledNav>
                   <CustomLink icon={FaBookOpen} to="/" />
                   <CustomLink icon={FaHome} to="/training" />
-                  {isMobileDevice && <UserName user={loggedInName} />}
+                  {isMobileDevice && <UserName user={userName} />}
                   <ExitButton onClick={toggleModal} type="button">
                     {t('logout')}
                   </ExitButton>

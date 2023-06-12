@@ -2,13 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   userName: null,
+  isRegistered: false,
   //   token: null,
   //   avatarGoogle: null,
   isLoggedIn: false,
   password: '',
   logIn: '',
   //   loginError: null,
-  //   trainingStatus: false,
+  trainingStatus: false,
+  currentLang: 'en',
   //   trainingStatusJustCompleted: null,
 };
 
@@ -31,6 +33,10 @@ export const authSlice = createSlice({
 
       state.isRegistered = true;
     },
+    changeLanguageAction(state, action) {
+      state.currentLang = action.payload;
+    },
   },
 });
-export const { logIn, logOut, registration } = authSlice.actions;
+export const { logIn, logOut, registration, changeLanguageAction } =
+  authSlice.actions;

@@ -1,14 +1,9 @@
-// import {  useState } from 'react';
-
-export const LangSwitcher = ({ onChangeLanguage }) => {
-  //   const [_, setLang] = useState(true);
-
+export const LangSwitcher = ({ onChangeLanguage, currentLang }) => {
+  console.log(currentLang);
   const handleChange = event => {
     if (event.target.value === 'ua') {
-      //   setLang(true);
       onChangeLanguage('ua');
     } else {
-      //   setLang(false);
       onChangeLanguage('en');
     }
   };
