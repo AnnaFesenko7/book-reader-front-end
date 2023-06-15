@@ -9,7 +9,7 @@ import { useMediaQuery } from 'react-responsive';
 
 const MobileTrainBookTable = () => {
   useLogOutRedirect();
-  const books = useSelector(booksSelectors.getBooksSelector);
+  const books = useSelector(booksSelectors.getBooks);
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   return (
     <StyledContainer>

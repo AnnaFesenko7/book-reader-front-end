@@ -18,7 +18,7 @@ const validationSchema = Yup.object({
 
 export const SelectBooks = () => {
   const dispatch = useDispatch();
-  const booksList = useSelector(booksSelectors.getBooksSelector);
+  const booksList = useSelector(booksSelectors.getBooks);
   // const selectedBooks = useSelector(state => state.selectedDates.list);
   const books = booksList.filter(book => book.status === 'toRead');
 

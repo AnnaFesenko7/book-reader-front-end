@@ -21,7 +21,7 @@ const Library = () => {
     dispatch(booksOperations.getBooks());
   }, [dispatch, updateUi]);
 
-  const books = useSelector(booksSelectors.getBooksSelector);
+  const books = useSelector(booksSelectors.getBooks);
 
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
 

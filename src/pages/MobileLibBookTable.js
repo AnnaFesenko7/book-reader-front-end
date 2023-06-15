@@ -17,7 +17,7 @@ const MobileLibBookTable = () => {
     dispatch(booksOperations.getBooks());
   }, [dispatch]);
 
-  const books = useSelector(booksSelectors.getBooksSelector);
+  const books = useSelector(booksSelectors.getBooks);
 
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   return (
