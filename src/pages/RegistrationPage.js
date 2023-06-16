@@ -1,37 +1,27 @@
-import { useDispatch } from 'react-redux';
-import { registration } from 'redux/auth/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { registrationThunk } from 'redux/auth/authThunk';
 import { useNavigate } from 'react-router-dom';
+
 import { registrationSchema } from 'validSchemas/registrationSchema';
+import { isRegisteredSelector } from 'redux/auth/authSelectors';
 import { AuthForm } from 'components/AuthForm/AuthForm';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { AuthWrapper } from 'components/AuthWrapper/AuthWrapper.styled';
-
-const fieldsArray = [
-  {
-    labelText: 'Ім’я',
-    placeholder: '...',
-    name: 'name',
-  },
-  {
-    labelText: 'Електронна адреса ',
-    placeholder: 'your@email.com',
-    name: 'email',
-  },
-  {
-    labelText: 'Пароль',
-    placeholder: 'Пароль',
-    name: 'password',
-  },
-  {
-    labelText: 'Підтвердити пароль',
-    placeholder: 'Пароль',
-    name: 'confirmPassword',
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isRegistered = useSelector(isRegisteredSelector);
+  const { t } = useTranslation();
+  useEffect(() => {
+    console.log(isRegistered);
+    if (isRegistered) {
+      navigate('/login', { replace: true });
+    }
+  }, [isRegistered, navigate]);
+
   const initialValues = {
     name: '',
     email: '',
@@ -40,10 +30,32 @@ const RegistrationPage = () => {
   };
 
   const handelSubmit = values => {
-    console.log(values);
-    dispatch(registration(values));
-    navigate('/', { replace: true });
+    // console.log(values);
+    dispatch(registrationThunk(values));
   };
+
+  const fieldsArray = [
+    {
+      labelText: t('name'),
+      placeholder: '...',
+      name: 'name',
+    },
+    {
+      labelText: t('email'),
+      placeholder: 'your@email.com',
+      name: 'email',
+    },
+    {
+      labelText: t('password'),
+      placeholder: 'Пароль',
+      name: 'password',
+    },
+    {
+      labelText: t('confirmPassword'),
+      placeholder: 'Пароль',
+      name: 'confirmPassword',
+    },
+  ];
 
   return (
     <section>
@@ -51,7 +63,7 @@ const RegistrationPage = () => {
         <AuthWrapper>
           <AuthForm
             fieldsArray={fieldsArray}
-            btnTextContent={'Зареєструватися'}
+            btnTextContent={t('signUp')}
             initialValues={initialValues}
             validationSchema={registrationSchema}
             handelSubmit={handelSubmit}

@@ -2,7 +2,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:4040/api';
 
 export async function registration(credentials) {
-  const response = await axios.post('user/registration', credentials);
+  const response = await axios.post('user/register', credentials);
   console.log(response);
   return response.data;
 }

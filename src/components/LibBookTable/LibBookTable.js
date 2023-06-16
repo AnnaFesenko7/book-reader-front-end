@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { BodyBookTable } from 'components/BodyBookTable/BodyBookTable';
 import { HeadBookTable } from 'components/HeadBookTable/HeadBookTable';
 import { BookTableMobile } from 'components/BookTableMobile/BookTableMobile';
@@ -17,7 +18,7 @@ export const LibBookTable = ({ data, training }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const { isModalOpen, toggleModal } = useModal();
   // const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
-  // const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const statusObj = data.reduce((obj, book) => {
     const stat = book.status;
@@ -36,8 +37,7 @@ export const LibBookTable = ({ data, training }) => {
         {statusObj.haveRead && (
           <>
             <StyledTable>
-              {/* <h3 className={s.title}> {t('alreadyRead')}</h3> */}
-              <StyledCaption> alreadyRead</StyledCaption>
+              <StyledCaption>{t('alreadyRead')}</StyledCaption>
               {isMobile ? (
                 <></>
               ) : (
@@ -57,7 +57,7 @@ export const LibBookTable = ({ data, training }) => {
         {statusObj.reading && (
           <>
             <StyledTable>
-              <StyledCaption> readingNow</StyledCaption>
+              <StyledCaption> {t('readingNow')} </StyledCaption>
               {isMobile ? (
                 <></>
               ) : (
@@ -73,10 +73,8 @@ export const LibBookTable = ({ data, training }) => {
 
         {!training && statusObj.toRead && (
           <>
-            {/* <h3 className={s.title}> {t('goingToRead')} </h3> */}
-
             <StyledTable>
-              <StyledCaption>goingToRead</StyledCaption>
+              <StyledCaption> {t('goingToRead')} </StyledCaption>
               {isMobile ? (
                 <></>
               ) : (

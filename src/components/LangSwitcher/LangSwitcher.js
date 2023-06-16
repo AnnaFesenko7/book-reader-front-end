@@ -1,5 +1,5 @@
 export const LangSwitcher = ({ onChangeLanguage, currentLang }) => {
-  console.log(currentLang);
+  // console.log(currentLang);
   const handleChange = event => {
     if (event.target.value === 'ua') {
       onChangeLanguage('ua');
