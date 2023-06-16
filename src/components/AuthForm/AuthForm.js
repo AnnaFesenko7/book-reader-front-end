@@ -1,6 +1,7 @@
 import { Formik, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import { ErrorContainer } from 'components/ErrorContainer/ErrorContainer.styled';
+import { useTranslation } from 'react-i18next';
 import {
   FormContainer,
   StyledForm,
@@ -19,6 +20,7 @@ export const AuthForm = ({
   handelSubmit,
   type,
 }) => {
+  const { t } = useTranslation();
   const onSubmit = (values, { resetForm }) => {
     // console.log(values);
     handelSubmit(values);
@@ -54,12 +56,12 @@ export const AuthForm = ({
 
           {type === 'login' ? (
             <StyledLink>
-              <Link to="/register">Реєстрація</Link>
+              <Link to="/register">{t('signUp')}</Link>
             </StyledLink>
           ) : (
             <StyledLink>
-              Вже з нами?
-              <Link to="/login">Увійти</Link>
+              {t('alreadyHaveAnAccount')}
+              <Link to="/login">{t('login')}</Link>
             </StyledLink>
           )}
         </StyledForm>

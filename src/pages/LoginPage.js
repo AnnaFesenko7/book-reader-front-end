@@ -6,27 +6,29 @@ import { AuthForm } from 'components/AuthForm/AuthForm';
 import { LoginSaw } from 'components/LoginSaw/LoginSaw';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { AuthWrapper } from 'components/AuthWrapper/AuthWrapper.styled';
-
-const fieldsArray = [
-  {
-    labelText: 'Електронна адреса ',
-    placeholder: 'your@email.com',
-    name: 'email',
-  },
-  {
-    labelText: 'Пароль',
-    placeholder: 'Пароль',
-    name: 'password',
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const initialValues = {
     email: '',
     password: '',
   };
+
+  const fieldsArray = [
+    {
+      labelText: t('email'),
+      placeholder: 'your@email.com',
+      name: 'email',
+    },
+    {
+      labelText: t('password'),
+      placeholder: t('password'),
+      name: 'password',
+    },
+  ];
 
   const handelSubmit = values => {
     // console.log(values);
@@ -40,7 +42,7 @@ const LoginPage = () => {
         <AuthWrapper>
           <AuthForm
             fieldsArray={fieldsArray}
-            btnTextContent={'Увійти'}
+            btnTextContent={t('login')}
             initialValues={initialValues}
             validationSchema={loginSchema}
             handelSubmit={handelSubmit}

@@ -47,12 +47,12 @@ const RegistrationPage = () => {
     },
     {
       labelText: t('password'),
-      placeholder: 'Пароль',
+      placeholder: t('password'),
       name: 'password',
     },
     {
       labelText: t('confirmPassword'),
-      placeholder: 'Пароль',
+      placeholder: t('password'),
       name: 'confirmPassword',
     },
   ];
