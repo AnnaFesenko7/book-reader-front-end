@@ -6,9 +6,9 @@ import {
   StyledPhrase,
   StyledHr,
   StyledAuthor,
-} from './LoginPhrase.styled';
+} from './LoginSaw.styled.js';
 
-export const LoginPhrase = () => {
+export const LoginSaw = () => {
   const { t } = useTranslation();
   const index = Math.floor(Math.random() * 10) + 1;
   return (

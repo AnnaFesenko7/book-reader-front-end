@@ -3,7 +3,7 @@ import { logIn } from 'redux/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { loginSchema } from 'validSchemas/loginSchema';
 import { AuthForm } from 'components/AuthForm/AuthForm';
-import { LoginPhrase } from 'components/LoginPhrase/LoginPhrase';
+import { LoginSaw } from 'components/LoginSaw/LoginSaw';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { AuthWrapper } from 'components/AuthWrapper/AuthWrapper.styled';
 
@@ -46,7 +46,7 @@ const LoginPage = () => {
             handelSubmit={handelSubmit}
             type="login"
           />
-          <LoginPhrase />
+          <LoginSaw />
         </AuthWrapper>
       </StyledContainer>
     </section>
