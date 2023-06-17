@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import quatation from 'img/quatation.svg';
 
 import {
   StyledBox,
@@ -14,6 +15,9 @@ export const LoginSaw = () => {
   return (
     <Wrapper>
       <StyledBox>
+        <svg>
+          <use href={quatation + '#quatation'}></use>
+        </svg>
         <StyledPhrase>{t(`phrase_text_${index}`)}</StyledPhrase>
         <StyledHr />
         <StyledAuthor>{t(`phrase_author_${index}`)}</StyledAuthor>

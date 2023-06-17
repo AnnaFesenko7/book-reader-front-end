@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   padding: 4px;
+  padding-top: 20px;
   @media ${p => p.theme.media.tablet} {
     padding: 64px;
   }
@@ -20,8 +21,18 @@ export const StyledBox = styled.div`
   align-items: center;
   justify-content: center;
   width: 229px;
+
+  svg {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 10px;
+  }
+
   @media ${p => p.theme.media.tablet} {
     width: 520px;
+    svg {
+      margin-bottom: 20px;
+    }
   }
   @media ${p => p.theme.media.desktop} {
     width: 397px;

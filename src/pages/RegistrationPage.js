@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { registrationSchema } from 'validSchemas/registrationSchema';
 import { isRegisteredSelector } from 'redux/auth/authSelectors';
 import { AuthForm } from 'components/AuthForm/AuthForm';
+import { RegistrationText } from 'components/RegistrationText/RegistrationText';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { AuthWrapper } from 'components/AuthWrapper/AuthWrapper.styled';
 import { useTranslation } from 'react-i18next';
@@ -68,7 +69,7 @@ const RegistrationPage = () => {
             validationSchema={registrationSchema}
             handelSubmit={handelSubmit}
           />
-
+          <RegistrationText />
           {/* <div className={styles.right__block}>
             <div className={styles.log__text}>
               <svg className={styles.svg__qutation}>
