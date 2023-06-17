@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registrationThunk } from 'redux/auth/authThunk';
+import { registrationThunk, loginThunk } from 'redux/auth/authThunk';
 
 const initialState = {
   userName: null,
@@ -22,21 +22,27 @@ const handlePending = (state, { payload }) => {
 const handleRegistrationFulfilled = (state, { payload }) => {
   state.isLoading = false;
   state.isRegistered = true;
-  state.userName = payload.user.name;
+  // state.userName = payload.user.name;
 };
-const handleRegistrationRejected = (state, { payload }) => {
+const handleRejected = (state, { payload }) => {
   state.isLoading = false;
   state.error = payload;
+};
+const handleLoginFulfilled = (state, { payload }) => {
+  state.isLoading = false;
+  state.token = payload.token;
+  state.isLoggedIn = true;
+  // state.logIn = payload.user;
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    logIn(state, action) {
-      state.logIn = action.payload;
-      state.isLoggedIn = true;
-    },
+    // logIn(state, action) {
+    //   state.logIn = action.payload;
+    //   state.isLoggedIn = true;
+    // },
     logOut(state) {
       state.logIn = '';
       state.isLoggedIn = false;
@@ -56,8 +62,10 @@ export const authSlice = createSlice({
     builder
       .addCase(registrationThunk.pending, handlePending)
       .addCase(registrationThunk.fulfilled, handleRegistrationFulfilled)
-      .addCase(registrationThunk.rejected, handleRegistrationRejected);
+      .addCase(registrationThunk.rejected, handleRejected)
+      .addCase(loginThunk.pending, handlePending)
+      .addCase(loginThunk.fulfilled, handleLoginFulfilled)
+      .addCase(loginThunk.rejected, handleRejected);
   },
 });
-export const { logIn, logOut, registration, changeLanguageAction } =
-  authSlice.actions;
+export const { logOut, changeLanguageAction } = authSlice.actions;

@@ -16,6 +16,7 @@ const RegistrationPage = () => {
   const dispatch = useDispatch();
   const isRegistered = useSelector(isRegisteredSelector);
   const { t } = useTranslation();
+
   useEffect(() => {
     console.log(isRegistered);
     if (isRegistered) {

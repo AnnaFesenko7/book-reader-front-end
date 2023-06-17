@@ -1,5 +1,11 @@
-import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/auth/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { loginThunk } from 'redux/auth/authThunk';
+import {
+  // isLoadingSelector,
+  tokenSelector,
+  logInSelector,
+} from 'redux/auth/authSelectors';
 import { useNavigate } from 'react-router-dom';
 import { loginSchema } from 'validSchemas/loginSchema';
 import { AuthForm } from 'components/AuthForm/AuthForm';
@@ -12,10 +18,22 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
+  const logIn = useSelector(logInSelector);
+  const token = useSelector(tokenSelector);
+
   const initialValues = {
     email: '',
     password: '',
   };
+
+  useEffect(() => {
+    console.log(logIn);
+    console.log(token);
+    if (logIn !== '') {
+      navigate('/', { replace: true });
+    }
+  }, [logIn, navigate, token]);
 
   const fieldsArray = [
     {
@@ -32,8 +50,7 @@ const LoginPage = () => {
 
   const handelSubmit = values => {
     // console.log(values);
-    dispatch(logIn(values.email));
-    navigate('/', { replace: true });
+    dispatch(loginThunk(values));
   };
 
   return (

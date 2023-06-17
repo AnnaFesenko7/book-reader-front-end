@@ -9,5 +9,7 @@ export const registrationThunk = createAsyncThunk(
 );
 
 export const loginThunk = createAsyncThunk('auth/login', async credentials => {
-  return await authApi.login(credentials);
+  const res = await authApi.login(credentials);
+  console.log('🚀 ~ file: authThunk.js:13 ~ loginThunk ~ res:', res);
+  return res.data;
 });
