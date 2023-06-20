@@ -1,71 +1,72 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { registrationThunk, loginThunk } from 'redux/auth/authThunk';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import {
+  registrationThunk,
+  loginThunk,
+  logoutThunk,
+} from 'redux/auth/authThunk';
 
-const initialState = {
-  userName: null,
-  isRegistered: false,
-  token: null,
-  //   avatarGoogle: null,
-  isLoggedIn: false,
-  password: '',
-  logIn: '',
-  error: null,
-  trainingStatus: false,
-  currentLang: 'en',
-  //   trainingStatusJustCompleted: null,
-  isLoading: false,
-};
-const handlePending = (state, { payload }) => {
-  state.isLoading = true;
-};
+import { getProfileThunk } from 'redux/auth/userThunk';
+import {
+  handlePending,
+  handleRegistrationFulfilled,
+  handleRejected,
+  handleLoginFulfilled,
+  handleLogoutFulfilled,
+  handleGetProfileFulfilled,
+} from './authUserOperations';
+import { initialState } from './initialState';
 
-const handleRegistrationFulfilled = (state, { payload }) => {
-  state.isLoading = false;
-  state.isRegistered = true;
-  // state.userName = payload.user.name;
-};
-const handleRejected = (state, { payload }) => {
-  state.isLoading = false;
-  state.error = payload;
-};
-const handleLoginFulfilled = (state, { payload }) => {
-  state.isLoading = false;
-  state.token = payload.token;
-  state.isLoggedIn = true;
-  // state.logIn = payload.user;
+const customArr = [getProfileThunk, registrationThunk, loginThunk, logoutThunk];
+const fn = status => {
+  return customArr.map(el => el[status]);
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    // logIn(state, action) {
-    //   state.logIn = action.payload;
-    //   state.isLoggedIn = true;
-    // },
-    logOut(state) {
-      state.logIn = '';
-      state.isLoggedIn = false;
-    },
-    // registration(state, action) {
-    //   state.userName = action.payload.name;
-    //   state.logIn = action.payload.email;
-    //   state.password = action.payload.password;
-
-    //   state.isRegistered = true;
-    // },
     changeLanguageAction(state, action) {
       state.currentLang = action.payload;
     },
+    // googleLogIn(state, action) {
+    //   state.token = action?.payload.token;
+    //   state.name = action?.payload.name;
+    //   state.avatarGoogle = action?.payload.avatar;
+    //   state.isLoggedIn = true;
+    //   state.isLogging = false;
+    //   state.loginError = null;
+    // },
+
+    // setTrainingState(state, action) {
+    //   if (action.payload === 'true') {
+    //     state.trainingStatus = true;
+    //   }
+    //   if (action.payload === 'false') {
+    //     state.trainingStatus = false;
+    //   }
+    // },
+
+    // setTrainingStatusJustCompleted(state, action) {
+    //   if (action.payload === 'false') {
+    //     state.trainingStatusJustCompleted = 'false';
+    //   }
+    //   if (action.payload === 'completedByPages') {
+    //     state.trainingStatusJustCompleted = 'completedByPages';
+    //   }
+    //   if (action.payload === 'completedByTime') {
+    //     state.trainingStatusJustCompleted = 'completedByTime';
+    //   }
+    // },
   },
   extraReducers: builder => {
     builder
-      .addCase(registrationThunk.pending, handlePending)
+
       .addCase(registrationThunk.fulfilled, handleRegistrationFulfilled)
-      .addCase(registrationThunk.rejected, handleRejected)
-      .addCase(loginThunk.pending, handlePending)
       .addCase(loginThunk.fulfilled, handleLoginFulfilled)
-      .addCase(loginThunk.rejected, handleRejected);
+      .addCase(logoutThunk.fulfilled, handleLogoutFulfilled)
+      .addCase(getProfileThunk.fulfilled, handleGetProfileFulfilled)
+      .addMatcher(isAnyOf(...fn('pending')), handlePending)
+      .addMatcher(isAnyOf(...fn('rejected')), handleRejected);
   },
 });
 export const { logOut, changeLanguageAction } = authSlice.actions;

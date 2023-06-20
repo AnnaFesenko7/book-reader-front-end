@@ -1,4 +1,4 @@
-import * as booksApi from 'services/booksApi';
+import * as booksApi from 'services/apiService/booksApi';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getBooks = createAsyncThunk(

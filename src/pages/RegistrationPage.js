@@ -32,7 +32,7 @@ const RegistrationPage = () => {
   };
 
   const handelSubmit = values => {
-    // console.log(values);
+    console.log(values);
     dispatch(registrationThunk(values));
   };
 

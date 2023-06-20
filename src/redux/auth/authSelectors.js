@@ -4,3 +4,20 @@ export const isRegisteredSelector = state => state.auth.isRegistered;
 export const isLoadingSelector = state => state.auth.isLoading;
 export const tokenSelector = state => state.auth.token;
 export const logInSelector = state => state.auth.logIn;
+
+// const getIsLoggedIn = state => state.auth.isLoggedIn;
+
+// const getUsername = state => state.auth.name;
+
+// const getToken = state => state.auth.token;
+
+// const getGoogleAvatar = state => state.auth.avatarGoogle;
+
+// const getIsLogging = state => state.auth.isLogging;
+
+// const getLoginError = state => state.auth.loginError;
+
+// const getTrainingStatus = state => state.auth.trainingStatus;
+
+// const getTrainingStatusJustCompleted = state =>
+//   state.auth.trainingStatusJustCompleted;

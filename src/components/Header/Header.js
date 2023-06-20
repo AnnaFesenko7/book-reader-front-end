@@ -10,9 +10,10 @@ import { Modal } from 'components/Modal/Modal';
 import { useModal } from 'hooks/useModal';
 import { WarningText, WrapperModalButtons } from './Header.styled';
 import { useTranslation } from 'react-i18next';
-
-import { logOut, changeLanguageAction } from 'redux/auth/authSlice';
-
+import { getProfileThunk } from 'redux/auth/userThunk';
+import { changeLanguageAction } from 'redux/auth/authSlice';
+import { logoutThunk } from 'redux/auth/authThunk';
+import { deleteToken } from 'services/apiService/axiosInstance';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 
 import {
@@ -29,9 +30,13 @@ export const Header = () => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
 
-  const { isLoggedIn, userName, logIn, currentLang } = useSelector(
+  const { isLoggedIn, userName, currentLang } = useSelector(
     state => state.auth
   );
+  useEffect(() => {
+    isLoggedIn && dispatch(getProfileThunk());
+  }, [dispatch, isLoggedIn]);
+
   const { t, i18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(currentLang);
@@ -41,11 +46,11 @@ export const Header = () => {
 
   const handleLogOut = () => {
     toggleModal();
-    dispatch(logOut());
+    dispatch(logoutThunk());
+    deleteToken();
   };
 
   const changeLanguage = language => {
-    // i18n.changeLanguage(language);
     dispatch(changeLanguageAction(language));
   };
   return (
@@ -62,7 +67,7 @@ export const Header = () => {
 
             {isLoggedIn && (
               <PrivateHeader>
-                {!isMobileDevice && <UserName user={logIn} />}
+                {!isMobileDevice && <UserName user={userName} />}
 
                 <StyledNav>
                   <CustomLink icon={FaBookOpen} to="/" />

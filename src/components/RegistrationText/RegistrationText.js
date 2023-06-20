@@ -41,14 +41,14 @@ export const RegistrationText = () =>
       <Wrapper>
         <Title>{t('infoTitle')}</Title>
 
-        {ContentArray.map(({ title, text }) => {
+        {ContentArray.map(({ title, text }, index) => {
           return (
-            <Container>
+            <Container key={index}>
               <Subtitle>{title}</Subtitle>
               <StyledList>
-                {text.map(item => {
+                {text.map((item, i) => {
                   return (
-                    <StyledItem>
+                    <StyledItem key={i}>
                       <StyledIcon size={12} />
                       <StyledText>{item}</StyledText>
                     </StyledItem>

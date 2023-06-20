@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import * as authApi from 'services/authApi';
+import * as authApi from 'services/apiService/authApi';
 
 export const registrationThunk = createAsyncThunk(
   'auth/registration',
@@ -9,7 +9,9 @@ export const registrationThunk = createAsyncThunk(
 );
 
 export const loginThunk = createAsyncThunk('auth/login', async credentials => {
-  const res = await authApi.login(credentials);
-  console.log('🚀 ~ file: authThunk.js:13 ~ loginThunk ~ res:', res);
-  return res.data;
+  return await authApi.login(credentials);
+});
+
+export const logoutThunk = createAsyncThunk('auth/logout', async () => {
+  await authApi.logout();
 });

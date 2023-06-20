@@ -4,7 +4,7 @@ import { loginThunk } from 'redux/auth/authThunk';
 import {
   // isLoadingSelector,
   tokenSelector,
-  logInSelector,
+  isLoggedInSelector,
 } from 'redux/auth/authSelectors';
 import { useNavigate } from 'react-router-dom';
 import { loginSchema } from 'validSchemas/loginSchema';
@@ -19,7 +19,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const logIn = useSelector(logInSelector);
+  const isLoggedIn = useSelector(isLoggedInSelector);
   const token = useSelector(tokenSelector);
 
   const initialValues = {
@@ -28,12 +28,11 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    console.log(logIn);
     console.log(token);
-    if (logIn !== '') {
+    if (isLoggedIn) {
       navigate('/', { replace: true });
     }
-  }, [logIn, navigate, token]);
+  }, [isLoggedIn, navigate, token]);
 
   const fieldsArray = [
     {

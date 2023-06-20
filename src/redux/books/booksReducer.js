@@ -1,6 +1,6 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import { getBooks } from 'redux/books/booksOperations';
-import { addBook } from 'services/booksApi';
+import { addBook } from 'services/apiService/booksApi';
 
 const entities = createReducer([], {
   [getBooks.fulfilled]: (_, action) => action.payload,
