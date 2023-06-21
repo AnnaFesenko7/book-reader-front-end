@@ -25,4 +25,9 @@ export const handleLogoutFulfilled = state => {
 export const handleGetProfileFulfilled = (state, { payload }) => {
   state.userName = payload.name;
   state.email = payload.email;
+  state.currentLang = payload.language;
+};
+export const handleChangeLangFulfilled = (state, { payload }) => {
+  console.log(payload);
+  state.currentLang = payload;
 };

@@ -28,11 +28,17 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    console.log(token);
     if (isLoggedIn) {
       navigate('/', { replace: true });
     }
-  }, [isLoggedIn, navigate, token]);
+  }, [isLoggedIn, navigate]);
+
+  useEffect(() => {
+    console.log(token);
+    if (token) {
+      localStorage.setItem('token', token);
+    }
+  }, [token]);
 
   const fieldsArray = [
     {
@@ -48,7 +54,6 @@ const LoginPage = () => {
   ];
 
   const handelSubmit = values => {
-    // console.log(values);
     dispatch(loginThunk(values));
   };
 

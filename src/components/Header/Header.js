@@ -11,7 +11,8 @@ import { useModal } from 'hooks/useModal';
 import { WarningText, WrapperModalButtons } from './Header.styled';
 import { useTranslation } from 'react-i18next';
 import { getProfileThunk } from 'redux/auth/userThunk';
-import { changeLanguageAction } from 'redux/auth/authSlice';
+// import { changeLanguageAction } from 'redux/auth/authSlice';
+import { changeLangThunk } from 'redux/auth/userThunk';
 import { logoutThunk } from 'redux/auth/authThunk';
 import { deleteToken } from 'services/apiService/axiosInstance';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
@@ -50,8 +51,8 @@ export const Header = () => {
     deleteToken();
   };
 
-  const changeLanguage = language => {
-    dispatch(changeLanguageAction(language));
+  const changeLanguageState = language => {
+    dispatch(changeLangThunk(language));
   };
   return (
     <>
@@ -61,7 +62,7 @@ export const Header = () => {
             <LogoLink to="/">BR</LogoLink>
 
             <LangSwitcher
-              onChangeLanguage={changeLanguage}
+              onChangeLanguage={changeLanguageState}
               currentLang={currentLang}
             />
 
