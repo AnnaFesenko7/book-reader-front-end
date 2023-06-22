@@ -10,9 +10,9 @@ import { Modal } from 'components/Modal/Modal';
 import { useModal } from 'hooks/useModal';
 import { WarningText, WrapperModalButtons } from './Header.styled';
 import { useTranslation } from 'react-i18next';
-import { getProfileThunk } from 'redux/auth/userThunk';
-// import { changeLanguageAction } from 'redux/auth/authSlice';
 import { changeLangThunk } from 'redux/auth/userThunk';
+import { changeLanguageAction } from 'redux/auth/authSlice';
+
 import { logoutThunk } from 'redux/auth/authThunk';
 import { deleteToken } from 'services/apiService/axiosInstance';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
@@ -31,12 +31,7 @@ export const Header = () => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   const dispatch = useDispatch();
 
-  const { isLoggedIn, userName, currentLang } = useSelector(
-    state => state.auth
-  );
-  useEffect(() => {
-    isLoggedIn && dispatch(getProfileThunk());
-  }, [dispatch, isLoggedIn]);
+  const { token, userName, currentLang } = useSelector(state => state.auth);
 
   const { t, i18n } = useTranslation();
   useEffect(() => {
@@ -48,11 +43,12 @@ export const Header = () => {
   const handleLogOut = () => {
     toggleModal();
     dispatch(logoutThunk());
+    dispatch(changeLangThunk(currentLang));
     deleteToken();
   };
 
   const changeLanguageState = language => {
-    dispatch(changeLangThunk(language));
+    dispatch(changeLanguageAction(language));
   };
   return (
     <>
@@ -66,7 +62,7 @@ export const Header = () => {
               currentLang={currentLang}
             />
 
-            {isLoggedIn && (
+            {token && (
               <PrivateHeader>
                 {!isMobileDevice && <UserName user={userName} />}
 

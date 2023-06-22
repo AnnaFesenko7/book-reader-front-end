@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 // import { useUpdateBookResumeMutation } from 'redux/books/booksApi';
 import ReactStars from 'react-rating-stars-component';
 import { Formik, Field, ErrorMessage } from 'formik';
@@ -16,7 +16,7 @@ import { Button } from 'components/StyledButton/StyledButton ';
 export const ResumeModalContent = ({ closeModal }) => {
   const [rating, setRating] = useState(0);
   //   const [ratingValue, setRatingValue] = useState(rating);
-  //   const { t } = useTranslation();
+  const { t } = useTranslation();
   //   const [updateBookResume] = useUpdateBookResumeMutation();
 
   const handleSubmit = val => {
@@ -32,7 +32,7 @@ export const ResumeModalContent = ({ closeModal }) => {
     >
       <StyledForm>
         <StyledLabel htmlFor="rating">
-          Обрати рейтинг книги
+          {t('chooseRating')}
           <Field name="rating">
             {({ form, field }) => {
               // const { setFieldValue } = form;
@@ -58,7 +58,7 @@ export const ResumeModalContent = ({ closeModal }) => {
         </StyledLabel>
 
         <StyledLabel htmlFor="resume">
-          Резюме
+          {t('resumeRating')}
           <Field
             as="textarea"
             placeholder="..."
@@ -78,13 +78,11 @@ export const ResumeModalContent = ({ closeModal }) => {
           <Button
             type="button"
             onClick={closeModal}
-            textContent={'Назад'}
+            textContent={t('btnBack')}
             size="115"
           />
-          {/* {t('btnBack')} */}
 
-          <Button type="submit" textContent={'Зберегти'} size="115" active />
-          {/* {t('btnSave')} */}
+          <Button type="submit" textContent={t('btnSave')} size="115" active />
         </BtnWrapper>
       </StyledForm>
     </Formik>

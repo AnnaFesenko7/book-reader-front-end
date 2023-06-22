@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { isLoggedInSelector } from 'redux/auth/authSelectors';
+import { tokenSelector } from 'redux/auth/authSelectors';
 
 export const useLogOutRedirect = () => {
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(isLoggedInSelector);
+  const token = useSelector(tokenSelector);
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!token) {
       navigate('/login', { replace: true });
     }
-  }, [isLoggedIn, navigate]);
+  }, [token, navigate]);
 };

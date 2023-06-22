@@ -1,29 +1,31 @@
 import React from 'react';
 import { FaBookOpen, FaFlag } from 'react-icons/fa';
 import { InfoItem } from './InfoItem';
-
+import { useTranslation } from 'react-i18next';
 import { Wrapper, StyledList } from './Info.styled';
 
-const infolContent = [
-  {
-    step: 1,
-    icon: FaBookOpen,
-    title: 'Створіть особисту бібліотеку',
-    text: 'Додайте до неї книжки, які маєте намір прочитати.',
-  },
-  {
-    step: 2,
-    icon: FaFlag,
-    title: 'Сформуйте своє перше тренування',
-    text: 'Визначте ціль, оберіть період, розпочинайте тренування.',
-  },
-];
-
 export const Info = () => {
+  const { t } = useTranslation();
+
+  const infoContent = [
+    {
+      step: 1,
+      icon: FaBookOpen,
+      title: t('step1_title'),
+      text: t('step1_text'),
+    },
+    {
+      step: 2,
+      icon: FaFlag,
+      title: t('step2_title'),
+      text: t('step2_text'),
+    },
+  ];
+
   return (
     <Wrapper>
       <StyledList>
-        {infolContent.map((item, index) => (
+        {infoContent.map((item, index) => (
           <li key={index}>
             <InfoItem item={item} />
           </li>

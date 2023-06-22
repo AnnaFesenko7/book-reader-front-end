@@ -32,9 +32,9 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    // changeLanguageAction(state, action) {
-    //   state.currentLang = action.payload;
-    // },
+    changeLanguageAction(state, action) {
+      state.currentLang = action.payload;
+    },
     // googleLogIn(state, action) {
     //   state.token = action?.payload.token;
     //   state.name = action?.payload.name;
@@ -75,4 +75,4 @@ export const authSlice = createSlice({
       .addMatcher(isAnyOf(...fn('rejected')), handleRejected);
   },
 });
-// export const { logOut, changeLanguageAction } = authSlice.actions;
+export const { changeLanguageAction } = authSlice.actions;

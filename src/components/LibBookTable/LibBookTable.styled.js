@@ -41,4 +41,5 @@ export const StyledCaption = styled.caption`
   color: ${p => p.theme.colors.deepBlue};
   text-align: left;
   margin-bottom: ${p => p.theme.space[5]}px;
+  white-space: pre;
 `;

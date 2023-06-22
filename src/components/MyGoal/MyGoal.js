@@ -1,4 +1,4 @@
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { useSelector } from 'react-redux';
 import { convertMs } from 'helpers/convertMs';
@@ -13,7 +13,7 @@ import {
 } from './MyGoal.styled';
 
 export const MyGoal = ({ booksLeft = 1, isTrainingStarted = false }) => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   const books = useSelector(state => state.selectedDates.list).length;
   const startDate = useSelector(state => state.selectedDates.startDate);
@@ -22,16 +22,15 @@ export const MyGoal = ({ booksLeft = 1, isTrainingStarted = false }) => {
   const { days } = convertMs(deltaTime);
 
   const statistic = [
-    { param: 'books', text: 'Кількість книжок', amount: books },
-    { param: 'days', text: 'Кількість днів', amount: days },
+    { param: 'books', text: t('amountOfBooks'), amount: books },
+    { param: 'days', text: t('amountOfDays'), amount: days },
     // { param: 'booksLeft', text: 'Залишилось книжок', amount: booksLeft },
   ];
 
   return (
     <>
       <MyGoalMainBox>
-        {/* <h3 className={s.myGoalHeading}> {t('myGoals')} </h3> */}
-        <TrainingTitle text={'myGoals'} />
+        <TrainingTitle text={t('myGoals')} />
 
         <StatsBox>
           <MyGoalStatsList>

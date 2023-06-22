@@ -6,6 +6,7 @@ import { FaBookOpen } from 'react-icons/fa';
 import { ShowRatingStars } from 'components/ShowRatingStars/ShowRatingStars';
 import { Modal } from 'components/Modal/Modal';
 import { useModal } from 'hooks/useModal';
+import { useTranslation } from 'react-i18next';
 import { ResumeModalContent } from 'components/ResumeModalContent/ResumeModalContent';
 import {
   StyledList,
@@ -21,6 +22,7 @@ import {
 
 export const BookTableMobile = ({ books }) => {
   const { isModalOpen, toggleModal } = useModal();
+  const { t } = useTranslation();
   return (
     <>
       <StyledList>
@@ -34,21 +36,21 @@ export const BookTableMobile = ({ books }) => {
                 <StyledBookTitle>{title}</StyledBookTitle>
                 <tbody>
                   <StyledTr>
-                    <StyledTh>Author: </StyledTh>
+                    <StyledTh>{t('book_author')}: </StyledTh>
                     <StyledTd>{author}</StyledTd>
                   </StyledTr>
                   <StyledTr>
-                    <StyledTh>Year: </StyledTh>
+                    <StyledTh>{t('book_year')}: </StyledTh>
                     <StyledTd>{year}</StyledTd>
                   </StyledTr>
                   <StyledTr>
-                    <StyledTh>Pages: </StyledTh>
+                    <StyledTh>{t('book_pages')}: </StyledTh>
                     <StyledTd>{pages}</StyledTd>
                   </StyledTr>
 
                   {status === 'haveRead' && (
                     <StyledTr>
-                      <StyledTh>Ratings: </StyledTh>
+                      <StyledTh>{t('book_rating')}: </StyledTh>
                       <StyledTd>
                         <ShowRatingStars rating={rating} />
                       </StyledTd>

@@ -1,4 +1,4 @@
-// import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { addBook } from 'redux/selectedDates/selectedDatesSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { booksSelectors } from 'redux/books';
@@ -17,12 +17,13 @@ const validationSchema = Yup.object({
 });
 
 export const SelectBooks = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const booksList = useSelector(booksSelectors.getBooks);
   // const selectedBooks = useSelector(state => state.selectedDates.list);
   const books = booksList.filter(book => book.status === 'toRead');
 
-  const defaultValue = 'Обрати книги з бібліотеки';
+  const defaultValue = t('chooseBooks');
 
   const onSubmit = (val, { resetForm }) => {
     // const isBookAlreadySelected = selectedBooks.some(({ _id }) => _id === book);
@@ -59,7 +60,7 @@ export const SelectBooks = () => {
           </ErrorContainer>
         </Wrapper>
 
-        <Button size={170} textContent="Add" type="submit" />
+        <Button size={170} textContent={t('btnAdd')} type="submit" />
       </StyledForm>
     </Formik>
   );

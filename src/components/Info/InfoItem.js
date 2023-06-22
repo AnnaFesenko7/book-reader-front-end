@@ -1,11 +1,13 @@
 import { Step, StepTitle, StyledText } from './Info.styled';
 import { FiCornerDownRight } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
 
 export const InfoItem = ({ item }) => {
+  const { t } = useTranslation();
   const { step, icon: Icon, title, text } = item;
   return (
     <>
-      <Step>{`Крок ${step}`}</Step>
+      <Step>{`${t('step')} ${step}`}</Step>
       <StepTitle>
         <Icon size="24" />
         {title}
@@ -17,15 +19,3 @@ export const InfoItem = ({ item }) => {
     </>
   );
 };
-
-/* <div>
-  <h2 className={s.title}>Крок 2.</h2>
-  <h3 className={s.subtitle}>
-    <AiOutlineFlag size="24" />
-    Сформуйте своє перше тренування
-  </h3>
-  <p className={s.text}>
-    <img src={vector} alt="vector" />
-    Визначте ціль, оберіть період, розпочинайте тренування.
-  </p>
-</div>; */

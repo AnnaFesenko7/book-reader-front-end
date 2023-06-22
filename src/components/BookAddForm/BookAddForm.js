@@ -75,7 +75,7 @@ export const BookAddForm = ({ updateUi }) => {
       <StyledForm autoComplete="off">
         <WrapperGroupOfInputs>
           <StyledLabel htmlFor="title">
-            Book title *
+            {t('bookTitle')} *
             <StyledField
               id="title"
               name="title"
@@ -88,7 +88,7 @@ export const BookAddForm = ({ updateUi }) => {
           </StyledLabel>
 
           <StyledLabel htmlFor="author">
-            Author *
+            {t('author')} *
             <StyledField
               id="author"
               name="author"
@@ -101,7 +101,8 @@ export const BookAddForm = ({ updateUi }) => {
           </StyledLabel>
 
           <StyledLabel htmlFor="year">
-            Publication date
+            {t('publicationDate')}
+
             <StyledField id="year" name="year" type="text" placeholder="..." />
             <ErrorContainer>
               <ErrorMessage name="year" />
@@ -109,7 +110,7 @@ export const BookAddForm = ({ updateUi }) => {
           </StyledLabel>
 
           <StyledLabel htmlFor="pages">
-            Amount of pages *
+            {t('amountOfPages')} *
             <StyledField
               id="pages"
               name="pages"
@@ -122,7 +123,12 @@ export const BookAddForm = ({ updateUi }) => {
           </StyledLabel>
         </WrapperGroupOfInputs>
         <ButtonContainer>
-          <Button type="submit" textContent="Add" size="175" height="40" />
+          <Button
+            type="submit"
+            textContent={t('btnAdd')}
+            size="175"
+            height="40"
+          />
           <ErrorContainer />
         </ButtonContainer>
       </StyledForm>

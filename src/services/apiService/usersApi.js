@@ -1,6 +1,7 @@
 import { instance } from './axiosInstance';
 
 export const getProfile = async () => {
+  console.log('getProfile');
   const { data } = await instance('/users/current');
   return data.data;
 };

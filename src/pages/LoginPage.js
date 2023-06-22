@@ -1,12 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { loginThunk } from 'redux/auth/authThunk';
-import {
-  // isLoadingSelector,
-  tokenSelector,
-  isLoggedInSelector,
-} from 'redux/auth/authSelectors';
-import { useNavigate } from 'react-router-dom';
+import { tokenSelector } from 'redux/auth/authSelectors';
+import { useRedirectToHomePage } from 'hooks/useRedirectToHomePage';
 import { loginSchema } from 'validSchemas/loginSchema';
 import { AuthForm } from 'components/AuthForm/AuthForm';
 import { LoginSaw } from 'components/LoginSaw/LoginSaw';
@@ -15,23 +11,16 @@ import { AuthWrapper } from 'components/AuthWrapper/AuthWrapper.styled';
 import { useTranslation } from 'react-i18next';
 
 const LoginPage = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const isLoggedIn = useSelector(isLoggedInSelector);
   const token = useSelector(tokenSelector);
+  useRedirectToHomePage();
 
   const initialValues = {
     email: '',
     password: '',
   };
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/', { replace: true });
-    }
-  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     console.log(token);
