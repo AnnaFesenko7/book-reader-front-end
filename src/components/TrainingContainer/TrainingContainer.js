@@ -6,7 +6,7 @@ export const TrainingContainer = styled.div`
   gap: 20px;
 
   @media ${p => p.theme.media.tablet} {
-    width: 704px;
+    width: 100%;
   }
   @media ${p => p.theme.media.desktop} {
     flex-direction: row;

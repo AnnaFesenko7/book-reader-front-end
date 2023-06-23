@@ -1,7 +1,5 @@
 import { useTranslation } from 'react-i18next';
 
-import { useSelector } from 'react-redux';
-
 import { TrainingTitle } from 'components/TrainingTitle/TrainingTitle';
 import {
   MyGoalMainBox,
@@ -12,7 +10,7 @@ import {
   MyGoalStatsText,
 } from './MyGoal.styled';
 
-export const MyGoal = ({ isTrainingStarted = false, statistic }) => {
+export const MyGoal = ({ trainingStarted, statistic }) => {
   const { t } = useTranslation();
 
   return (
@@ -26,11 +24,11 @@ export const MyGoal = ({ isTrainingStarted = false, statistic }) => {
               <MyGoalStatsListItem key={param}>
                 <MyGoalStatsDigitBox
                   param={param}
-                  isTrainingStarted={isTrainingStarted}
+                  isTrainingStarted={trainingStarted}
                 >
                   {amount}
                 </MyGoalStatsDigitBox>
-                <MyGoalStatsText isTrainingStarted={isTrainingStarted}>
+                <MyGoalStatsText isTrainingStarted={trainingStarted}>
                   {text}
                 </MyGoalStatsText>
               </MyGoalStatsListItem>
