@@ -9,7 +9,7 @@ import { convertMs } from 'helpers/convertMs';
 
 import { TrainingDataSelection } from 'components/TrainingDataSelection/TrainingDataSelection';
 import { MyGoal } from 'components/MyGoal/MyGoal';
-import { Timer } from 'components/Timer/Timer';
+
 import { LibBookTable } from 'components/LibBookTable/LibBookTable';
 import { Button } from 'components/StyledButton/StyledButton ';
 import { MobileLinkToSecondPage } from 'components/MobileLinkToSecondPage/MobileLinkToSecondPage';
@@ -62,7 +62,6 @@ const Training = () => {
           <CenterFlexBox>
             {isTrainingStarted ? (
               <TrainingContainer trainingStarted>
-                <Timer />
                 <MyGoal
                   trainingStarted
                   statistic={myGoalParamsTrainingStarted}
