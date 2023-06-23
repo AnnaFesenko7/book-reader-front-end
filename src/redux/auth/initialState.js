@@ -7,7 +7,7 @@ export const initialState = {
   password: '',
   email: '',
   error: null,
-  trainingStatus: false,
+  isTrainingStarted: false,
   currentLang: 'en',
   //   trainingStatusJustCompleted: null,
   isLoading: false,

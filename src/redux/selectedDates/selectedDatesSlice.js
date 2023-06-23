@@ -7,20 +7,19 @@ export const selectedDatesSlice = createSlice({
   initialState,
   reducers: {
     addBook(state, action) {
-      // console.log(state.list);
       state.list = [...state.list, action.payload];
     },
     deleteBook(state, action) {
-      // console.log('action', action);
       state.list = state.list.filter(book => book._id !== action.payload);
     },
-    startDateAction(state, action) {
+    startDate(state, action) {
       state.startDate = action.payload;
     },
-    endDateAction(state, action) {
+    endDate(state, action) {
       state.endDate = action.payload;
     },
   },
 });
-export const { addBook, deleteBook, startDateAction, endDateAction } =
+
+export const { addBook, deleteBook, startDate, endDate } =
   selectedDatesSlice.actions;

@@ -13,3 +13,12 @@ export const changeLangThunk = createAsyncThunk(
     return await usersApi.changeLang({ language: language });
   }
 );
+
+export const changeTrainingStatusThunk = createAsyncThunk(
+  'user/changeTrainingStatus',
+  async isTrainingStarted => {
+    return await usersApi.changeTrainingStatus({
+      isTrainingStarted: isTrainingStarted,
+    });
+  }
+);

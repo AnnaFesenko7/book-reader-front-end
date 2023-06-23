@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { addBook } from 'redux/selectedDates/selectedDatesSlice';
+import { selectedDatesActions } from 'redux/selectedDates';
 import { useSelector, useDispatch } from 'react-redux';
 import { booksSelectors } from 'redux/books';
 import { Formik, Field, ErrorMessage } from 'formik';
@@ -33,7 +33,7 @@ export const SelectBooks = () => {
     const newBook = books.find(book => book._id === val.book);
 
     resetForm();
-    dispatch(addBook(newBook));
+    dispatch(selectedDatesActions.addBook(newBook));
   };
 
   return (

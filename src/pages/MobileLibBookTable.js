@@ -1,16 +1,22 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+
 import { booksSelectors, booksOperations } from 'redux/books';
 
 import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
 import { LibBookTable } from 'components/LibBookTable/LibBookTable';
 import { MobileLinkToForm } from 'components/MobileLinkToForm/MobileLinkToForm';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
-import { useMediaQuery } from 'react-responsive';
+import { Button } from 'components/StyledButton/StyledButton ';
+import { CenterFlexBox } from 'components/CenterFlexBox/CenterFlexBox';
 
 const MobileLibBookTable = () => {
   useLogOutRedirect();
-
+  const navigate = useNavigate();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,10 +26,22 @@ const MobileLibBookTable = () => {
   const books = useSelector(booksSelectors.getBooks);
 
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
+
+  const onMyTrainingBtnClick = () => {
+    navigate('/training', { replace: true });
+  };
   return (
     <StyledContainer>
-      <LibBookTable data={books} />
-      {isMobileDevice && <MobileLinkToForm to="/" />}
+      <CenterFlexBox>
+        <LibBookTable data={books} />
+        {isMobileDevice && <MobileLinkToForm to="/" />}
+        <Button
+          active
+          size={171}
+          textContent={t('myTraining')}
+          onClick={onMyTrainingBtnClick}
+        />
+      </CenterFlexBox>
     </StyledContainer>
   );
 };

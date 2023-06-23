@@ -5,7 +5,7 @@ import { tokenSelector } from 'redux/auth/authSelectors';
 
 import { getProfileThunk } from 'redux/auth/userThunk';
 
-export const useRedirectToHomePage = () => {
+export const useLoginRedirect = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

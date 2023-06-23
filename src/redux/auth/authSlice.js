@@ -5,7 +5,11 @@ import {
   logoutThunk,
 } from 'redux/auth/authThunk';
 
-import { getProfileThunk, changeLangThunk } from 'redux/auth/userThunk';
+import {
+  getProfileThunk,
+  changeLangThunk,
+  changeTrainingStatusThunk,
+} from 'redux/auth/userThunk';
 import {
   handlePending,
   handleRegistrationFulfilled,
@@ -14,6 +18,7 @@ import {
   handleLogoutFulfilled,
   handleGetProfileFulfilled,
   handleChangeLangFulfilled,
+  handleChangeTrainingStatusFulfilled,
 } from './authUserOperations';
 import { initialState } from './initialState';
 
@@ -23,6 +28,7 @@ const customArr = [
   registrationThunk,
   loginThunk,
   logoutThunk,
+  changeTrainingStatusThunk,
 ];
 const fn = status => {
   return customArr.map(el => el[status]);
@@ -71,6 +77,10 @@ export const authSlice = createSlice({
       .addCase(logoutThunk.fulfilled, handleLogoutFulfilled)
       .addCase(getProfileThunk.fulfilled, handleGetProfileFulfilled)
       .addCase(changeLangThunk.fulfilled, handleChangeLangFulfilled)
+      .addCase(
+        changeTrainingStatusThunk.fulfilled,
+        handleChangeTrainingStatusFulfilled
+      )
       .addMatcher(isAnyOf(...fn('pending')), handlePending)
       .addMatcher(isAnyOf(...fn('rejected')), handleRejected);
   },

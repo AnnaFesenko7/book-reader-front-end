@@ -17,7 +17,7 @@ export const logInSelector = state => state.auth.logIn;
 
 // const getLoginError = state => state.auth.loginError;
 
-// const getTrainingStatus = state => state.auth.trainingStatus;
+export const isTrainingStarted = state => state.auth.isTrainingStarted;
 
 // const getTrainingStatusJustCompleted = state =>
 //   state.auth.trainingStatusJustCompleted;

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StyledHeader = styled.header`
-  background-color: ${p => p.theme.colors.white};
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  /* background-color: ${p => p.theme.colors.white};
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
 `;
 export const FlexBox = styled.div`
   display: flex;
@@ -13,7 +13,9 @@ export const FlexBox = styled.div`
   padding-right: ${p => p.theme.space[4]}px;
   padding-top: 14px;
   padding-bottom: 14px;
-  width: 100%;
+
+  background-color: ${p => p.theme.colors.white};
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const LogoLink = styled(Link)`

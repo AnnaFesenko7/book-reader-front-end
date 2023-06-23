@@ -42,6 +42,7 @@ export const Header = () => {
 
   const handleLogOut = () => {
     toggleModal();
+    localStorage.clear();
     dispatch(logoutThunk());
     dispatch(changeLangThunk(currentLang));
     deleteToken();
@@ -82,18 +83,16 @@ export const Header = () => {
 
       <Modal active={isModalOpen} closeModal={toggleModal}>
         <ModalContentWrapper>
-          <WarningText>
-            Якщо Ви вийдете з програми незбережені дані будуть втрачені
-          </WarningText>
+          <WarningText>{t('modal1_notification')}</WarningText>
           <WrapperModalButtons>
             <Button
-              textContent="Відміна"
+              textContent={t('btnCancel')}
               type="button"
               size="130"
               onClick={toggleModal}
             />
             <Button
-              textContent="Вийти"
+              textContent={t('btnLeave')}
               type="button"
               size="130"
               onClick={handleLogOut}

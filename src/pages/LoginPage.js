@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { loginThunk } from 'redux/auth/authThunk';
 import { tokenSelector } from 'redux/auth/authSelectors';
-import { useRedirectToHomePage } from 'hooks/useRedirectToHomePage';
+import { useLoginRedirect } from 'hooks/useLoginRedirect';
 import { loginSchema } from 'validSchemas/loginSchema';
 import { AuthForm } from 'components/AuthForm/AuthForm';
 import { LoginSaw } from 'components/LoginSaw/LoginSaw';
@@ -15,7 +15,7 @@ const LoginPage = () => {
   const { t } = useTranslation();
 
   const token = useSelector(tokenSelector);
-  useRedirectToHomePage();
+  useLoginRedirect();
 
   const initialValues = {
     email: '',
