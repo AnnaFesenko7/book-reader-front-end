@@ -31,11 +31,7 @@ const Training = () => {
   const deltaTime = endDate ? endDate - startDate : 0;
   const { days } = convertMs(deltaTime);
 
-  let isTrainingBtnActive = true;
-
-  if (books.length > 0 && endDate !== '') {
-    isTrainingBtnActive = false;
-  }
+  const isExistTrainingDate = books.length > 0 && endDate !== '';
 
   const onStartTrainingClick = () => {
     dispatch(userThunk.changeTrainingStatusThunk(true));
@@ -81,7 +77,7 @@ const Training = () => {
                 textContent={t('startTraning')}
                 active
                 size={200}
-                disabled={isTrainingBtnActive}
+                disabled={!isExistTrainingDate}
                 type="button"
               />
             )}

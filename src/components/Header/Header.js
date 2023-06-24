@@ -1,22 +1,25 @@
 import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { LangSwitcher } from 'components/LangSwitcher/LangSwitcher';
 import { FaBookOpen, FaHome } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
+import { changeLangThunk } from 'redux/auth/userThunk';
+import { changeLanguageAction } from 'redux/auth/authSlice';
+import { selectedDatesSelectors } from 'redux/selectedDates';
+import { logoutThunk } from 'redux/auth/authThunk';
+
+import { useModal } from 'hooks/useModal';
+import { deleteToken } from 'services/apiService/axiosInstance';
+
+import { LangSwitcher } from 'components/LangSwitcher/LangSwitcher';
+import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { CustomLink } from 'components/CustomLink/CustomLink';
 import { UserName } from './UserName';
 import { Button } from 'components/StyledButton/StyledButton ';
 import { Modal } from 'components/Modal/Modal';
-import { useModal } from 'hooks/useModal';
+
 import { WarningText, WrapperModalButtons } from './Header.styled';
-import { useTranslation } from 'react-i18next';
-import { changeLangThunk } from 'redux/auth/userThunk';
-import { changeLanguageAction } from 'redux/auth/authSlice';
-
-import { logoutThunk } from 'redux/auth/authThunk';
-import { deleteToken } from 'services/apiService/axiosInstance';
-import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
-
 import {
   StyledHeader,
   LogoLink,
@@ -32,6 +35,9 @@ export const Header = () => {
   const dispatch = useDispatch();
 
   const { token, userName, currentLang } = useSelector(state => state.auth);
+  const books = useSelector(selectedDatesSelectors.booksList);
+  const endDate = useSelector(selectedDatesSelectors.endDate);
+  const isExistNotSaveTrainingDate = books.length > 0 || endDate !== '';
 
   const { t, i18n } = useTranslation();
   useEffect(() => {
@@ -40,8 +46,20 @@ export const Header = () => {
 
   const { isModalOpen, toggleModal } = useModal();
 
-  const handleLogOut = () => {
+  const onLogoutBtnClick = () => {
+    if (isExistNotSaveTrainingDate) {
+      toggleModal();
+    } else {
+      handleLogOut();
+    }
+  };
+
+  const onLeaveBtnClick = () => {
     toggleModal();
+    handleLogOut();
+  };
+
+  const handleLogOut = () => {
     localStorage.clear();
     dispatch(logoutThunk());
     dispatch(changeLangThunk(currentLang));
@@ -71,7 +89,7 @@ export const Header = () => {
                   <CustomLink icon={FaBookOpen} to="/" />
                   <CustomLink icon={FaHome} to="/training" />
                   {isMobileDevice && <UserName user={userName} />}
-                  <ExitButton onClick={toggleModal} type="button">
+                  <ExitButton onClick={onLogoutBtnClick} type="button">
                     {t('logout')}
                   </ExitButton>
                 </StyledNav>
@@ -95,7 +113,7 @@ export const Header = () => {
               textContent={t('btnLeave')}
               type="button"
               size="130"
-              onClick={handleLogOut}
+              onClick={onLeaveBtnClick}
             />
           </WrapperModalButtons>
         </ModalContentWrapper>
