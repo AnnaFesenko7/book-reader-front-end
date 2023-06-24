@@ -21,7 +21,6 @@ import { Modal } from 'components/Modal/Modal';
 
 import { WarningText, WrapperModalButtons } from './Header.styled';
 import {
-  StyledHeader,
   LogoLink,
   StyledNav,
   ExitButton,
@@ -71,8 +70,8 @@ export const Header = () => {
   };
   return (
     <>
-      <StyledHeader>
-        <StyledContainer>
+      <header>
+        <StyledContainer header>
           <FlexBox>
             <LogoLink to="/">BR</LogoLink>
 
@@ -97,7 +96,7 @@ export const Header = () => {
             )}
           </FlexBox>
         </StyledContainer>
-      </StyledHeader>
+      </header>
 
       <Modal active={isModalOpen} closeModal={toggleModal}>
         <ModalContentWrapper>

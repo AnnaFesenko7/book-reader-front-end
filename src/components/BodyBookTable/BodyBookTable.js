@@ -14,7 +14,12 @@ import {
   DeleteButton,
 } from './BodyBookTable.styled';
 
-export const BodyBookTable = ({ books, toggleModal, training }) => {
+export const BodyBookTable = ({
+  books,
+  toggleModal,
+  training,
+  startedTraining,
+}) => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
   const dispatch = useDispatch();
 
@@ -26,7 +31,8 @@ export const BodyBookTable = ({ books, toggleModal, training }) => {
             <StyledTr key={_id}>
               <StyledTd status={status}>
                 <Wrapper>
-                  <FaBookOpen size={'22px'} />
+                  {startedTraining ? <></> : <FaBookOpen size={'22px'} />}
+
                   <EllipsisText text={title} length={isDesktop ? 70 : 50} />
                 </Wrapper>
               </StyledTd>

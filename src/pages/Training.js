@@ -10,12 +10,13 @@ import { convertMs } from 'helpers/convertMs';
 import { TrainingDataSelection } from 'components/TrainingDataSelection/TrainingDataSelection';
 import { MyGoal } from 'components/MyGoal/MyGoal';
 
+import { Timer } from 'components/Timer/Timer';
 import { LibBookTable } from 'components/LibBookTable/LibBookTable';
 import { Button } from 'components/StyledButton/StyledButton ';
 import { MobileLinkToSecondPage } from 'components/MobileLinkToSecondPage/MobileLinkToSecondPage';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { TrainingContainer } from 'components/TrainingContainer/TrainingContainer';
-import { WrapperBody } from 'components/WrapperBody/WrapperBody.styled';
+// import { WrapperBody } from 'components/WrapperBody/WrapperBody.styled';
 import { CenterFlexBox } from 'components/CenterFlexBox/CenterFlexBox';
 
 const Training = () => {
@@ -23,6 +24,7 @@ const Training = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
+  const isDesktopDevice = useMediaQuery({ query: '(min-width: 1280px)' });
 
   const books = useSelector(selectedDatesSelectors.booksList);
   const endDate = useSelector(selectedDatesSelectors.endDate);
@@ -48,42 +50,48 @@ const Training = () => {
 
   return (
     <StyledContainer>
-      <WrapperBody>
-        {isMobileDevice ? (
+      <CenterFlexBox>
+        {isTrainingStarted ? (
           <>
-            <MobileLinkToSecondPage to="/mobileTraingBookTable " />
-            <TrainingDataSelection />
+            <TrainingContainer trainingStarted>
+              <CenterFlexBox>
+                <Timer endDate={endDate} />
+                {isDesktopDevice && (
+                  <LibBookTable data={books} startedTraining />
+                )}
+              </CenterFlexBox>
+
+              <MyGoal trainingStarted statistic={myGoalParamsTrainingStarted} />
+            </TrainingContainer>
           </>
         ) : (
-          <CenterFlexBox>
-            {isTrainingStarted ? (
-              <TrainingContainer trainingStarted>
-                <MyGoal
-                  trainingStarted
-                  statistic={myGoalParamsTrainingStarted}
-                />
-              </TrainingContainer>
-            ) : (
-              <TrainingContainer>
+          <>
+            {isMobileDevice ? (
+              <>
+                <MobileLinkToSecondPage to="/mobileTraingBookTable " />
                 <TrainingDataSelection />
-                <MyGoal statistic={myGoalParams} />
-              </TrainingContainer>
+              </>
+            ) : (
+              <>
+                <TrainingContainer>
+                  <TrainingDataSelection />
+                  <MyGoal statistic={myGoalParams} />
+                </TrainingContainer>
+                <LibBookTable data={books} training />
+                <Button
+                  onClick={onStartTrainingClick}
+                  textContent={t('startTraining')}
+                  active
+                  size={200}
+                  disabled={!isExistTrainingDate}
+                  type="button"
+                />
+              </>
             )}
-
-            <LibBookTable data={books} training />
-            {!isTrainingStarted && (
-              <Button
-                onClick={onStartTrainingClick}
-                textContent={t('startTraning')}
-                active
-                size={200}
-                disabled={!isExistTrainingDate}
-                type="button"
-              />
-            )}
-          </CenterFlexBox>
+          </>
         )}
-      </WrapperBody>
+        {/* {!isMobileDevice && <LibBookTable data={books} training />} */}
+      </CenterFlexBox>
     </StyledContainer>
   );
 };

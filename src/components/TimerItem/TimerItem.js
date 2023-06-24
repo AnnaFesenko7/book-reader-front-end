@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   StyledContainer,
   StyledItem,
@@ -6,16 +8,15 @@ import {
   TimerTitle,
   StyledSpan,
   StyledSeparator,
-} from './Timer.style.js';
+} from './TimerItem.styled.js';
 import { useState, useEffect, useRef } from 'react';
-import convertMs from './convertMs';
+import { convertMs } from 'helpers/convertMs.js';
 
-export const Timer = selectedDate => {
+export const TimerItem = ({ selectedDate, timerTitle }) => {
   const [time, setTime] = useState(() => Date.now());
-
+  const { t } = useTranslation();
   const intervalId = useRef(null);
-  const deltaTime = Object.values(selectedDate)[0] - time;
-  // const deltaTime = selectedDate - time;
+  const deltaTime = selectedDate - time;
   const timeLeft = convertMs(deltaTime);
 
   useEffect(() => {
@@ -30,35 +31,31 @@ export const Timer = selectedDate => {
 
   return (
     <StyledTimerWrapper>
-      <TimerTitle>До закінчення року залишилось</TimerTitle>
+      <TimerTitle>{timerTitle} </TimerTitle>
       <StyledContainer>
         <StyledItem>
           <StyledValue>{timeLeft.days}</StyledValue>
-          <StyledSpan>дн</StyledSpan>
+          <StyledSpan>{t('days')}</StyledSpan>
         </StyledItem>
 
-        <StyledItem>
-          <StyledValue>
-            <StyledSeparator>:</StyledSeparator>
-            {timeLeft.hours}
-          </StyledValue>
-          <StyledSpan>год</StyledSpan>
-        </StyledItem>
+        <StyledSeparator>:</StyledSeparator>
 
         <StyledItem>
-          <StyledValue>
-            <StyledSeparator>:</StyledSeparator>
-            {timeLeft.minutes}
-          </StyledValue>
-          <StyledSpan>хв</StyledSpan>
+          <StyledValue>{timeLeft.hours}</StyledValue>
+          <StyledSpan>{t('hrs')}</StyledSpan>
         </StyledItem>
 
+        <StyledSeparator>:</StyledSeparator>
+
         <StyledItem>
-          <StyledValue>
-            <StyledSeparator>:</StyledSeparator>
-            {timeLeft.seconds}
-          </StyledValue>
-          <StyledSpan>сек</StyledSpan>
+          <StyledValue>{timeLeft.minutes}</StyledValue>
+          <StyledSpan>{t('mins')}</StyledSpan>
+        </StyledItem>
+        <StyledSeparator>:</StyledSeparator>
+
+        <StyledItem>
+          <StyledValue>{timeLeft.seconds}</StyledValue>
+          <StyledSpan>{t('secs')}</StyledSpan>
         </StyledItem>
       </StyledContainer>
     </StyledTimerWrapper>

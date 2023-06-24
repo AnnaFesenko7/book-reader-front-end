@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 
 export const MyGoalMainBox = styled.div`
-  width: 280px;
+  width: 100%;
   background-color: white;
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
 
   @media ${p => p.theme.media.tablet} {
-    padding-left: ${p => p.theme.space[6]}px;
-    padding-right: ${p => p.theme.space[6]}px;
-    width: 100%;
+    padding-left: ${p => p.theme.space[5]}px;
+    padding-right: ${p => p.theme.space[5]}px;
+
     height: 105px;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     align-items: baseline;
 
     h2 {
@@ -25,6 +25,9 @@ export const MyGoalMainBox = styled.div`
     width: 288px;
     height: 304px;
     display: block;
+    h2 {
+      width: 288px;
+    }
   }
 `;
 
@@ -57,7 +60,7 @@ export const MyGoalStatsList = styled.ul`
 
   @media ${p => p.theme.media.tablet} {
     align-items: baseline;
-    gap: 40px;
+    gap: ${p => (p.isTrainingStarted ? 12 : 40)}px;
     padding: 0;
   }
 

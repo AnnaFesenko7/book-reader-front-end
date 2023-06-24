@@ -14,7 +14,7 @@ import {
   StyledCaption,
 } from './LibBookTable.styled';
 
-export const LibBookTable = ({ data, training }) => {
+export const LibBookTable = ({ data, training, startedTraining }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const { isModalOpen, toggleModal } = useModal();
   // const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
@@ -28,13 +28,19 @@ export const LibBookTable = ({ data, training }) => {
   return (
     <>
       <StyledSection>
-        {training && (
+        {startedTraining && (
+          <StyledTable>
+            <HeadBookTable status="toRead" />
+            <BodyBookTable books={statusObj.toRead} startedTraining />
+          </StyledTable>
+        )}
+        {training && !startedTraining && (
           <StyledTable>
             <HeadBookTable status="training" />
             <BodyBookTable books={statusObj.toRead} training />
           </StyledTable>
         )}
-        {statusObj.haveRead && (
+        {statusObj.haveRead && !startedTraining && (
           <>
             <StyledTable>
               <StyledCaption>{t('alreadyRead')}</StyledCaption>
@@ -54,7 +60,7 @@ export const LibBookTable = ({ data, training }) => {
           </>
         )}
 
-        {statusObj.reading && (
+        {statusObj.reading && !startedTraining && (
           <>
             <StyledTable>
               <StyledCaption> {t('readingNow')} </StyledCaption>
@@ -71,7 +77,7 @@ export const LibBookTable = ({ data, training }) => {
           </>
         )}
 
-        {!training && statusObj.toRead && (
+        {!training && statusObj.toRead && !startedTraining && (
           <>
             <StyledTable>
               <StyledCaption> {t('goingToRead')} </StyledCaption>

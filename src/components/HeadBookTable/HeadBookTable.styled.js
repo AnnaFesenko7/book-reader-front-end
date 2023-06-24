@@ -11,11 +11,13 @@ export const StyledTh = styled.th`
   line-height: ${p => p.theme.lineHeights.secondBody};
   color: ${p => p.theme.colors.notActiveText};
   width: 60px;
+  /* border-collapse: collapse; */
 
   @media ${p => p.theme.media.tablet} {
     text-align: left;
     padding-left: ${p => p.theme.space[4]}px;
     padding-right: ${p => p.theme.space[4]}px;
+
     width: ${p =>
       p.status === 'haveRead'
         ? setSizeForMediaTabletHaveRead(p.name)
@@ -31,6 +33,11 @@ export const StyledTh = styled.th`
         : p.status === 'training'
         ? setSizeForTrainingAddBooks(p.name)
         : setSizeForMediaDesktop(p.name)}%;
+
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-top: 1px solid ${p => p.theme.colors.tableBorder};
+    border-bottom: 1px solid ${p => p.theme.colors.tableBorder};
   }
 `;
 const setSizeForMediaDesktopHaveRead = name => {

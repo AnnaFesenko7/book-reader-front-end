@@ -17,7 +17,7 @@ const StyledTitle = styled.h2`
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
 
   @media ${p => p.theme.media.desktop} {
-    width: 288px !important;
+    /* width: 288px !important; */
   }
 `;
 export const TrainingTitle = ({ text }) => {

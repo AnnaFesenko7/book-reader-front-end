@@ -5,6 +5,10 @@ export const StyledTimerWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  @media ${p => p.theme.media.tablet} {
+    width: 290px;
+  }
 `;
 
 export const TimerTitle = styled.div`
@@ -12,31 +16,29 @@ export const TimerTitle = styled.div`
   font-size: 14px;
   line-height: 1.21;
   color: #898f9f;
-
   margin-bottom: 8px;
 `;
 
 export const StyledContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
-  width: 290px;
+  width: 100%;
   height: 60px;
 
   background: #ffffff;
   box-shadow: 4px 4px 8px rgba(36, 42, 55, 0.15);
-
   padding-bottom: 8px;
-  margin-left: 40px;
-  margin-right: 40px;
 `;
 export const StyledItem = styled.p`
   display: flex;
   flex-direction: column;
   margin: 0;
   text-align: center;
+  width: 43px;
+
   :not(:last-child) {
-    margin-right: 15px;
+    margin-right: 8px;
   }
 `;
 
@@ -50,12 +52,13 @@ export const StyledValue = styled.span`
   color: #091e3f;
 `;
 export const StyledSeparator = styled.span`
-  margin-right: 10px;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 1.52;
+  margin-right: 8px;
 `;
 
 export const StyledSpan = styled.span`
-  font-family: 'Montserrat';
-  font-style: normal;
   font-weight: 500;
   font-size: 10px;
   line-height: 12px;
