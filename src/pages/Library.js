@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { booksSelectors, booksOperations } from 'redux/books';
-import { userSelectors } from 'redux/auth';
+// import { userSelectors } from 'redux/auth';
 import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
 
 import { Info } from 'components/Info/Info';
@@ -30,7 +30,7 @@ const Library = () => {
   }, [dispatch, updateUi]);
 
   const books = useSelector(booksSelectors.getBooks);
-  const isTrainingStarted = useSelector(userSelectors.isTrainingStarted);
+  // const isTrainingStarted = useSelector(userSelectors.isTrainingStarted);
 
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
 
