@@ -1,12 +1,14 @@
 import EllipsisText from 'react-ellipsis-text';
 import { useMediaQuery } from 'react-responsive';
 import { FaBookOpen } from 'react-icons/fa';
+import { AiOutlineCheckSquare } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { deleteBook } from 'redux/selectedDates/selectedDatesSlice';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { ShowRatingStars } from 'components/ShowRatingStars/ShowRatingStars';
 import { ResumeButton } from 'components/ResumeButton/ResumeButton';
 
+import { UncheckedBox } from 'components/UncheckedBox/UncheckedBox';
 import {
   StyledTr,
   StyledTd,
@@ -29,9 +31,19 @@ export const BodyBookTable = ({
         {books?.map(({ _id, status, title, author, year, pages, rating }) => {
           return (
             <StyledTr key={_id}>
-              <StyledTd status={status}>
+              <StyledTd status={status} startedTraining={startedTraining}>
                 <Wrapper>
-                  {startedTraining ? <></> : <FaBookOpen size={'22px'} />}
+                  {startedTraining ? (
+                    <>
+                      {status === 'haveRead' ? (
+                        <AiOutlineCheckSquare size={'22px'} />
+                      ) : (
+                        <UncheckedBox />
+                      )}
+                    </>
+                  ) : (
+                    <FaBookOpen size={'22px'} />
+                  )}
 
                   <EllipsisText text={title} length={isDesktop ? 70 : 50} />
                 </Wrapper>

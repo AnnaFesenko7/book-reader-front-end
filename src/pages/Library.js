@@ -14,7 +14,7 @@ import { Button } from 'components/StyledButton/StyledButton ';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { MobileLinkToSecondPage } from 'components/MobileLinkToSecondPage/MobileLinkToSecondPage';
 import { LibBookTable } from 'components/LibBookTable/LibBookTable';
-import { WrapperBody } from 'components/WrapperBody/WrapperBody.styled';
+
 import { CenterFlexBox } from 'components/CenterFlexBox/CenterFlexBox';
 
 const Library = () => {
@@ -43,31 +43,29 @@ const Library = () => {
   return (
     <section>
       <StyledContainer>
-        <WrapperBody>
-          {isMobileDevice ? (
-            <>
-              <MobileLinkToSecondPage to="/mobileLibBookTable" />
-              <BookAddForm />
-            </>
-          ) : (
-            <>
-              <BookAddForm updateUi={setUpdateUi} />
-              {isBookInLibrary ? (
-                <CenterFlexBox>
-                  <LibBookTable data={books} />
-                  <Button
-                    active
-                    size={200}
-                    textContent={t('myTraining')}
-                    onClick={onMyTrainingBtnClick}
-                  />
-                </CenterFlexBox>
-              ) : (
-                <Info />
-              )}
-            </>
-          )}
-        </WrapperBody>
+        {isMobileDevice ? (
+          <>
+            <MobileLinkToSecondPage to="/mobileLibBookTable" />
+            <BookAddForm />
+          </>
+        ) : (
+          <>
+            <BookAddForm updateUi={setUpdateUi} />
+            {isBookInLibrary ? (
+              <CenterFlexBox>
+                <LibBookTable data={books} />
+                <Button
+                  active
+                  size={200}
+                  textContent={t('myTraining')}
+                  onClick={onMyTrainingBtnClick}
+                />
+              </CenterFlexBox>
+            ) : (
+              <Info />
+            )}
+          </>
+        )}
       </StyledContainer>
     </section>
   );

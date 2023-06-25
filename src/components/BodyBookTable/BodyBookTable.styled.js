@@ -20,7 +20,9 @@ export const StyledTd = styled.td`
   svg {
     height: auto;
     color: ${p =>
-      p.status === 'reading'
+      p.startedTraining
+        ? p.theme.colors.accentColor
+        : p.status === 'reading'
         ? p.theme.colors.accentColor
         : p.theme.colors.tableIconColor};
   }

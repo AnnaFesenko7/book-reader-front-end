@@ -5,7 +5,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 const StyledLink = styled(Link)`
   color: ${p => p.theme.colors.accentColor};
   display: block;
-  margin-bottom: 40px;
+  margin-top: 40px;
   align-self: start;
   margin-left: 16px;
 `;

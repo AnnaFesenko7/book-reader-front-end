@@ -2,12 +2,16 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 import { ResumeButton } from 'components/ResumeButton/ResumeButton';
+import { useTranslation } from 'react-i18next';
 import { FaBookOpen } from 'react-icons/fa';
+import { AiOutlineCheckSquare } from 'react-icons/ai';
+
+import { useModal } from 'hooks/useModal';
+
 import { ShowRatingStars } from 'components/ShowRatingStars/ShowRatingStars';
 import { Modal } from 'components/Modal/Modal';
-import { useModal } from 'hooks/useModal';
-import { useTranslation } from 'react-i18next';
 import { ResumeModalContent } from 'components/ResumeModalContent/ResumeModalContent';
+import { UncheckedBox } from 'components/UncheckedBox/UncheckedBox';
 import {
   StyledList,
   StyledListItem,
@@ -20,7 +24,7 @@ import {
   BookIcon,
 } from './BookTableMobile.styled';
 
-export const BookTableMobile = ({ books }) => {
+export const BookTableMobile = ({ books, startedTraining }) => {
   const { isModalOpen, toggleModal } = useModal();
   const { t } = useTranslation();
   return (
@@ -29,8 +33,18 @@ export const BookTableMobile = ({ books }) => {
         {books.map(({ _id, status, title, author, year, pages, rating }) => {
           return (
             <StyledListItem key={_id}>
-              <BookIcon status={status}>
-                <FaBookOpen size={'22px'} />
+              <BookIcon status={status} startedTraining={startedTraining}>
+                {startedTraining ? (
+                  <>
+                    {status === 'haveRead' ? (
+                      <AiOutlineCheckSquare size={'22px'} />
+                    ) : (
+                      <UncheckedBox />
+                    )}
+                  </>
+                ) : (
+                  <FaBookOpen size={'22px'} />
+                )}
               </BookIcon>
               <StyledTable>
                 <StyledBookTitle>{title}</StyledBookTitle>

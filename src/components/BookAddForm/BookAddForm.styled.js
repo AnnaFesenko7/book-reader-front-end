@@ -2,24 +2,24 @@ import { Form, Field } from 'formik';
 import styled from 'styled-components';
 
 export const StyledForm = styled(Form)`
-  width: 280px;
-  /* width: 100%; */
+  width: 100%;
   flex-direction: column;
   display: flex;
   gap: ${p => p.theme.space[4]}px;
   align-items: center;
   justify-content: flex-start;
-  padding-right: ${p => p.theme.space[4]}px;
-  padding-left: ${p => p.theme.space[4]}px;
 
-  @media ${p => p.theme.media.table} {
-    /* width: 704px; */
-    width: 100%;
+  padding-bottom: 110px;
+  padding-top: 32px;
+
+  @media ${p => p.theme.media.tablet} {
+    padding-top: 32px;
+    padding-bottom: 40px;
   }
   @media ${p => p.theme.media.desktop} {
     width: 100%;
     flex-direction: row;
-    /* align-items: flex-end; */
+    padding-top: ${p => p.theme.space[6]}px;
   }
 `;
 
@@ -52,6 +52,7 @@ export const StyledLabel = styled.label`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  white-space: pre;
   @media ${p => p.theme.media.tablet} {
     width: ${p => setSizeForMediaTablet(p.htmlFor)}px;
   }

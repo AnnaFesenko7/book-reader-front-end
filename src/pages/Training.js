@@ -9,14 +9,13 @@ import { convertMs } from 'helpers/convertMs';
 
 import { TrainingDataSelection } from 'components/TrainingDataSelection/TrainingDataSelection';
 import { MyGoal } from 'components/MyGoal/MyGoal';
-
+import { BookTableMobile } from 'components/BookTableMobile/BookTableMobile';
 import { Timer } from 'components/Timer/Timer';
 import { LibBookTable } from 'components/LibBookTable/LibBookTable';
 import { Button } from 'components/StyledButton/StyledButton ';
 import { MobileLinkToSecondPage } from 'components/MobileLinkToSecondPage/MobileLinkToSecondPage';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { TrainingContainer } from 'components/TrainingContainer/TrainingContainer';
-// import { WrapperBody } from 'components/WrapperBody/WrapperBody.styled';
 import { CenterFlexBox } from 'components/CenterFlexBox/CenterFlexBox';
 
 const Training = () => {
@@ -63,6 +62,14 @@ const Training = () => {
 
               <MyGoal trainingStarted statistic={myGoalParamsTrainingStarted} />
             </TrainingContainer>
+
+            {!isDesktopDevice && !isMobileDevice && (
+              <LibBookTable data={books} startedTraining />
+            )}
+
+            {isMobileDevice && (
+              <BookTableMobile books={books} startedTraining />
+            )}
           </>
         ) : (
           <>

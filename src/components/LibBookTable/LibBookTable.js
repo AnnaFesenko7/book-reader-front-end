@@ -28,7 +28,7 @@ export const LibBookTable = ({ data, training, startedTraining }) => {
   return (
     <>
       <StyledSection>
-        {startedTraining && (
+        {startedTraining && !isMobile && (
           <StyledTable>
             <HeadBookTable status="toRead" />
             <BodyBookTable books={statusObj.toRead} startedTraining />

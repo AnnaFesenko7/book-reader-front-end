@@ -24,9 +24,11 @@ export const BookIcon = styled.div`
   top: 20px;
   left: 20px;
   color: ${p =>
-    p.status === 'reading'
+    p.startedTraining
       ? p.theme.colors.accentColor
-      : p.theme.colors.iconColor};
+      : p.status === 'reading'
+      ? p.theme.colors.accentColor
+      : p.theme.colors.tableIconColor};
 `;
 
 export const StyledTable = styled.table`
