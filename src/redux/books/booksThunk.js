@@ -1,7 +1,7 @@
 import * as booksApi from 'services/apiService/booksApi';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const getBooks = createAsyncThunk(
+export const getBooksThunk = createAsyncThunk(
   'books/fetchBooks',
   async (_, { rejectWithValue }) => {
     try {
@@ -13,7 +13,7 @@ export const getBooks = createAsyncThunk(
   }
 );
 
-export const addBook = createAsyncThunk(
+export const addBookThunk = createAsyncThunk(
   'books/addBook',
   async (newBook, { rejectWithValue }) => {
     try {
@@ -25,14 +25,3 @@ export const addBook = createAsyncThunk(
     }
   }
 );
-//entities: [
-//   {
-//     _id: '645e83d3692d91e8191e6257',
-//     status: 'reading',
-//     author: 'J.K.Roling',
-//     pages: 400,
-//     title: 'Harry Potter',
-//     year: 2014,
-//     rating: 2,
-//     resume: ''
-//   },

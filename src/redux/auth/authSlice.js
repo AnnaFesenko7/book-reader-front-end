@@ -10,16 +10,8 @@ import {
   changeLangThunk,
   changeTrainingStatusThunk,
 } from 'redux/auth/userThunk';
-import {
-  handlePending,
-  handleRegistrationFulfilled,
-  handleRejected,
-  handleLoginFulfilled,
-  handleLogoutFulfilled,
-  handleGetProfileFulfilled,
-  handleChangeLangFulfilled,
-  handleChangeTrainingStatusFulfilled,
-} from './authUserOperations';
+
+import * as operations from '../operations';
 import { initialState } from './initialState';
 
 const customArr = [
@@ -72,17 +64,20 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
 
-      .addCase(registrationThunk.fulfilled, handleRegistrationFulfilled)
-      .addCase(loginThunk.fulfilled, handleLoginFulfilled)
-      .addCase(logoutThunk.fulfilled, handleLogoutFulfilled)
-      .addCase(getProfileThunk.fulfilled, handleGetProfileFulfilled)
-      .addCase(changeLangThunk.fulfilled, handleChangeLangFulfilled)
+      .addCase(
+        registrationThunk.fulfilled,
+        operations.handleRegistrationFulfilled
+      )
+      .addCase(loginThunk.fulfilled, operations.handleLoginFulfilled)
+      .addCase(logoutThunk.fulfilled, operations.handleLogoutFulfilled)
+      .addCase(getProfileThunk.fulfilled, operations.handleGetProfileFulfilled)
+      .addCase(changeLangThunk.fulfilled, operations.handleChangeLangFulfilled)
       .addCase(
         changeTrainingStatusThunk.fulfilled,
-        handleChangeTrainingStatusFulfilled
+        operations.handleChangeTrainingStatusFulfilled
       )
-      .addMatcher(isAnyOf(...fn('pending')), handlePending)
-      .addMatcher(isAnyOf(...fn('rejected')), handleRejected);
+      .addMatcher(isAnyOf(...fn('pending')), operations.handlePending)
+      .addMatcher(isAnyOf(...fn('rejected')), operations.handleRejected);
   },
 });
 export const { changeLanguageAction } = authSlice.actions;

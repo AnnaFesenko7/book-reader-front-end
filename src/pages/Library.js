@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { booksSelectors, booksOperations } from 'redux/books';
+import { booksSelectors, booksThunk } from 'redux/books';
 // import { userSelectors } from 'redux/auth';
 import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
 
@@ -26,11 +26,10 @@ const Library = () => {
   const [updateUi, setUpdateUi] = useState(false);
 
   useEffect(() => {
-    dispatch(booksOperations.getBooks());
+    dispatch(booksThunk.getBooksThunk());
   }, [dispatch, updateUi]);
 
   const books = useSelector(booksSelectors.getBooks);
-  // const isTrainingStarted = useSelector(userSelectors.isTrainingStarted);
 
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
 

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
 import { userSelectors, userThunk } from 'redux/auth';
 import { selectedDatesSelectors } from 'redux/selectedDates';
+import { trainingThunk } from 'redux/training';
 import { convertMs } from 'helpers/convertMs';
 
 import { TrainingDataSelection } from 'components/TrainingDataSelection/TrainingDataSelection';
@@ -36,6 +37,13 @@ const Training = () => {
 
   const onStartTrainingClick = () => {
     dispatch(userThunk.changeTrainingStatusThunk(true));
+    dispatch(
+      trainingThunk.addTrainingThank({
+        startDate,
+        finishDate: endDate,
+        books,
+      })
+    );
   };
   const myGoalParams = [
     { param: 'books', text: t('amountOfBooks'), amount: books.length },

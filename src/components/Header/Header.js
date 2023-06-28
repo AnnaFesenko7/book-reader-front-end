@@ -59,10 +59,10 @@ export const Header = () => {
   };
 
   const handleLogOut = () => {
-    localStorage.clear();
     dispatch(logoutThunk());
     dispatch(changeLangThunk(currentLang));
     deleteToken();
+    localStorage.clear();
   };
 
   const changeLanguageState = language => {

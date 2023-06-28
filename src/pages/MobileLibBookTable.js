@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 
-import { booksSelectors, booksOperations } from 'redux/books';
+import { booksSelectors, booksThunk } from 'redux/books';
 
 import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
 import { LibBookTable } from 'components/LibBookTable/LibBookTable';
@@ -20,7 +20,7 @@ const MobileLibBookTable = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(booksOperations.getBooks());
+    dispatch(booksThunk.getBooksThunk());
   }, [dispatch]);
 
   const books = useSelector(booksSelectors.getBooks);

@@ -79,7 +79,7 @@ export const MyGoalStatsListItem = styled.li`
   }
   @media ${p => p.theme.media.desktop} {
     height: 148px;
-    width: 70px;
+    width: ${p => p.isTrainingStarted && 70}px;
   }
 `;
 

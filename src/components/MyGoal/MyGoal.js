@@ -21,7 +21,10 @@ export const MyGoal = ({ trainingStarted, statistic }) => {
         <StatsBox>
           <MyGoalStatsList isTrainingStarted={trainingStarted}>
             {statistic.map(({ param, text, amount }) => (
-              <MyGoalStatsListItem key={param}>
+              <MyGoalStatsListItem
+                key={param}
+                isTrainingStarted={trainingStarted}
+              >
                 <MyGoalStatsDigitBox
                   param={param}
                   isTrainingStarted={trainingStarted}

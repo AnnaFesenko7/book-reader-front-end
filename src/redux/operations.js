@@ -12,7 +12,6 @@ export const handleRejected = (state, { payload }) => {
   state.error = payload;
 };
 export const handleLoginFulfilled = (state, { payload }) => {
-  console.log(payload);
   state.isLoading = false;
   state.token = payload;
   state.isLoggedIn = true;
@@ -41,4 +40,11 @@ export const handleChangeLangFulfilled = (state, { payload }) => {
 export const handleChangeTrainingStatusFulfilled = (state, { payload }) => {
   state.isTrainingStarted = payload;
   state.isLoading = false;
+};
+
+export const handleGetBooksFulfilled = (state, { payload }) => {
+  state.entities = payload;
+};
+export const handleAddBookFulfilled = (state, { payload }) => {
+  state.entities = [...state.entities, payload];
 };

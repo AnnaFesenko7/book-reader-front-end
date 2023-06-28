@@ -1,11 +1,13 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch } from 'react-redux';
-import { booksOperations } from 'redux/books';
+
 import { Formik, ErrorMessage } from 'formik';
 import { librarySchema } from 'validSchemas/librarySchema';
 
 import { useTranslation } from 'react-i18next';
 // import { SpinnerCircular } from 'spinners-react';
+
+import { booksThunk } from 'redux/books';
 
 import { ErrorContainer } from 'components/ErrorContainer/ErrorContainer.styled';
 import { Button } from 'components/StyledButton/StyledButton ';
@@ -55,7 +57,8 @@ export const BookAddForm = ({ updateUi }) => {
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
     resetForm();
-    dispatch(booksOperations.addBook(values));
+    dispatch(booksThunk.addBookThunk(values));
+
     updateUi(true);
     Notify.success(t('book__add__message1'));
   };
