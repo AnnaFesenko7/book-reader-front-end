@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
 import { userSelectors, userThunk } from 'redux/auth';
 import { selectedDatesSelectors } from 'redux/selectedDates';
+import { trainingSelectors } from 'redux/training';
 import { trainingThunk } from 'redux/training';
 import { convertMs } from 'helpers/convertMs';
 
@@ -26,22 +27,28 @@ const Training = () => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   const isDesktopDevice = useMediaQuery({ query: '(min-width: 1280px)' });
 
-  const books = useSelector(selectedDatesSelectors.booksList);
-  const endDate = useSelector(selectedDatesSelectors.endDate);
-  const startDate = useSelector(selectedDatesSelectors.startDate);
+  const selectedBooks = useSelector(selectedDatesSelectors.booksList);
+  const selectedEndDate = useSelector(selectedDatesSelectors.endDate);
+  const selectedStartDate = useSelector(selectedDatesSelectors.startDate);
   const isTrainingStarted = useSelector(userSelectors.isTrainingStarted);
-  const deltaTime = endDate ? endDate - startDate : 0;
+
+  const books = useSelector(trainingSelectors.booksList);
+  const finishDate = useSelector(trainingSelectors.finishDate);
+  const startDate = useSelector(trainingSelectors.startDate);
+
+  const deltaTime = finishDate ? finishDate - startDate : 0;
   const { days } = convertMs(deltaTime);
 
-  const isExistTrainingDate = books.length > 0 && endDate !== '';
+  const isExistTrainingDate =
+    selectedBooks.length > 0 && selectedEndDate !== '' && !isTrainingStarted;
 
   const onStartTrainingClick = () => {
     dispatch(userThunk.changeTrainingStatusThunk(true));
     dispatch(
       trainingThunk.addTrainingThank({
-        startDate,
-        finishDate: endDate,
-        books,
+        startDate: selectedStartDate,
+        finishDate: selectedEndDate,
+        books: selectedBooks,
       })
     );
   };
@@ -62,7 +69,7 @@ const Training = () => {
           <>
             <TrainingContainer trainingStarted>
               <CenterFlexBox>
-                <Timer endDate={endDate} />
+                <Timer endDate={finishDate} />
                 {isDesktopDevice && (
                   <LibBookTable data={books} startedTraining />
                 )}
@@ -92,7 +99,7 @@ const Training = () => {
                   <TrainingDataSelection />
                   <MyGoal statistic={myGoalParams} />
                 </TrainingContainer>
-                <LibBookTable data={books} training />
+                <LibBookTable data={selectedBooks} training />
                 <Button
                   onClick={onStartTrainingClick}
                   textContent={t('startTraining')}

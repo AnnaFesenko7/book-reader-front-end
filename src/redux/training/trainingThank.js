@@ -16,16 +16,17 @@ export const getTrainingThank = createAsyncThunk(
 export const addTrainingThank = createAsyncThunk(
   'training/addTraining',
   async (newTraining, { rejectWithValue }) => {
-    console.log(newTraining.books);
     const { startDate, finishDate, books } = newTraining;
     const listBooksId = books.map(book => book._id);
-    console.log('🚀 ~ file: trainingThank.js:22 ~ listBooksId:', listBooksId);
+
     try {
       const training = await trainingApi.addTraining({
         startDate,
         finishDate,
         books: listBooksId,
       });
+      console.log('🚀 ~ file: trainingThank.js:28 ~ training:', training);
+
       return training;
     } catch (error) {
       return rejectWithValue(error);

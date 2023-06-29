@@ -48,3 +48,8 @@ export const handleGetBooksFulfilled = (state, { payload }) => {
 export const handleAddBookFulfilled = (state, { payload }) => {
   state.entities = [...state.entities, payload];
 };
+export const handleAddTrainingFulfilled = (state, { payload }) => {
+  state.startDate = payload.startDate;
+  state.finishDate = payload.finishDate;
+  state.books = payload.books;
+};

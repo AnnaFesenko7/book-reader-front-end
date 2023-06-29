@@ -3,6 +3,7 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 import { persistStore, persistReducer } from 'redux-persist';
 import { authSlice } from './auth/authSlice';
 import { booksSlice } from './books/booksSlice';
+import { trainingSlice } from './training/trainingSlice';
 import { selectedDatesSlice } from './selectedDates/selectedDatesSlice';
 import {
   FLUSH,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   auth: authSlice.reducer,
   books: booksSlice.reducer,
   selectedDates: selectedDatesSlice.reducer,
+  training: trainingSlice.reducer,
 });
 
 const persistConfig = {

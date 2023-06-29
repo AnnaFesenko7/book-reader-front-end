@@ -2,7 +2,7 @@ import { instance } from './axiosInstance';
 
 export const addTraining = async newTraining => {
   const response = await instance.post('training', newTraining);
-  console.log(response);
+  console.log('response', response.data);
   return response.data;
 };
 

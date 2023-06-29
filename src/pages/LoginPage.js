@@ -23,7 +23,6 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    console.log(token);
     if (token) {
       localStorage.setItem('token', token);
     }
