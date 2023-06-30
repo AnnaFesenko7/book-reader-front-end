@@ -19,14 +19,8 @@ export const trainingSlice = createSlice({
   extraReducers: builder => {
     builder
 
-      //   .addCase(
-      //     getTrainingThank.fulfilled,
-      //     operations.handleRegistrationFulfilled
-      //   )
-      .addCase(
-        addTrainingThank.fulfilled,
-        operations.handleAddTrainingFulfilled
-      )
+      .addCase(getTrainingThank.fulfilled, operations.handleTrainingFulfilled)
+      // .addCase(addTrainingThank.fulfilled, operations.handleTrainingFulfilled)
 
       .addMatcher(isAnyOf(...fn('pending')), operations.handlePending)
       .addMatcher(isAnyOf(...fn('rejected')), operations.handleRejected);

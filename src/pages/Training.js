@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -5,8 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
 import { userSelectors, userThunk } from 'redux/auth';
 import { selectedDatesSelectors } from 'redux/selectedDates';
-import { trainingSelectors } from 'redux/training';
-import { trainingThunk } from 'redux/training';
+import { trainingSelectors, trainingThunk } from 'redux/training';
 import { convertMs } from 'helpers/convertMs';
 
 import { TrainingDataSelection } from 'components/TrainingDataSelection/TrainingDataSelection';
@@ -14,6 +14,7 @@ import { MyGoal } from 'components/MyGoal/MyGoal';
 import { BookTableMobile } from 'components/BookTableMobile/BookTableMobile';
 import { Timer } from 'components/Timer/Timer';
 import { LibBookTable } from 'components/LibBookTable/LibBookTable';
+import { ReadingInformation } from 'components/ReadingInformation/ReadingInformation';
 import { Button } from 'components/StyledButton/StyledButton ';
 import { MobileLinkToSecondPage } from 'components/MobileLinkToSecondPage/MobileLinkToSecondPage';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
@@ -27,10 +28,17 @@ const Training = () => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   const isDesktopDevice = useMediaQuery({ query: '(min-width: 1280px)' });
 
+  // const [updateUi, setUpdateUi] = useState(false);
+  const isTrainingStarted = useSelector(userSelectors.isTrainingStarted);
+  useEffect(() => {
+    if (isTrainingStarted) {
+      dispatch(trainingThunk.getTrainingThank());
+    }
+  }, [dispatch, isTrainingStarted]);
+
   const selectedBooks = useSelector(selectedDatesSelectors.booksList);
   const selectedEndDate = useSelector(selectedDatesSelectors.endDate);
   const selectedStartDate = useSelector(selectedDatesSelectors.startDate);
-  const isTrainingStarted = useSelector(userSelectors.isTrainingStarted);
 
   const books = useSelector(trainingSelectors.booksList);
   const finishDate = useSelector(trainingSelectors.finishDate);
@@ -39,8 +47,8 @@ const Training = () => {
   const deltaTime = finishDate ? finishDate - startDate : 0;
   const { days } = convertMs(deltaTime);
 
-  const isExistTrainingDate =
-    selectedBooks.length > 0 && selectedEndDate !== '' && !isTrainingStarted;
+  const isExistNoSaveTrainingDate =
+    !isTrainingStarted && selectedBooks?.length > 0 && selectedEndDate !== '';
 
   const onStartTrainingClick = () => {
     dispatch(userThunk.changeTrainingStatusThunk(true));
@@ -76,6 +84,7 @@ const Training = () => {
               </CenterFlexBox>
 
               <MyGoal trainingStarted statistic={myGoalParamsTrainingStarted} />
+              <ReadingInformation />
             </TrainingContainer>
 
             {!isDesktopDevice && !isMobileDevice && (
@@ -105,7 +114,7 @@ const Training = () => {
                   textContent={t('startTraining')}
                   active
                   size={200}
-                  disabled={!isExistTrainingDate}
+                  disabled={!isExistNoSaveTrainingDate}
                   type="button"
                 />
               </>

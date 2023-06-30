@@ -6,6 +6,7 @@ export const getTrainingThank = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const training = await trainingApi.getTraining();
+      console.log('🚀 ~ file: trainingThank.js:9 ~ training:', training);
       return training;
     } catch (error) {
       return rejectWithValue(error);

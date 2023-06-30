@@ -14,7 +14,6 @@ import { Button } from 'components/StyledButton/StyledButton ';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { MobileLinkToSecondPage } from 'components/MobileLinkToSecondPage/MobileLinkToSecondPage';
 import { LibBookTable } from 'components/LibBookTable/LibBookTable';
-
 import { CenterFlexBox } from 'components/CenterFlexBox/CenterFlexBox';
 
 const Library = () => {
