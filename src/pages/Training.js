@@ -20,7 +20,7 @@ import { MobileLinkToSecondPage } from 'components/MobileLinkToSecondPage/Mobile
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { TrainingContainer } from 'components/TrainingContainer/TrainingContainer';
 import { CenterFlexBox } from 'components/CenterFlexBox/CenterFlexBox';
-
+import { SiteBar } from 'components/SiteBar/SiteBar';
 const Training = () => {
   useLogOutRedirect();
   const { t } = useTranslation();
@@ -82,9 +82,13 @@ const Training = () => {
                   <LibBookTable data={books} startedTraining />
                 )}
               </CenterFlexBox>
-
-              <MyGoal trainingStarted statistic={myGoalParamsTrainingStarted} />
-              <ReadingInformation />
+              <SiteBar>
+                <MyGoal
+                  trainingStarted
+                  statistic={myGoalParamsTrainingStarted}
+                />
+                <ReadingInformation />
+              </SiteBar>
             </TrainingContainer>
 
             {!isDesktopDevice && !isMobileDevice && (

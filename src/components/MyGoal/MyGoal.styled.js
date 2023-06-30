@@ -22,7 +22,8 @@ export const MyGoalMainBox = styled.div`
   @media ${p => p.theme.media.desktop} {
     padding-left: 0;
     padding-right: 0;
-    width: 288px;
+    /* width: 288px; */
+    width: 100%;
     height: 304px;
     display: block;
     h2 {
