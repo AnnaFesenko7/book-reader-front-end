@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
@@ -17,13 +17,13 @@ export const SendForm = ({ startDate = null, refetchFucntion }) => {
   // const dispatch = useDispatch();
   // const [updateTraining, { error }] = useUpdateTrainingMutation();
 
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
-  const handleExit = () => {
-    setOpen(false);
-    refetchFucntion();
-    // dispatch(setTrainingState('false'));
-  };
+  // const handleExit = () => {
+  //   setOpen(false);
+  //   refetchFucntion();
+
+  // };
 
   const now = new Date();
   const today = Date.parse(now) + 3600 * 1000;
