@@ -8,14 +8,17 @@ export const ReadingInformation = () => {
   return (
     <>
       <Wrapper>
-        <StyledTitle> {t('results')}</StyledTitle>
-        <SendForm
-        //   startDate={startDateFromTraining}
-        //   refetchFucntion={refetch}
-        />
-
-        <StyledTitle> {t('statistics')}</StyledTitle>
-        <StatisticsList />
+        <div>
+          <StyledTitle> {t('results')}</StyledTitle>
+          <SendForm
+          //   startDate={startDateFromTraining}
+          //   refetchFucntion={refetch}
+          />
+        </div>
+        <div>
+          <StyledTitle> {t('statistics')}</StyledTitle>
+          <StatisticsList />
+        </div>
       </Wrapper>
     </>
   );

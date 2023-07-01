@@ -8,9 +8,11 @@ export const Button = ({
   height,
   active,
   disabled,
+  center,
 }) => {
   return (
     <StyledButton
+      center={center}
       active={active}
       type={type}
       onClick={onClick}

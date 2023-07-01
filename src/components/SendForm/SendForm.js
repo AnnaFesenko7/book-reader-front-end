@@ -1,133 +1,96 @@
-// import { useState } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { Formik, ErrorMessage, Field } from 'formik';
 import { useTranslation } from 'react-i18next';
-
+import { Button } from 'components/StyledButton/StyledButton ';
 // import { useUpdateTrainingMutation } from '../../redux/books/trainingApi';
 // import { ReactComponent as Triangle } from '../../img/Triangle.svg';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { setTrainingState } from 'redux/auth/auth-slice';
+
 // import { setTrainingStatusJustCompleted } from 'redux/auth/auth-slice';
 // import ModalFinish from 'components/ModalFinish/ModalFinish';
 
-import s from './statisticsList.module.css';
+import { readingResultSchema } from 'validSchemas/readingResultSchema';
 
-export const SendForm = ({ startDate = null, refetchFucntion }) => {
+import {
+  StyledField,
+  StyledDateView,
+  styleForPageInput,
+  StyledInputsWrapper,
+  StyledLabel,
+  StyledForm,
+} from './SendForm.styled';
+
+export const SendForm = () => {
   const { t } = useTranslation();
-  // const dispatch = useDispatch();
-  // const [updateTraining, { error }] = useUpdateTrainingMutation();
+  const dispatch = useDispatch();
+  const initialValues = {
+    dateInput: new Date(),
+    pageInput: '',
+  };
 
-  // const [open, setOpen] = useState(false);
+  const handleSubmit = (val, { resetForm }) => {
+    console.log(val);
 
-  // const handleExit = () => {
-  //   setOpen(false);
-  //   refetchFucntion();
-
-  // };
-
-  const now = new Date();
-  const today = Date.parse(now) + 3600 * 1000;
-  const yesterday = now.setDate(now.getDate() - 1);
-  // Date.prototype.yyyymmdd = function () {
-  //   let mm = this.getMonth() + 1; // getMonth() is zero-based
-  //   let dd = this.getDate();
-
-  //   return [
-  //     this.getFullYear(),
-  //     (mm > 9 ? '' : '0') + mm,
-  //     (dd > 9 ? '' : '0') + dd,
-  //   ].join('-');
-  // };
-
-  // console.log('yesterday',typeof yesterday, yesterday)
-  // console.log('today',typeof today, today)
-  // console.log('minDate',typeof minDate, minDate)
-
-  const formik = useFormik({
-    initialValues: {
-      dateInput: new Date(),
-      pageInput: '',
-    },
-    validationSchema: Yup.object().shape({
-      dateInput: Yup.date()
-        .min(new Date(yesterday), t('results_err1'))
-        .max(new Date(today), t('results_err2')),
-      pageInput: Yup.number()
-        .integer(t('results_err4'))
-        .min(1, t('results_err3'))
-        .max(999, t('results_err5'))
-        .required(t('results_err6')),
-    }),
-    onSubmit: ({ dateInput, pageInput }, { resetForm }) => {
-      let dateToSend = new Date();
-      const year = dateInput.toString().slice(0, 4);
-      const month = dateInput.toString().slice(5, 7);
-      const day = dateInput.toString().slice(8, 10);
-      dateToSend.setFullYear(year, month - 1, day);
-      // updateTraining({
-      //   date: dateToSend,
-      //   pages: pageInput,
-      // }).then(info => {
-      //   if (info.data?.completed) {
-      //     setOpen(true);
-      //     // refetchFucntion();
-      //     // dispatch(setTrainingState('false'));
-      //     dispatch(setTrainingStatusJustCompleted('completedByPages'));
-      //   }
-      // });
-      // if (error) {
-      //   console.log(error.message);
-      // }
-      resetForm();
-    },
-  });
+    resetForm();
+  };
 
   return (
-    <form onSubmit={formik.handleSubmit} className={s.formResults}>
-      <div className={s.inputs}>
-        <label className={s.inputsLabelDate}>
-          {t('date')}
+    <Formik
+      initialValues={initialValues}
+      validationSchema={readingResultSchema}
+      onSubmit={handleSubmit}
+    >
+      <StyledForm autoComplete="off">
+        <StyledInputsWrapper>
+          <StyledLabel htmlFor="dateInput">
+            {t('date')}
+            <div>
+              <Field name="dateInput">
+                {({ form, field }) => {
+                  const { setFieldValue } = form;
+                  const { value } = field;
+                  return (
+                    <StyledDateView
+                      id="dateInput"
+                      selected={value}
+                      onChange={val => setFieldValue(val)}
+                      closeOnScroll={true}
+                      dateFormat=" dd.MM.yyyy"
+                      maxDate={Date.now()}
+                      showDisabledMonthNavigation
+                    />
+                  );
+                }}
+              </Field>
+              <ErrorMessage name="dateInput" />
+            </div>
+          </StyledLabel>
 
-          <input
-            className={s.inputDate}
-            type="date"
-            name="dateInput"
-            max={new Date(today)}
-            min={new Date(yesterday)}
-            onChange={formik.handleChange}
-            value={formik.values.dateInput}
-          />
-          {formik.errors.dateInput && formik.touched.dateInput ? (
-            <div>{formik.errors.dateInput}</div>
-          ) : null}
-          {/* <Triangle className={s.triangle} /> */}
-        </label>
+          <StyledLabel htmlFor="pageInput">
+            {t('amountOfPages_results')}
+            <StyledField>
+              <Field
+                type="number"
+                name="pageInput"
+                style={styleForPageInput}
+              ></Field>
+            </StyledField>
+          </StyledLabel>
+        </StyledInputsWrapper>
+        <Button
+          center
+          active
+          textContent={t('addResult')}
+          size={240}
+          type="submit"
+          height={40}
+        ></Button>
 
-        <label className={s.inputsLabelPage}>
-          {t('amountOfPages_results')}
-
-          <input
-            className={s.inputPage}
-            type="number"
-            name="pageInput"
-            onChange={formik.handleChange}
-            value={formik.values.pageInput}
-          />
-
-          {formik.errors.pageInput && formik.touched.pageInput ? (
-            <div>{formik.errors.pageInput}</div>
-          ) : null}
-        </label>
-      </div>
-      {/* {error && (
-        <div className={s.backEndError}>
-          <p>{error.data.message}</p>
-        </div>
-      )} */}
-      <button className={s.addResultBtn} type="submit">
-        {t('addResult')}
-      </button>
-      {/* {open && <ModalFinish onClose={handleExit} />} */}
-    </form>
+        {/* <button className={s.addResultBtn} type="submit">
+          {}
+        </button> */}
+        {/* {open && <ModalFinish onClose={handleExit} />} */}
+        {/* </form> */}
+      </StyledForm>
+    </Formik>
   );
 };

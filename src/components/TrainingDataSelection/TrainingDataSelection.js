@@ -43,7 +43,6 @@ export const TrainingDataSelection = () => {
             selected={start}
             onChange={date => setStartDate(date)}
             closeOnScroll={true}
-            // showTimeSelect
             dateFormat="MMMM d, yyyy h:mm aa"
             selectsStart
             minDate={Date.now()}
@@ -56,7 +55,6 @@ export const TrainingDataSelection = () => {
             selected={end}
             onChange={date => setEndDate(date)}
             closeOnScroll={true}
-            // showTimeSelect
             dateFormat="MMMM d, yyyy h:mm aa"
             selectsEnd
             minDate={startDate}
