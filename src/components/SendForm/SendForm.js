@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { Formik, ErrorMessage, Field } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'components/StyledButton/StyledButton ';
@@ -21,7 +21,7 @@ import {
 
 export const SendForm = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const initialValues = {
     dateInput: new Date(),
     pageInput: '',
