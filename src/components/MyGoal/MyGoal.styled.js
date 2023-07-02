@@ -9,7 +9,7 @@ export const MyGoalMainBox = styled.div`
     padding-left: ${p => p.theme.space[5]}px;
     padding-right: ${p => p.theme.space[5]}px;
 
-    height: 105px;
+    /* height: 105px; */
     display: flex;
     /* align-items: center; */
     align-items: baseline;
@@ -24,7 +24,7 @@ export const MyGoalMainBox = styled.div`
     padding-right: 0;
     /* width: 288px; */
     width: 100%;
-    height: 304px;
+    /* height: 304px; */
     display: block;
     h2 {
       width: 288px;
@@ -36,7 +36,7 @@ export const StatsBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 236px;
+  height: ${p => (p.isTrainingStarted ? 161 : 236)}px;
   background-color: white;
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
 
@@ -47,7 +47,7 @@ export const StatsBox = styled.div`
   }
 
   @media ${p => p.theme.media.desktop} {
-    height: 244px;
+    height: ${p => (p.isTrainingStarted ? 269 : 244)}px;
   }
 `;
 

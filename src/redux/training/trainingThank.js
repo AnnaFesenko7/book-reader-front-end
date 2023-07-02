@@ -26,9 +26,27 @@ export const addTrainingThank = createAsyncThunk(
         finishDate,
         books: listBooksId,
       });
-      console.log('🚀 ~ file: trainingThank.js:28 ~ training:', training);
 
       return training;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const addResultThank = createAsyncThunk(
+  'training/addResult',
+  async (newResult, { rejectWithValue }) => {
+    const { dateInput, pageInput } = newResult;
+    const result = {
+      date: dateInput,
+      pages: pageInput,
+    };
+
+    try {
+      const results = await trainingApi.addResult(result);
+
+      return results;
     } catch (error) {
       return rejectWithValue(error);
     }

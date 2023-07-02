@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import s from './statisticsList.module.css';
+
 const StatisticsRow = ({ row }) => {
   const { date, time, pages } = row;
   const { t } = useTranslation();

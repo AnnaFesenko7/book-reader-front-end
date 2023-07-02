@@ -1,5 +1,6 @@
 export const handlePending = state => {
   state.isLoading = true;
+  state.error = null;
 };
 
 export const handleRegistrationFulfilled = (state, { payload }) => {
@@ -48,8 +49,12 @@ export const handleGetBooksFulfilled = (state, { payload }) => {
 export const handleAddBookFulfilled = (state, { payload }) => {
   state.entities = [...state.entities, payload];
 };
-export const handleTrainingFulfilled = (state, { payload }) => {
+export const handleGetTrainingFulfilled = (state, { payload }) => {
   state.startDate = payload?.startDate;
   state.finishDate = payload?.finishDate;
   state.books = payload?.books;
+  state.results = payload?.results;
+};
+export const handleAddResultFulfilled = (state, { payload }) => {
+  state.results = payload;
 };

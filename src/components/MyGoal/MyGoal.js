@@ -18,7 +18,7 @@ export const MyGoal = ({ trainingStarted, statistic }) => {
       <MyGoalMainBox>
         <TrainingTitle text={t('myGoals')} />
 
-        <StatsBox>
+        <StatsBox isTrainingStarted={trainingStarted}>
           <MyGoalStatsList isTrainingStarted={trainingStarted}>
             {statistic.map(({ param, text, amount }) => (
               <MyGoalStatsListItem

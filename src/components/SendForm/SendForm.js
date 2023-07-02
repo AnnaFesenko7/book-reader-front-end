@@ -1,11 +1,9 @@
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Formik, ErrorMessage, Field } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'components/StyledButton/StyledButton ';
-// import { useUpdateTrainingMutation } from '../../redux/books/trainingApi';
-// import { ReactComponent as Triangle } from '../../img/Triangle.svg';
+import { trainingThunk } from 'redux/training';
 
-// import { setTrainingStatusJustCompleted } from 'redux/auth/auth-slice';
 // import ModalFinish from 'components/ModalFinish/ModalFinish';
 
 import { readingResultSchema } from 'validSchemas/readingResultSchema';
@@ -21,15 +19,15 @@ import {
 
 export const SendForm = () => {
   const { t } = useTranslation();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
   const initialValues = {
     dateInput: new Date(),
     pageInput: '',
   };
 
   const handleSubmit = (val, { resetForm }) => {
-    console.log(val);
-
+    dispatch(trainingThunk.addResultThank(val));
     resetForm();
   };
 
