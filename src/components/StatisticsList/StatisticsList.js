@@ -1,6 +1,4 @@
-import StatisticsRow from './StatisticsRow';
-import s from './statisticsList.module.css';
-
+import { StatisticsRow } from './StatisticsRow';
 import * as format from 'helpers/formatDate';
 
 export const StatisticsList = ({ results }) => {
@@ -15,9 +13,9 @@ export const StatisticsList = ({ results }) => {
     .slice(0, 5);
 
   return (
-    <ul className={s.statisticsList}>
+    <ul>
       {visibleRows.map(row => (
-        <StatisticsRow key={row.id} row={row} className={s.statisticsList} />
+        <StatisticsRow key={row.id} row={row} />
       ))}
     </ul>
   );
