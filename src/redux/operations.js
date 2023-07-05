@@ -54,7 +54,11 @@ export const handleGetTrainingFulfilled = (state, { payload }) => {
   state.finishDate = payload?.finishDate;
   state.books = payload?.books;
   state.results = payload?.results;
+  state.completed = payload?.completed;
 };
 export const handleAddResultFulfilled = (state, { payload }) => {
   state.results = payload;
 };
+// export const handleCompletenessTrainingFulfilled = (state, { payload }) => {
+//   state.completed = payload;
+// };

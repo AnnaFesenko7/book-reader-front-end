@@ -53,7 +53,8 @@ export const BodyBookTable = ({
               </StyledTd>
               <StyledTd>{year}</StyledTd>
               <StyledTd>{pages}</StyledTd>
-              {status === 'haveRead' && (
+
+              {status === 'haveRead' && !startedTraining && (
                 <StyledTd>
                   <Wrapper>
                     <ShowRatingStars rating={rating} />
@@ -61,6 +62,7 @@ export const BodyBookTable = ({
                   </Wrapper>
                 </StyledTd>
               )}
+
               {training && (
                 <StyledTd>
                   <Wrapper>

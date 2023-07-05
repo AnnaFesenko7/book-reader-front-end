@@ -9,9 +9,7 @@ export const MyGoalMainBox = styled.div`
     padding-left: ${p => p.theme.space[5]}px;
     padding-right: ${p => p.theme.space[5]}px;
 
-    /* height: 105px; */
     display: flex;
-    /* align-items: center; */
     align-items: baseline;
 
     h2 {
@@ -22,12 +20,11 @@ export const MyGoalMainBox = styled.div`
   @media ${p => p.theme.media.desktop} {
     padding-left: 0;
     padding-right: 0;
-    /* width: 288px; */
-    width: 100%;
-    /* height: 304px; */
+    width: 288px;
+
     display: block;
     h2 {
-      width: 288px;
+      width: 100%;
     }
   }
 `;

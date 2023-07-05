@@ -1,13 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
-import { userSelectors, userThunk } from 'redux/auth';
-import { selectedDatesSelectors } from 'redux/selectedDates';
-import { trainingSelectors, trainingThunk } from 'redux/training';
 import { convertMs } from 'helpers/convertMs';
+import { useModal } from 'hooks/useModal';
+import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
+
+import { userSelectors, userThunk } from 'redux/auth';
+import { trainingSelectors, trainingThunk } from 'redux/training';
+import { booksSelectors, booksThunk } from 'redux/books';
+import { selectedDatesSelectors } from 'redux/selectedDates';
+import { selectedDatesActions } from 'redux/selectedDates';
 
 import { TrainingDataSelection } from 'components/TrainingDataSelection/TrainingDataSelection';
 import { MyGoal } from 'components/MyGoal/MyGoal';
@@ -21,31 +25,72 @@ import { StyledContainer } from 'components/StyledContainer/StyledContainer.styl
 import { TrainingContainer } from 'components/TrainingContainer/TrainingContainer';
 import { CenterFlexBox } from 'components/CenterFlexBox/CenterFlexBox';
 import { SiteBar } from 'components/SiteBar/SiteBar';
+import { FinishModal } from 'components/FinishModal/FinishModal';
+import { ChartTraining } from 'components/Chart/ChartTraining';
+
 const Training = () => {
   useLogOutRedirect();
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   const isDesktopDevice = useMediaQuery({ query: '(min-width: 1280px)' });
 
-  // const [updateUi, setUpdateUi] = useState(false);
+  const [updateUi, setUpdateUi] = useState(false);
+  useEffect(() => {
+    dispatch(booksThunk.getBooksThunk());
+  }, [dispatch, updateUi]);
+
   const isTrainingStarted = useSelector(userSelectors.isTrainingStarted);
+
+  const selectedBooks = useSelector(selectedDatesSelectors.booksList);
+  const selectedEndDate = useSelector(selectedDatesSelectors.endDate);
+  const selectedStartDate = useSelector(selectedDatesSelectors.startDate);
+  const { days: prevPeriod } = convertMs(selectedEndDate - selectedStartDate);
+  const period = selectedEndDate === '' ? 0 : prevPeriod;
+  const myGoalParams = [
+    { param: 'books', text: t('amountOfBooks'), amount: selectedBooks.length },
+    { param: 'days', text: t('amountOfDays'), amount: period },
+  ];
+
+  const allBooks = useSelector(booksSelectors.getBooks);
+
+  const booksIdArr = useSelector(trainingSelectors.booksList);
+
+  const books = booksIdArr.reduce(
+    (arr, bookId) => {
+      return [...arr, allBooks.find(book => book._id === bookId)];
+    },
+
+    []
+  );
+  console.log('🚀 ~ file: Training.js:59 ~ Training ~ books:', books);
+
+  const finishDate = useSelector(trainingSelectors.finishDate);
+  const startDate = useSelector(trainingSelectors.startDate);
+  const id = useSelector(trainingSelectors.id);
+  const results = useSelector(trainingSelectors.results);
+  const isTrainingCompleted = useSelector(trainingSelectors.completed);
+  const deltaTime = finishDate ? finishDate - startDate : 0;
+  const { days } = convertMs(deltaTime);
+  const booksLeft = books?.filter(book => book.status !== 'haveRead')?.length;
+  const myGoalParamsTrainingStarted = [
+    { param: 'books', text: t('amountOfBooks'), amount: books?.length },
+    { param: 'days', text: t('amountOfDays'), amount: days },
+    { param: 'booksLeft', text: t('booksLeft'), amount: booksLeft },
+  ];
+
   useEffect(() => {
     if (isTrainingStarted) {
       dispatch(trainingThunk.getTrainingThank());
     }
   }, [dispatch, isTrainingStarted]);
 
-  const selectedBooks = useSelector(selectedDatesSelectors.booksList);
-  const selectedEndDate = useSelector(selectedDatesSelectors.endDate);
-  const selectedStartDate = useSelector(selectedDatesSelectors.startDate);
+  useEffect(() => {
+    dispatch(booksThunk.getBooksThunk());
+  }, [dispatch, updateUi]);
 
-  const books = useSelector(trainingSelectors.booksList);
-  const finishDate = useSelector(trainingSelectors.finishDate);
-  const startDate = useSelector(trainingSelectors.startDate);
-
-  const deltaTime = finishDate ? finishDate - startDate : 0;
-  const { days } = convertMs(deltaTime);
+  const { closeModal, isModalOpen } = useModal(isTrainingCompleted);
 
   const isExistNoSaveTrainingDate =
     !isTrainingStarted && selectedBooks?.length > 0 && selectedEndDate !== '';
@@ -59,75 +104,83 @@ const Training = () => {
         books: selectedBooks,
       })
     );
+    dispatch(selectedDatesActions.resetSelectedDates());
   };
-  const myGoalParams = [
-    { param: 'books', text: t('amountOfBooks'), amount: books.length },
-    { param: 'days', text: t('amountOfDays'), amount: days },
-  ];
-  const myGoalParamsTrainingStarted = [
-    { param: 'books', text: t('amountOfBooks'), amount: books.length },
-    { param: 'days', text: t('amountOfDays'), amount: days },
-    { param: 'booksLeft', text: t('booksLeft'), amount: 5 },
-  ];
+
+  const onFinishModalBtnClick = () => {
+    closeModal();
+    dispatch(trainingThunk.deleteTrainingThank(id));
+    dispatch(userThunk.changeTrainingStatusThunk(false));
+  };
 
   return (
-    <StyledContainer>
-      <CenterFlexBox>
-        {isTrainingStarted ? (
-          <>
-            <TrainingContainer trainingStarted>
-              <CenterFlexBox>
-                <Timer endDate={finishDate} />
-                {isDesktopDevice && (
-                  <LibBookTable data={books} startedTraining />
-                )}
-              </CenterFlexBox>
-              <SiteBar>
-                <MyGoal
-                  trainingStarted
-                  statistic={myGoalParamsTrainingStarted}
-                />
-                <ReadingInformation />
-              </SiteBar>
-            </TrainingContainer>
+    <>
+      <StyledContainer>
+        <CenterFlexBox>
+          {isTrainingStarted ? (
+            <>
+              <TrainingContainer trainingStarted>
+                <CenterFlexBox>
+                  <Timer endDate={finishDate} />
+                  {isDesktopDevice && (
+                    <>
+                      <LibBookTable data={books} startedTraining />
+                      <ChartTraining trainingData={results} />
+                    </>
+                  )}
+                </CenterFlexBox>
+                <SiteBar>
+                  <MyGoal
+                    trainingStarted
+                    statistic={myGoalParamsTrainingStarted}
+                  />
+                  <ReadingInformation updateUi={setUpdateUi} />
+                </SiteBar>
+              </TrainingContainer>
 
-            {!isDesktopDevice && !isMobileDevice && (
-              <LibBookTable data={books} startedTraining />
-            )}
+              {!isDesktopDevice && !isMobileDevice && (
+                <LibBookTable data={books} startedTraining />
+              )}
 
-            {isMobileDevice && (
-              <BookTableMobile books={books} startedTraining />
-            )}
-          </>
-        ) : (
-          <>
-            {isMobileDevice ? (
-              <>
-                <MobileLinkToSecondPage to="/mobileTraingBookTable " />
-                <TrainingDataSelection />
-              </>
-            ) : (
-              <>
-                <TrainingContainer>
+              {isMobileDevice && (
+                <BookTableMobile books={books} startedTraining />
+              )}
+            </>
+          ) : (
+            <>
+              {isMobileDevice ? (
+                <>
+                  <MobileLinkToSecondPage to="/mobileTraingBookTable " />
                   <TrainingDataSelection />
-                  <MyGoal statistic={myGoalParams} />
-                </TrainingContainer>
-                <LibBookTable data={selectedBooks} training />
-                <Button
-                  onClick={onStartTrainingClick}
-                  textContent={t('startTraining')}
-                  active
-                  size={200}
-                  disabled={!isExistNoSaveTrainingDate}
-                  type="button"
-                />
-              </>
-            )}
-          </>
-        )}
-        {/* {!isMobileDevice && <LibBookTable data={books} training />} */}
-      </CenterFlexBox>
-    </StyledContainer>
+                </>
+              ) : (
+                <>
+                  <TrainingContainer>
+                    <TrainingDataSelection />
+                    <MyGoal statistic={myGoalParams} />
+                  </TrainingContainer>
+                  <LibBookTable data={selectedBooks} training />
+                  <Button
+                    onClick={onStartTrainingClick}
+                    textContent={t('startTraining')}
+                    active
+                    size={200}
+                    disabled={!isExistNoSaveTrainingDate}
+                    type="button"
+                  />
+                </>
+              )}
+            </>
+          )}
+          {/* {!isMobileDevice && <LibBookTable data={books} training />} */}
+        </CenterFlexBox>
+      </StyledContainer>
+
+      <FinishModal
+        isModalOpen={isModalOpen}
+        closeModal={onFinishModalBtnClick}
+      />
+    </>
   );
 };
 

@@ -18,8 +18,12 @@ export const selectedDatesSlice = createSlice({
     endDate(state, action) {
       state.endDate = action.payload;
     },
+    resetSelectedDates(state) {
+      state.endDate = '';
+      state.list = [];
+    },
   },
 });
 
-export const { addBook, deleteBook, startDate, endDate } =
+export const { addBook, deleteBook, startDate, endDate, resetSelectedDates } =
   selectedDatesSlice.actions;

@@ -52,3 +52,29 @@ export const addResultThank = createAsyncThunk(
     }
   }
 );
+//completeness
+
+export const completenessTrainingThank = createAsyncThunk(
+  'training/completeness',
+  async (_, { rejectWithValue }) => {
+    try {
+      const completed = await trainingApi.completeness();
+      console.log('🚀 ~ file: trainingThank.js:62 ~ completed:', completed);
+      return completed;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteTrainingThank = createAsyncThunk(
+  'training/deleteTraining',
+  async ({ id }, { rejectWithValue }) => {
+    try {
+      console.log('🚀 ~ file: trainingThank.js:62 ~ id:', id);
+      return await trainingApi.deleteTraining(id);
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

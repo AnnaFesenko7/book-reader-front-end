@@ -16,3 +16,15 @@ export const addResult = async result => {
 
   return data.results;
 };
+
+export const completeness = async () => {
+  const { data } = await instance.patch('training/completeness');
+
+  return data.completed;
+};
+
+export const deleteTraining = async id => {
+  const { data } = await instance.patch('training/completeness', id);
+
+  return data;
+};

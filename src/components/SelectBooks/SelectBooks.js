@@ -20,7 +20,6 @@ export const SelectBooks = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const booksList = useSelector(booksSelectors.getBooks);
-  // const selectedBooks = useSelector(state => state.selectedDates.list);
   const books = booksList.filter(book => book.status === 'toRead');
 
   const defaultValue = t('chooseBooks');

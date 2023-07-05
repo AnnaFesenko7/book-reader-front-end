@@ -1,8 +1,8 @@
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { Formik, ErrorMessage, Field } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'components/StyledButton/StyledButton ';
-import { trainingThunk } from 'redux/training';
+// import { trainingThunk } from 'redux/training';
 
 // import ModalFinish from 'components/ModalFinish/ModalFinish';
 
@@ -15,11 +15,11 @@ import {
   StyledInputsWrapper,
   StyledLabel,
   StyledForm,
-} from './SendForm.styled';
+} from './SendResultsForm.styled';
 
-export const SendForm = () => {
+export const SendResultsForm = ({ onAddResultClick, completed }) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const initialValues = {
     dateInput: new Date(),
@@ -27,8 +27,8 @@ export const SendForm = () => {
   };
 
   const handleSubmit = (val, { resetForm }) => {
-    dispatch(trainingThunk.addResultThank(val));
     resetForm();
+    onAddResultClick(val);
   };
 
   return (
@@ -78,6 +78,7 @@ export const SendForm = () => {
           center
           active
           textContent={t('addResult')}
+          disabled={completed}
           size={240}
           type="submit"
           height={40}
