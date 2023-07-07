@@ -24,22 +24,13 @@ export const FinishModal = ({ isModalOpen, closeModal }) => {
         <FaRegThumbsUp className={s.thumbUp} />
         <p className={s.modal_text}>{t('You_are_the_best')}</p>
         <div className={s.btn_modal}>
-          <button type="button" onClick={onNewTrainingAfterFinishBtnClick}>
-            {t('new_training_after_finish')}
-          </button>
+          <Button
+            textContent={t('new_training_after_finish')}
+            type="button"
+            size="130"
+            onClick={onNewTrainingAfterFinishBtnClick}
+          />
         </div>
-        <Button
-          textContent={t('btnCancel')}
-          type="button"
-          size="130"
-          // onClick={toggleModal}
-        />
-        <Button
-          textContent={t('btnLeave')}
-          type="button"
-          size="130"
-          // onClick={onLeaveBtnClick}
-        />
       </div>
     </Modal>
   );

@@ -26,7 +26,7 @@ import { TrainingContainer } from 'components/TrainingContainer/TrainingContaine
 import { CenterFlexBox } from 'components/CenterFlexBox/CenterFlexBox';
 import { SiteBar } from 'components/SiteBar/SiteBar';
 import { FinishModal } from 'components/FinishModal/FinishModal';
-import { ChartTraining } from 'components/Chart/ChartTraining';
+import { LineChart } from 'components/LineChart/LineChart';
 
 const Training = () => {
   useLogOutRedirect();
@@ -70,6 +70,7 @@ const Training = () => {
   const startDate = useSelector(trainingSelectors.startDate);
   const id = useSelector(trainingSelectors.id);
   const results = useSelector(trainingSelectors.results);
+  console.log('🚀 ~ file: Training.js:73 ~ Training ~ results:', results);
   const isTrainingCompleted = useSelector(trainingSelectors.completed);
   const deltaTime = finishDate ? finishDate - startDate : 0;
   const { days } = convertMs(deltaTime);
@@ -125,7 +126,7 @@ const Training = () => {
                   {isDesktopDevice && (
                     <>
                       <LibBookTable data={books} startedTraining />
-                      <ChartTraining trainingData={results} />
+                      <LineChart />
                     </>
                   )}
                 </CenterFlexBox>
