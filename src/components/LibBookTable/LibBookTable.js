@@ -14,7 +14,11 @@ import {
   StyledCaption,
 } from './LibBookTable.styled';
 
-export const LibBookTable = ({ data, training, startedTraining }) => {
+export const LibBookTable = ({ data, training, startedTraining, updateUi }) => {
+  console.log(
+    '🚀 ~ file: LibBookTable.js:18 ~ LibBookTable ~ updateUi:',
+    updateUi
+  );
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const { isModalOpen, toggleModal } = useModal();
   // const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();

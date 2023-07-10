@@ -30,6 +30,12 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    resetUserAction(state) {
+      state.userName = '';
+      state.token = null;
+      state.isLoggedIn = false;
+      state.email = '';
+    },
     changeLanguageAction(state, action) {
       state.currentLang = action.payload;
     },
@@ -80,4 +86,4 @@ export const authSlice = createSlice({
       .addMatcher(isAnyOf(...fn('rejected')), operations.handleRejected);
   },
 });
-export const { changeLanguageAction } = authSlice.actions;
+export const { resetUserAction, changeLanguageAction } = authSlice.actions;

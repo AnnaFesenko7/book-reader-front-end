@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { loginThunk } from 'redux/auth/authThunk';
-import { tokenSelector } from 'redux/auth/authSelectors';
+
 import { useLoginRedirect } from 'hooks/useLoginRedirect';
 import { loginSchema } from 'validSchemas/loginSchema';
 import { AuthForm } from 'components/AuthForm/AuthForm';
@@ -14,19 +14,12 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const token = useSelector(tokenSelector);
   useLoginRedirect();
 
   const initialValues = {
     email: '',
     password: '',
   };
-
-  useEffect(() => {
-    if (token) {
-      localStorage.setItem('token', token);
-    }
-  }, [token]);
 
   const fieldsArray = [
     {

@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { changeLangThunk } from 'redux/auth/userThunk';
-import { changeLanguageAction } from 'redux/auth/authSlice';
+import { changeLanguageAction, resetUserAction } from 'redux/auth/authSlice';
+
 import { selectedDatesSelectors } from 'redux/selectedDates';
 import { logoutThunk } from 'redux/auth/authThunk';
 
@@ -34,6 +35,12 @@ export const Header = () => {
   const dispatch = useDispatch();
 
   const { token, userName, currentLang } = useSelector(state => state.auth);
+  useEffect(() => {
+    if (userName === 'AxiosError') {
+      dispatch(resetUserAction());
+    }
+  }, [dispatch, userName]);
+
   const books = useSelector(selectedDatesSelectors.booksList);
   const endDate = useSelector(selectedDatesSelectors.endDate);
   const isExistNotSaveTrainingDate = books.length > 0 || endDate !== '';

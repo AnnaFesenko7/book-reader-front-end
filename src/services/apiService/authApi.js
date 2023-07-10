@@ -10,7 +10,7 @@ export async function login(credentials) {
 
   const token = response.data.data.token;
 
-  setToken(`Bearer ${token}`);
+  setToken(token);
   return token;
 }
 export async function logout() {

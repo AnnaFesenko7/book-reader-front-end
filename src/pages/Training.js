@@ -125,7 +125,7 @@ const Training = () => {
                   <Timer endDate={finishDate} />
                   {isDesktopDevice && (
                     <>
-                      <LibBookTable data={books} startedTraining />
+                      <LibBookTable data={books} startedTraining updateUi />
                       <LineChart />
                     </>
                   )}

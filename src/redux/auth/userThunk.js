@@ -1,10 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as usersApi from 'services/apiService/usersApi';
+import { setToken } from 'services/apiService/axiosInstance';
 
 export const getProfileThunk = createAsyncThunk(
   'users/getProfile',
-  async () => {
-    return await usersApi.getProfile();
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+
+    const persistedToken = state.auth.token;
+    console.log('🚀 ~ file: userThunk.js:10 ~ persistedToken:', persistedToken);
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue();
+    }
+    setToken(persistedToken);
+    try {
+      return await usersApi.getProfile();
+    } catch (err) {
+      return err;
+    }
   }
 );
 export const changeLangThunk = createAsyncThunk(
