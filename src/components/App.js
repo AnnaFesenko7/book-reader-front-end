@@ -32,7 +32,7 @@ export const App = () => {
           <Route path="training" element={<Training />} />
 
           <Route
-            path="mobileTraingBookTable"
+            path="mobileTrainingBookTable"
             element={<MobileTrainBookTable />}
           />
 

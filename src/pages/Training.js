@@ -64,13 +64,16 @@ const Training = () => {
 
     []
   );
-  console.log('🚀 ~ file: Training.js:59 ~ Training ~ books:', books);
 
   const finishDate = useSelector(trainingSelectors.finishDate);
   const startDate = useSelector(trainingSelectors.startDate);
   const id = useSelector(trainingSelectors.id);
-  const results = useSelector(trainingSelectors.results);
-  console.log('🚀 ~ file: Training.js:73 ~ Training ~ results:', results);
+  //загалом сторінок в тренуванні
+  const totalPagesInTraining = books.reduce(
+    (previousValue, book) => previousValue + book.pages,
+    0
+  );
+
   const isTrainingCompleted = useSelector(trainingSelectors.completed);
   const deltaTime = finishDate ? finishDate - startDate : 0;
   const { days } = convertMs(deltaTime);
@@ -126,7 +129,10 @@ const Training = () => {
                   {isDesktopDevice && (
                     <>
                       <LibBookTable data={books} startedTraining updateUi />
-                      <LineChart />
+                      <LineChart
+                        days={days}
+                        totalPagesInTraining={totalPagesInTraining}
+                      />
                     </>
                   )}
                 </CenterFlexBox>
@@ -151,7 +157,7 @@ const Training = () => {
             <>
               {isMobileDevice ? (
                 <>
-                  <MobileLinkToSecondPage to="/mobileTraingBookTable " />
+                  <MobileLinkToSecondPage to="/mobileTrainingBookTable " />
                   <TrainingDataSelection />
                 </>
               ) : (

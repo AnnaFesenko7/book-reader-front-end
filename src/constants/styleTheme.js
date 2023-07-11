@@ -11,6 +11,7 @@ export const theme = {
     backgroundTitle: '#b1b5c2',
     backgroundStatistic: '#F5F7FA',
     statisticColor: '#091e3f',
+
     tableBorder: '#e0e5eb',
   },
 

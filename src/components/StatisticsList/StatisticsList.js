@@ -4,7 +4,7 @@ import * as format from 'helpers/formatDate';
 export const StatisticsList = ({ results }) => {
   const visibleRows = results
     ?.map(({ date, pages, _id }) => ({
-      date: format.date(date),
+      date: format.day(date),
       time: format.time(date),
       pages: pages,
       id: _id,

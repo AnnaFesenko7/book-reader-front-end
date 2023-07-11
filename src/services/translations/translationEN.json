@@ -171,5 +171,10 @@
 
   "Youre_doing_fine": "Well done! But you need to be a little bit faster. You can do it.",
   "You_are_the_best": "Congratulations! You are the best! All read in the determined term. You can start new training.",
-  "new_training_after_finish": "New training"
+  "new_training_after_finish": "New training",
+
+  "number_of_pages_a_day": "Number of pages / day",
+  "line_chart_plan": "Plan",
+  "line_chart_fact": "Fact",
+  "line_chart_time": "Time"
 }

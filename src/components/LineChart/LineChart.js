@@ -1,5 +1,17 @@
 import { Line } from 'react-chartjs-2';
-
+import { useSelector } from 'react-redux';
+import { trainingSelectors } from 'redux/training';
+import * as format from 'helpers/formatDate';
+import { useTranslation } from 'react-i18next';
+import {
+  ChartBox,
+  StyledTitle,
+  StyledSpan,
+  LineBox,
+  LineList,
+  LineItem,
+  StyledP,
+} from './LineChart.styled';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -21,33 +33,6 @@ ChartJS.register(
   Legend
 );
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Plan',
-      data: [1, 2, 3, 4, 5, 6, 7],
-      lineTension: 0.3,
-      borderColor: '#091e3f',
-      pointBackgroundColor: '#091e3f',
-      pointHoverRadius: 10,
-      pointRadius: 8,
-      PointHitRadius: 10,
-    },
-    {
-      label: 'Fact',
-      data: [8, 9, 10, 11, 12, 13, 14],
-      lineTension: 0.3,
-      borderColor: '#ff6b08',
-      pointBackgroundColor: '#ff6b08',
-      pointHoverRadius: 10,
-      pointRadius: 8,
-      PointHitRadius: 10,
-    },
-  ],
-};
-
 const options = {
   responsive: true,
   scales: {
@@ -65,6 +50,93 @@ const options = {
   },
 };
 
-export const LineChart = () => {
-  return <Line options={options} data={data} />;
+export const LineChart = ({ days, totalPagesInTraining }) => {
+  const { t } = useTranslation();
+  const results = useSelector(trainingSelectors.results);
+
+  const startDate = useSelector(trainingSelectors.startDate);
+
+  const labelsArr = Array.apply(null, Array(days));
+  labelsArr.forEach((_, index, array) => {
+    array[index] = format.dayLikeChartLabel(
+      new Date(startDate + index * 24 * 60 * 60 * 1000)
+    );
+  });
+
+  const averageNumberOfPagesPerDay = totalPagesInTraining / days;
+  const planArr = Array.apply(null, Array(days));
+
+  planArr.forEach((_, index, array) => {
+    array[index] = Math.round(
+      averageNumberOfPagesPerDay + averageNumberOfPagesPerDay * index
+    );
+  });
+
+  const resultsByDay = results?.reduce((obj, result) => {
+    const day = format.dayLikeChartLabel(result.date);
+    return { ...obj, [day]: obj[day] ? obj[day] + result.pages : result.pages };
+  }, {});
+
+  const factArr = labelsArr.reduce((acc, data, index, arr) => {
+    const resultDates = Object.keys(resultsByDay);
+    const lastDate = resultDates[resultDates.length - 1];
+    const indexLastDate = arr.indexOf(lastDate);
+    if (index === 0) {
+      return [resultsByDay[data] ? resultsByDay[data] : 0];
+    }
+    if (index > indexLastDate) {
+      return [...acc];
+    }
+    return [
+      ...acc,
+      resultsByDay[data]
+        ? resultsByDay[data] + acc[acc.length - 1]
+        : acc[acc.length - 1],
+    ];
+  }, []);
+
+  const labels = [...labelsArr];
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Plan',
+        data: [...planArr],
+        lineTension: 0.3,
+        borderColor: '#091e3f',
+        pointBackgroundColor: '#091e3f',
+        pointHoverRadius: 10,
+        pointRadius: 8,
+        PointHitRadius: 10,
+      },
+      {
+        label: 'Fact',
+        data: [...factArr],
+        lineTension: 0.3,
+        borderColor: '#ff6b08',
+        pointBackgroundColor: '#ff6b08',
+        pointHoverRadius: 10,
+        pointRadius: 8,
+        PointHitRadius: 10,
+      },
+    ],
+  };
+
+  return (
+    <ChartBox>
+      <StyledTitle>
+        {t('number_of_pages_a_day')}
+
+        <StyledSpan>{Math.round(averageNumberOfPagesPerDay)}</StyledSpan>
+      </StyledTitle>
+      <LineBox>
+        <LineList>
+          <LineItem>{t('line_chart_plan')}</LineItem>
+          <LineItem accent>{t('line_chart_fact')}</LineItem>
+        </LineList>
+      </LineBox>
+      <Line options={options} data={data} />
+      <StyledP>{t('line_chart_time')}</StyledP>
+    </ChartBox>
+  );
 };
