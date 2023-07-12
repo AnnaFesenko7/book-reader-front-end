@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ChartBox = styled.div`
   position: relative;
   padding: 14px 22px;
-  background-color: white;
+  background-color: ${p => p.theme.colors.white};
   width: 100%;
   height: 75%;
   @media ${p => p.theme.media.tablet} {
@@ -15,27 +15,24 @@ export const ChartBox = styled.div`
 `;
 
 export const StyledTitle = styled.p`
-  font-family: 'Montserrat';
-  font-style: normal;
   font-weight: 500;
-  font-size: 12px;
+  font-size: ${p => p.theme.fontSizes.xs};
   text-transform: uppercase;
   margin-bottom: 24px;
-  color: #242a37;
+  color: ${p => p.theme.colors.deepBlue};
 `;
 
 export const StyledSpan = styled.span`
-  font-family: 'Montserrat';
   font-weight: 600;
-  font-size: 12px;
+  font-size: ${p => p.theme.fontSizes.xs};
   text-transform: uppercase;
   text-align: center;
   width: 25px;
   height: 25px;
   padding: 6px 8px;
   margin-left: 8px;
-  color: #242a37;
-  background-color: #f5f7fa;
+  color: ${p => p.theme.colors.deepBlue};
+  background-color: ${p => p.theme.colors.backgroundStatistic};
 `;
 
 export const LineBox = styled.div`
@@ -55,10 +52,10 @@ export const LineList = styled.ul`
   text-align: right;
 
   font-weight: 600;
-  font-size: 12px;
+  font-size: ${p => p.theme.fontSizes.xs};
   line-height: 2.5;
   text-transform: uppercase;
-  color: #091e3f;
+  color: ${p => p.theme.colors.statisticColor};
 `;
 
 export const LineItem = styled.li`
@@ -83,10 +80,10 @@ export const StyledP = styled.p`
   position: relative;
   bottom: 15px;
   right: 12px;
-  font-family: 'Montserrat';
+
   font-weight: 600;
-  font-size: 12px;
+  font-size: ${p => p.theme.fontSizes.xs};
   text-transform: uppercase;
-  color: #091e3f;
+  color: ${p => p.theme.colors.statisticColor};
   margin-top: 16px;
 `;

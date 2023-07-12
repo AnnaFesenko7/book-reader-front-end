@@ -146,11 +146,23 @@ const Training = () => {
               </TrainingContainer>
 
               {!isDesktopDevice && !isMobileDevice && (
-                <LibBookTable data={books} startedTraining />
+                <>
+                  <LibBookTable data={books} startedTraining />
+                  <LineChart
+                    days={days}
+                    totalPagesInTraining={totalPagesInTraining}
+                  />
+                </>
               )}
 
               {isMobileDevice && (
-                <BookTableMobile books={books} startedTraining />
+                <>
+                  <BookTableMobile books={books} startedTraining />
+                  <LineChart
+                    days={days}
+                    totalPagesInTraining={totalPagesInTraining}
+                  />
+                </>
               )}
             </>
           ) : (
