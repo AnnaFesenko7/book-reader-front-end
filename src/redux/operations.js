@@ -25,7 +25,6 @@ export const handleLogoutFulfilled = state => {
 };
 
 export const handleGetProfileFulfilled = (state, { payload }) => {
-  console.log(payload);
   state.userName = payload.name;
   state.email = payload.email;
   state.currentLang = payload.language;
@@ -62,3 +61,8 @@ export const handleAddResultFulfilled = (state, { payload }) => {
 // export const handleCompletenessTrainingFulfilled = (state, { payload }) => {
 //   state.completed = payload;
 // };
+export const handleFeedbackFulfilled = ({ entities }, { payload }) => {
+  const { _id } = payload;
+  const index = entities.findIndex(book => book._id === _id);
+  entities = entities.splice(index, 1, payload);
+};

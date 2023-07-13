@@ -38,8 +38,10 @@ export const BtnWrapper = styled.div`
   align-self: center;
   justify-content: space-between;
   width: 100%;
+  margin-top: 20px;
 
   @media ${p => p.theme.media.tablet} {
     width: 290px;
+    margin-top: 28px;
   }
 `;

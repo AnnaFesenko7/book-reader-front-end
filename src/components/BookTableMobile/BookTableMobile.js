@@ -27,72 +27,77 @@ import {
 export const BookTableMobile = ({ books, startedTraining }) => {
   const { isModalOpen, toggleModal } = useModal();
   const { t } = useTranslation();
+  let currentBookId = null;
+  let currentBookRating = null;
+  let currentBookResume = null;
   return (
     <>
       <StyledList>
-        {books.map(({ _id, status, title, author, year, pages, rating }) => {
-          return (
-            <StyledListItem key={_id}>
-              <BookIcon status={status} startedTraining={startedTraining}>
-                {startedTraining ? (
-                  <>
-                    {status === 'haveRead' ? (
-                      <AiOutlineCheckSquare size={'22px'} />
-                    ) : (
-                      <UncheckedBox />
-                    )}
-                  </>
-                ) : (
-                  <FaBookOpen size={'22px'} />
-                )}
-              </BookIcon>
-              <StyledTable>
-                <StyledBookTitle>{title}</StyledBookTitle>
-                <tbody>
-                  <StyledTr>
-                    <StyledTh>{t('book_author')}: </StyledTh>
-                    <StyledTd>{author}</StyledTd>
-                  </StyledTr>
-                  <StyledTr>
-                    <StyledTh>{t('book_year')}: </StyledTh>
-                    <StyledTd>{year}</StyledTd>
-                  </StyledTr>
-                  <StyledTr>
-                    <StyledTh>{t('book_pages')}: </StyledTh>
-                    <StyledTd>{pages}</StyledTd>
-                  </StyledTr>
+        {books.map(
+          ({ _id, status, title, author, year, pages, rating, resume }) => {
+            currentBookId = _id;
+            currentBookRating = rating;
+            currentBookResume = resume;
 
-                  {status === 'haveRead' && (
-                    <StyledTr>
-                      <StyledTh>{t('book_rating')}: </StyledTh>
-                      <StyledTd>
-                        <ShowRatingStars rating={rating} />
-                      </StyledTd>
-                    </StyledTr>
+            return (
+              <StyledListItem key={_id}>
+                <BookIcon status={status} startedTraining={startedTraining}>
+                  {startedTraining ? (
+                    <>
+                      {status === 'haveRead' ? (
+                        <AiOutlineCheckSquare size={'22px'} />
+                      ) : (
+                        <UncheckedBox />
+                      )}
+                    </>
+                  ) : (
+                    <FaBookOpen size={'22px'} />
                   )}
-                </tbody>
-              </StyledTable>
-              {status === 'haveRead' && (
-                <Wrapper>
-                  <ResumeButton onClick={toggleModal} />
-                </Wrapper>
-              )}
-            </StyledListItem>
-          );
-        })}
-      </StyledList>
+                </BookIcon>
+                <StyledTable>
+                  <StyledBookTitle>{title}</StyledBookTitle>
+                  <tbody>
+                    <StyledTr>
+                      <StyledTh>{t('book_author')}: </StyledTh>
+                      <StyledTd>{author}</StyledTd>
+                    </StyledTr>
+                    <StyledTr>
+                      <StyledTh>{t('book_year')}: </StyledTh>
+                      <StyledTd>{year}</StyledTd>
+                    </StyledTr>
+                    <StyledTr>
+                      <StyledTh>{t('book_pages')}: </StyledTh>
+                      <StyledTd>{pages}</StyledTd>
+                    </StyledTr>
 
+                    {status === 'haveRead' && (
+                      <StyledTr>
+                        <StyledTh>{t('book_rating')}: </StyledTh>
+                        <StyledTd>
+                          <ShowRatingStars rating={rating} />
+                        </StyledTd>
+                      </StyledTr>
+                    )}
+                  </tbody>
+                </StyledTable>
+                {status === 'haveRead' && (
+                  <Wrapper>
+                    <ResumeButton toggleModal={toggleModal} />
+                  </Wrapper>
+                )}
+              </StyledListItem>
+            );
+          }
+        )}
+      </StyledList>
       <Modal active={isModalOpen} closeModal={toggleModal}>
-        <ResumeModalContent closeModal={toggleModal} />
+        <ResumeModalContent
+          closeModal={toggleModal}
+          id={currentBookId}
+          currentBookRating={currentBookRating}
+          currentBookResume={currentBookResume}
+        />
       </Modal>
     </>
   );
 };
-// BookTableMobile.propTypes = {
-//   title: PropTypes.string,
-//   author: PropTypes.string,
-//   year: PropTypes.number,
-//   pages: PropTypes.number,
-//   rating: PropTypes.number,
-//   status: PropTypes.string,
-// };

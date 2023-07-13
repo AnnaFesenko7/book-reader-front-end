@@ -15,3 +15,7 @@ export async function addBook(newBook) {
 
   return response.data.payload.book;
 }
+export async function updateBook(feedback, id) {
+  const response = await instance.patch(`/books/opinion/${id}`, feedback);
+  return response.data.payload.updatedBook;
+}

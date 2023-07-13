@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
 import { BodyBookTable } from 'components/BodyBookTable/BodyBookTable';
@@ -15,14 +15,14 @@ import {
 } from './LibBookTable.styled';
 
 export const LibBookTable = ({ data, training, startedTraining, updateUi }) => {
-  console.log(
-    '🚀 ~ file: LibBookTable.js:18 ~ LibBookTable ~ updateUi:',
-    updateUi
-  );
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const { isModalOpen, toggleModal } = useModal();
-  // const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
+
   const { t } = useTranslation();
+
+  const [currentBookId, setCurrentBookId] = useState(null);
+  const [currentBookResume, setCurrentBookResume] = useState(null);
+  const [currentBookRating, setCurrentBookRating] = useState(null);
 
   const statusObj = data?.reduce((obj, book) => {
     const stat = book.status;
@@ -56,6 +56,9 @@ export const LibBookTable = ({ data, training, startedTraining, updateUi }) => {
                   <BodyBookTable
                     books={statusObj.haveRead}
                     toggleModal={toggleModal}
+                    setCurrentBookId={setCurrentBookId}
+                    setCurrentBookResume={setCurrentBookResume}
+                    setCurrentBookRating={setCurrentBookRating}
                   />
                 </>
               )}
@@ -98,9 +101,13 @@ export const LibBookTable = ({ data, training, startedTraining, updateUi }) => {
           </>
         )}
       </StyledSection>
-
       <Modal active={isModalOpen} closeModal={toggleModal}>
-        <ResumeModalContent closeModal={toggleModal} />
+        <ResumeModalContent
+          closeModal={toggleModal}
+          id={currentBookId}
+          resume={currentBookResume}
+          rating={currentBookRating}
+        />
       </Modal>
     </>
   );

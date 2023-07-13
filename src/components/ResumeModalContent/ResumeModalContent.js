@@ -1,32 +1,39 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-// import { useUpdateBookResumeMutation } from 'redux/books/booksApi';
+import { useMediaQuery } from 'react-responsive';
+import { useDispatch } from 'react-redux';
+import { booksThunk } from 'redux/books';
 import ReactStars from 'react-rating-stars-component';
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, Field } from 'formik';
 import { schemaValidChooseRating } from 'validSchemas/schemaValidChooseRating';
+import { Button } from 'components/StyledButton/StyledButton ';
 import {
   StyledForm,
   StyledLabel,
-  // StyledTextarea,
   BtnWrapper,
 } from './ResumeModalContent.styled';
-import { ErrorContainer } from 'components/ErrorContainer/ErrorContainer.styled';
-import { Button } from 'components/StyledButton/StyledButton ';
 
-export const ResumeModalContent = ({ closeModal }) => {
-  const [rating, setRating] = useState(0);
-  //   const [ratingValue, setRatingValue] = useState(rating);
+export const ResumeModalContent = ({
+  closeModal,
+  id,
+  currentBookResume,
+  currentBookRating,
+}) => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
-  //   const [updateBookResume] = useUpdateBookResumeMutation();
+  const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
 
   const handleSubmit = val => {
     console.log(val);
-    console.log(rating);
+    dispatch(booksThunk.feedbackThunk({ feedback: val, id: id }));
+    closeModal();
+  };
+  const sizeDetermination = () => {
+    return isMobileDevice ? 97 : 130;
   };
 
   return (
     <Formik
-      initialValues={{ resume: '', rating: rating }}
+      initialValues={{ resume: currentBookResume, rating: currentBookRating }}
       onSubmit={handleSubmit}
       validationSchema={schemaValidChooseRating}
     >
@@ -34,22 +41,28 @@ export const ResumeModalContent = ({ closeModal }) => {
         <StyledLabel htmlFor="rating">
           {t('chooseRating')}
           <Field name="rating">
-            {({ form, field }) => {
-              // const { setFieldValue } = form;
-              // const { value } = field;
-              // const ratingChange = val => setFieldValue(val);
+            {({ form, field, meta }) => {
+              const { setFieldValue } = form;
+              const { value } = field;
+              console.log(
+                '🚀 ~ file: ResumeModalContent.js:51 ~ value :',
+                value
+              );
+
               return (
                 <ReactStars
                   id="rating"
+                  type="number"
                   {...field}
                   count={5}
-                  onChange={newValue => {
-                    setRating(newValue);
-                  }}
                   activeColor="#FF6B08"
                   size={17}
-                  value={rating}
                   color="#A6ABB9"
+                  value={value}
+                  onChange={val => {
+                    console.log('val', val);
+                    setFieldValue('rating', val);
+                  }}
                   // a11y={true}
                 />
               );
@@ -69,9 +82,6 @@ export const ResumeModalContent = ({ closeModal }) => {
               border: '1px solid #a6abb9',
             }}
           />
-          <ErrorContainer>
-            <ErrorMessage name="resume" />
-          </ErrorContainer>
         </StyledLabel>
 
         <BtnWrapper>
@@ -79,10 +89,15 @@ export const ResumeModalContent = ({ closeModal }) => {
             type="button"
             onClick={closeModal}
             textContent={t('btnBack')}
-            size="115"
+            size={`${sizeDetermination()}`}
           />
 
-          <Button type="submit" textContent={t('btnSave')} size="115" active />
+          <Button
+            type="submit"
+            textContent={t('btnSave')}
+            size={`${sizeDetermination()}`}
+            active
+          />
         </BtnWrapper>
       </StyledForm>
     </Formik>

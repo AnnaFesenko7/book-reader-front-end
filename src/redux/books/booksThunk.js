@@ -25,3 +25,14 @@ export const addBookThunk = createAsyncThunk(
     }
   }
 );
+
+export const feedbackThunk = createAsyncThunk(
+  'books/feedback',
+  async ({ feedback, id }, { rejectWithValue }) => {
+    try {
+      return await booksApi.updateBook(feedback, id);
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
