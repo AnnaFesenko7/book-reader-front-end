@@ -1,31 +1,34 @@
 import { useTranslation } from 'react-i18next';
 import { useMediaQuery } from 'react-responsive';
 import { useDispatch } from 'react-redux';
-import { booksThunk } from 'redux/books';
 import ReactStars from 'react-rating-stars-component';
 import { Formik, Field } from 'formik';
+
+import { booksThunk } from 'redux/books';
 import { schemaValidChooseRating } from 'validSchemas/schemaValidChooseRating';
 import { Button } from 'components/StyledButton/StyledButton ';
+import { ErrorContainer } from 'components/ErrorContainer/ErrorContainer.styled';
 import {
   StyledForm,
   StyledLabel,
   BtnWrapper,
+  StyledTextarea,
 } from './ResumeModalContent.styled';
 
 export const ResumeModalContent = ({
   closeModal,
   id,
-  currentBookResume,
-  currentBookRating,
+  initialValues,
+  resetState,
 }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
 
   const handleSubmit = val => {
-    console.log(val);
     dispatch(booksThunk.feedbackThunk({ feedback: val, id: id }));
     closeModal();
+    resetState();
   };
   const sizeDetermination = () => {
     return isMobileDevice ? 97 : 130;
@@ -33,56 +36,64 @@ export const ResumeModalContent = ({
 
   return (
     <Formik
-      initialValues={{ resume: currentBookResume, rating: currentBookRating }}
+      initialValues={initialValues}
       onSubmit={handleSubmit}
       validationSchema={schemaValidChooseRating}
     >
       <StyledForm>
-        <StyledLabel htmlFor="rating">
-          {t('chooseRating')}
-          <Field name="rating">
-            {({ form, field, meta }) => {
-              const { setFieldValue } = form;
-              const { value } = field;
-              console.log(
-                '🚀 ~ file: ResumeModalContent.js:51 ~ value :',
-                value
-              );
+        <StyledLabel htmlFor="rating">{t('chooseRating')} </StyledLabel>
+        <Field name="rating">
+          {({ form, field, meta }) => {
+            const { setFieldValue } = form;
 
-              return (
-                <ReactStars
-                  id="rating"
-                  type="number"
+            return (
+              <ReactStars
+                id="rating"
+                type="number"
+                {...field}
+                count={5}
+                activeColor="#FF6B08"
+                size={17}
+                color="#A6ABB9"
+                onChange={val => {
+                  setFieldValue('rating', val);
+                }}
+              />
+            );
+          }}
+        </Field>
+
+        <StyledLabel htmlFor="resume"> {t('resumeRating')}</StyledLabel>
+
+        <Field name="resume">
+          {({ form, field, meta }) => {
+            console.log(
+              '🚀 ~ file: ProductReviewForm.js:63 ~ ProductReviewForm ~ render ~ meta:',
+              meta
+            );
+            console.log(
+              '🚀 ~ file: ProductReviewForm.js:63 ~ ProductReviewForm ~ render ~ field:',
+              field
+            );
+            console.log(
+              '🚀 ~ file: ProductReviewForm.js:63 ~ ProductReviewForm ~ render ~ form:',
+              form
+            );
+            return (
+              <div>
+                <StyledTextarea
+                  placeholder="..."
+                  id="resume"
                   {...field}
-                  count={5}
-                  activeColor="#FF6B08"
-                  size={17}
-                  color="#A6ABB9"
-                  value={value}
-                  onChange={val => {
-                    console.log('val', val);
-                    setFieldValue('rating', val);
-                  }}
-                  // a11y={true}
+                  type="text"
                 />
-              );
-            }}
-          </Field>
-        </StyledLabel>
-
-        <StyledLabel htmlFor="resume">
-          {t('resumeRating')}
-          <Field
-            as="textarea"
-            placeholder="..."
-            name="resume"
-            style={{
-              height: '170px',
-              resize: 'none',
-              border: '1px solid #a6abb9',
-            }}
-          />
-        </StyledLabel>
+                {meta.error && meta.touched ? (
+                  <ErrorContainer>{meta.error}</ErrorContainer>
+                ) : null}
+              </div>
+            );
+          }}
+        </Field>
 
         <BtnWrapper>
           <Button

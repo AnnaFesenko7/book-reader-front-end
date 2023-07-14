@@ -14,11 +14,10 @@ export const ResumeButton = ({
 
   const onResumeBtnClick = () => {
     toggleModal();
-    if (id) {
-      setCurrentBookId(id);
-      setCurrentBookResume(resume);
-      setCurrentBookRating(rating);
-    }
+
+    setCurrentBookId(id);
+    setCurrentBookResume(resume);
+    setCurrentBookRating(rating);
   };
 
   return (

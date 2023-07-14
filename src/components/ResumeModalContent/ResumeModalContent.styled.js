@@ -26,12 +26,12 @@ export const StyledLabel = styled.label`
   flex-direction: column;
 `;
 
-// export const StyledTextarea = styled.div`
-//   width: 100%;
-//   height: 170px;
-//   resize: none;
-//   border: 1px solid #a6abb9;
-// `;
+export const StyledTextarea = styled.textarea`
+  width: 100%;
+  height: 170px;
+  resize: none;
+  border: 1px solid #a6abb9;
+`;
 
 export const BtnWrapper = styled.div`
   display: flex;

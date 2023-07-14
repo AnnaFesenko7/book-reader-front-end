@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
+
+import { useModal } from 'hooks/useModal';
+
 import { BodyBookTable } from 'components/BodyBookTable/BodyBookTable';
 import { HeadBookTable } from 'components/HeadBookTable/HeadBookTable';
 import { BookTableMobile } from 'components/BookTableMobile/BookTableMobile';
 import { Modal } from 'components/Modal/Modal';
-import { useModal } from 'hooks/useModal';
 import { ResumeModalContent } from 'components/ResumeModalContent/ResumeModalContent';
 
 import {
@@ -14,15 +16,25 @@ import {
   StyledCaption,
 } from './LibBookTable.styled';
 
-export const LibBookTable = ({ data, training, startedTraining, updateUi }) => {
+export const LibBookTable = ({ data, training, startedTraining }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const { isModalOpen, toggleModal } = useModal();
 
   const { t } = useTranslation();
 
   const [currentBookId, setCurrentBookId] = useState(null);
-  const [currentBookResume, setCurrentBookResume] = useState(null);
+  const [currentBookResume, setCurrentBookResume] = useState('');
   const [currentBookRating, setCurrentBookRating] = useState(null);
+
+  const resetState = () => {
+    setCurrentBookId(null);
+    setCurrentBookResume('');
+    setCurrentBookRating(null);
+  };
+  const initialValues = {
+    resume: currentBookResume,
+    rating: currentBookRating,
+  };
 
   const statusObj = data?.reduce((obj, book) => {
     const stat = book.status;
@@ -105,8 +117,8 @@ export const LibBookTable = ({ data, training, startedTraining, updateUi }) => {
         <ResumeModalContent
           closeModal={toggleModal}
           id={currentBookId}
-          resume={currentBookResume}
-          rating={currentBookRating}
+          initialValues={initialValues}
+          resetState={resetState}
         />
       </Modal>
     </>

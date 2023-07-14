@@ -1,5 +1,4 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 import { ResumeButton } from 'components/ResumeButton/ResumeButton';
 import { useTranslation } from 'react-i18next';
@@ -27,18 +26,25 @@ import {
 export const BookTableMobile = ({ books, startedTraining }) => {
   const { isModalOpen, toggleModal } = useModal();
   const { t } = useTranslation();
-  let currentBookId = null;
-  let currentBookRating = null;
-  let currentBookResume = null;
+  const [currentBookId, setCurrentBookId] = useState(null);
+  const [currentBookResume, setCurrentBookResume] = useState('');
+  const [currentBookRating, setCurrentBookRating] = useState(null);
+
+  const resetState = () => {
+    setCurrentBookId(null);
+    setCurrentBookResume('');
+    setCurrentBookRating(null);
+  };
+  const initialValues = {
+    resume: currentBookResume,
+    rating: currentBookRating,
+  };
+
   return (
     <>
       <StyledList>
         {books.map(
           ({ _id, status, title, author, year, pages, rating, resume }) => {
-            currentBookId = _id;
-            currentBookRating = rating;
-            currentBookResume = resume;
-
             return (
               <StyledListItem key={_id}>
                 <BookIcon status={status} startedTraining={startedTraining}>
@@ -82,7 +88,15 @@ export const BookTableMobile = ({ books, startedTraining }) => {
                 </StyledTable>
                 {status === 'haveRead' && (
                   <Wrapper>
-                    <ResumeButton toggleModal={toggleModal} />
+                    <ResumeButton
+                      toggleModal={toggleModal}
+                      id={_id}
+                      rating={rating}
+                      resume={resume}
+                      setCurrentBookId={setCurrentBookId}
+                      setCurrentBookResume={setCurrentBookResume}
+                      setCurrentBookRating={setCurrentBookRating}
+                    />
                   </Wrapper>
                 )}
               </StyledListItem>
@@ -94,8 +108,8 @@ export const BookTableMobile = ({ books, startedTraining }) => {
         <ResumeModalContent
           closeModal={toggleModal}
           id={currentBookId}
-          currentBookRating={currentBookRating}
-          currentBookResume={currentBookResume}
+          initialValues={initialValues}
+          resetState={resetState}
         />
       </Modal>
     </>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -36,10 +36,9 @@ const Training = () => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   const isDesktopDevice = useMediaQuery({ query: '(min-width: 1280px)' });
 
-  const [updateUi, setUpdateUi] = useState(false);
   useEffect(() => {
     dispatch(booksThunk.getBooksThunk());
-  }, [dispatch, updateUi]);
+  }, [dispatch]);
 
   const isTrainingStarted = useSelector(userSelectors.isTrainingStarted);
 
@@ -90,9 +89,9 @@ const Training = () => {
     }
   }, [dispatch, isTrainingStarted]);
 
-  useEffect(() => {
-    dispatch(booksThunk.getBooksThunk());
-  }, [dispatch, updateUi]);
+  // useEffect(() => {
+  //   dispatch(booksThunk.getBooksThunk());
+  // }, [dispatch]);
 
   const { closeModal, isModalOpen } = useModal(isTrainingCompleted);
 
@@ -141,7 +140,7 @@ const Training = () => {
                     trainingStarted
                     statistic={myGoalParamsTrainingStarted}
                   />
-                  <ReadingInformation updateUi={setUpdateUi} />
+                  <ReadingInformation />
                 </SiteBar>
               </TrainingContainer>
 

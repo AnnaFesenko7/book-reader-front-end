@@ -9,22 +9,19 @@ import { StatisticsList } from 'components/StatisticsList/StatisticsList';
 
 import { Wrapper, StyledTitle } from './ReadingInformation.styled';
 
-export const ReadingInformation = ({ updateUi }) => {
+export const ReadingInformation = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const results = useSelector(trainingSelectors.results);
   const completed = useSelector(trainingSelectors.completed);
 
   // useEffect(() => {
-  //   dispatch(trainingThunk.completenessTrainingThank());
+  //   dispatch(trainingThunk.getTrainingThank());
   // }, [dispatch, results]);
 
   const onAddResultClick = val => {
     dispatch(trainingThunk.addResultThank(val));
-    updateUi(true);
-    console.log(
-      '🚀 ~ file: ReadingInformation.js:25 ~ onAddResultClick ~ updateUi:'
-    );
+    // dispatch(trainingThunk.completenessTrainingThank());
   };
 
   return (
