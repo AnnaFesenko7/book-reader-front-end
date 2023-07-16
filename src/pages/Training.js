@@ -74,6 +74,7 @@ const Training = () => {
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(true);
 
   useEffect(() => {
     if (isTrainingStarted) {
@@ -196,3 +197,5 @@ const Training = () => {
 };
 
 export default Training;
+
+// ['noUnreadBooks', 'hasDeadlinePassed', ''];
