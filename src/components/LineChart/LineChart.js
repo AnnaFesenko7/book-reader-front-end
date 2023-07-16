@@ -63,7 +63,7 @@ export const LineChart = ({ days, totalPagesInTraining }) => {
     );
   });
 
-  const averageNumberOfPagesPerDay = totalPagesInTraining / days;
+  const averageNumberOfPagesPerDay = days > 0 ? totalPagesInTraining / days : 0;
   const planArr = Array.apply(null, Array(days));
 
   planArr.forEach((_, index, array) => {

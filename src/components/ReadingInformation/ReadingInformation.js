@@ -1,4 +1,3 @@
-// import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -15,13 +14,10 @@ export const ReadingInformation = () => {
   const results = useSelector(trainingSelectors.results);
   const completed = useSelector(trainingSelectors.completed);
 
-  // useEffect(() => {
-  //   dispatch(trainingThunk.getTrainingThank());
-  // }, [dispatch, results]);
-
-  const onAddResultClick = val => {
-    dispatch(trainingThunk.addResultThank(val));
-    // dispatch(trainingThunk.completenessTrainingThank());
+  const onAddResultClick = async val => {
+    const addResult = result => dispatch(trainingThunk.addResultThank(val));
+    await addResult(val);
+    dispatch(trainingThunk.getTrainingThank());
   };
 
   return (
@@ -32,7 +28,6 @@ export const ReadingInformation = () => {
           <SendResultsForm
             onAddResultClick={onAddResultClick}
             completed={completed}
-            // updateUi={updateUi}
           />
         </div>
         <div>

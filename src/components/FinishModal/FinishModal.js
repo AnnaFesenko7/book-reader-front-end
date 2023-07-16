@@ -1,15 +1,19 @@
 import { FaRegThumbsUp } from 'react-icons/fa';
-// import { useModal } from 'hooks/useModal';
 import { Modal } from 'components/Modal/Modal';
 import { Button } from 'components/StyledButton/StyledButton ';
 import s from './ModalFinish.module.css';
 
 import { useTranslation } from 'react-i18next';
 
-export const FinishModal = ({ isModalOpen, closeModal }) => {
+export const FinishModal = ({
+  isModalOpen,
+  closeModal,
+  onFinishModalBtnClick,
+}) => {
   const { t } = useTranslation();
+
   const onNewTrainingAfterFinishBtnClick = () => {
-    closeModal();
+    onFinishModalBtnClick();
   };
   return (
     <Modal active={isModalOpen}>

@@ -67,18 +67,6 @@ export const ResumeModalContent = ({
 
         <Field name="resume">
           {({ form, field, meta }) => {
-            console.log(
-              '🚀 ~ file: ProductReviewForm.js:63 ~ ProductReviewForm ~ render ~ meta:',
-              meta
-            );
-            console.log(
-              '🚀 ~ file: ProductReviewForm.js:63 ~ ProductReviewForm ~ render ~ field:',
-              field
-            );
-            console.log(
-              '🚀 ~ file: ProductReviewForm.js:63 ~ ProductReviewForm ~ render ~ form:',
-              form
-            );
             return (
               <div>
                 <StyledTextarea

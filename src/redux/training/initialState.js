@@ -6,4 +6,5 @@ export const initialState = {
   completed: false,
   error: null,
   isLoading: false,
+  completenessReason: '',
 };

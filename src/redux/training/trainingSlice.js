@@ -3,7 +3,7 @@ import {
   getTrainingThank,
   addTrainingThank,
   addResultThank,
-  // completenessTrainingThank,
+  deleteTrainingThank,
 } from 'redux/training/trainingThank.js';
 
 import * as operations from '../operations';
@@ -13,7 +13,7 @@ const customArr = [
   getTrainingThank,
   addTrainingThank,
   addResultThank,
-  // completenessTrainingThank,
+  deleteTrainingThank,
 ];
 const fn = status => {
   return customArr.map(el => el[status]);
@@ -30,11 +30,15 @@ export const trainingSlice = createSlice({
         getTrainingThank.fulfilled,
         operations.handleGetTrainingFulfilled
       )
+      .addCase(
+        addTrainingThank.fulfilled,
+        operations.handleAddTrainingFulfilled
+      )
       .addCase(addResultThank.fulfilled, operations.handleAddResultFulfilled)
-      // .addCase(
-      //   completenessTrainingThank.fulfilled,
-      //   operations.handleCompletenessTrainingFulfilled
-      // )
+      .addCase(
+        deleteTrainingThank.fulfilled,
+        operations.handleDeleteTrainingFulfilled
+      )
 
       .addMatcher(isAnyOf(...fn('pending')), operations.handlePending)
       .addMatcher(isAnyOf(...fn('rejected')), operations.handleRejected);

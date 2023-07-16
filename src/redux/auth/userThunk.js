@@ -8,7 +8,7 @@ export const getProfileThunk = createAsyncThunk(
     const state = thunkAPI.getState();
 
     const persistedToken = state.auth.token;
-    console.log('🚀 ~ file: userThunk.js:10 ~ persistedToken:', persistedToken);
+
     if (!persistedToken) {
       return thunkAPI.rejectWithValue();
     }

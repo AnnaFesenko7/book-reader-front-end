@@ -4,3 +4,4 @@ export const finishDate = state => state.training.finishDate;
 export const results = state => state.training.results;
 export const completed = state => state.training.completed;
 export const id = state => state.training._id;
+export const completenessReason = state => state.training.completenessReason;

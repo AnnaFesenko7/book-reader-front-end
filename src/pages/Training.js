@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { convertMs } from 'helpers/convertMs';
-import { useModal } from 'hooks/useModal';
+// import { useModal } from 'hooks/useModal';
 import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
 
 import { userSelectors, userThunk } from 'redux/auth';
 import { trainingSelectors, trainingThunk } from 'redux/training';
-import { booksSelectors, booksThunk } from 'redux/books';
+// import { booksSelectors, booksThunk } from 'redux/books';
 import { selectedDatesSelectors } from 'redux/selectedDates';
 import { selectedDatesActions } from 'redux/selectedDates';
 
@@ -36,10 +36,6 @@ const Training = () => {
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
   const isDesktopDevice = useMediaQuery({ query: '(min-width: 1280px)' });
 
-  useEffect(() => {
-    dispatch(booksThunk.getBooksThunk());
-  }, [dispatch]);
-
   const isTrainingStarted = useSelector(userSelectors.isTrainingStarted);
 
   const selectedBooks = useSelector(selectedDatesSelectors.booksList);
@@ -52,28 +48,22 @@ const Training = () => {
     { param: 'days', text: t('amountOfDays'), amount: period },
   ];
 
-  const allBooks = useSelector(booksSelectors.getBooks);
-
-  const booksIdArr = useSelector(trainingSelectors.booksList);
-
-  const books = booksIdArr.reduce(
-    (arr, bookId) => {
-      return [...arr, allBooks.find(book => book._id === bookId)];
-    },
-
-    []
-  );
+  const books = useSelector(trainingSelectors.booksList);
 
   const finishDate = useSelector(trainingSelectors.finishDate);
   const startDate = useSelector(trainingSelectors.startDate);
   const id = useSelector(trainingSelectors.id);
+
+  const isTrainingCompleted = useSelector(trainingSelectors.completed);
+
+  const completenessReason = useSelector(trainingSelectors.completenessReason);
+
   //загалом сторінок в тренуванні
   const totalPagesInTraining = books.reduce(
     (previousValue, book) => previousValue + book.pages,
     0
   );
 
-  const isTrainingCompleted = useSelector(trainingSelectors.completed);
   const deltaTime = finishDate ? finishDate - startDate : 0;
   const { days } = convertMs(deltaTime);
   const booksLeft = books?.filter(book => book.status !== 'haveRead')?.length;
@@ -83,17 +73,19 @@ const Training = () => {
     { param: 'booksLeft', text: t('booksLeft'), amount: booksLeft },
   ];
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     if (isTrainingStarted) {
       dispatch(trainingThunk.getTrainingThank());
     }
   }, [dispatch, isTrainingStarted]);
 
-  // useEffect(() => {
-  //   dispatch(booksThunk.getBooksThunk());
-  // }, [dispatch]);
-
-  const { closeModal, isModalOpen } = useModal(isTrainingCompleted);
+  useEffect(() => {
+    if (isTrainingCompleted) {
+      setIsModalOpen(true);
+    }
+  }, [isTrainingCompleted]);
 
   const isExistNoSaveTrainingDate =
     !isTrainingStarted && selectedBooks?.length > 0 && selectedEndDate !== '';
@@ -111,7 +103,7 @@ const Training = () => {
   };
 
   const onFinishModalBtnClick = () => {
-    closeModal();
+    setIsModalOpen(false);
     dispatch(trainingThunk.deleteTrainingThank(id));
     dispatch(userThunk.changeTrainingStatusThunk(false));
   };
@@ -195,8 +187,9 @@ const Training = () => {
       </StyledContainer>
 
       <FinishModal
+        completenessReason={completenessReason}
         isModalOpen={isModalOpen}
-        closeModal={onFinishModalBtnClick}
+        onFinishModalBtnClick={onFinishModalBtnClick}
       />
     </>
   );
