@@ -4,12 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { convertMs } from 'helpers/convertMs';
-// import { useModal } from 'hooks/useModal';
 import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
 
 import { userSelectors, userThunk } from 'redux/auth';
 import { trainingSelectors, trainingThunk } from 'redux/training';
-// import { booksSelectors, booksThunk } from 'redux/books';
 import { selectedDatesSelectors } from 'redux/selectedDates';
 import { selectedDatesActions } from 'redux/selectedDates';
 
