@@ -32,7 +32,7 @@ const Training = () => {
   const dispatch = useDispatch();
 
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
-  const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
+  const isDesktopDevice = useMediaQuery({ query: '(min-width: 1280px)' });
 
   const isTrainingStarted = useSelector(userSelectors.isTrainingStarted);
 
@@ -107,15 +107,45 @@ const Training = () => {
     dispatch(userThunk.changeTrainingStatusThunk(false));
   };
 
-  const exception = !isDesktop && isTrainingStarted;
-
   return (
     <>
       <StyledContainer>
         <CenterFlexBox>
-          {isMobileDevice ? (
+          {isTrainingStarted ? (
             <>
-              {isTrainingStarted ? (
+              <TrainingContainer trainingStarted>
+                <CenterFlexBox>
+                  <Timer endDate={finishDate} />
+                  {isDesktopDevice && (
+                    <>
+                      <LibBookTable data={books} startedTraining />
+                      <LineChart
+                        days={days}
+                        totalPagesInTraining={totalPagesInTraining}
+                      />
+                    </>
+                  )}
+                </CenterFlexBox>
+                <SiteBar>
+                  <MyGoal
+                    trainingStarted
+                    statistic={myGoalParamsTrainingStarted}
+                  />
+                  <ReadingInformation />
+                </SiteBar>
+              </TrainingContainer>
+
+              {!isDesktopDevice && !isMobileDevice && (
+                <>
+                  <LibBookTable data={books} startedTraining />
+                  <LineChart
+                    days={days}
+                    totalPagesInTraining={totalPagesInTraining}
+                  />
+                </>
+              )}
+
+              {isMobileDevice && (
                 <>
                   <BookTableMobile books={books} startedTraining />
                   <LineChart
@@ -123,70 +153,35 @@ const Training = () => {
                     totalPagesInTraining={totalPagesInTraining}
                   />
                 </>
-              ) : (
+              )}
+            </>
+          ) : (
+            <>
+              {isMobileDevice ? (
                 <>
                   <MobileLinkToSecondPage to="/mobileTrainingBookTable " />
                   <TrainingDataSelection />
                 </>
+              ) : (
+                <>
+                  <TrainingContainer>
+                    <TrainingDataSelection />
+                    <MyGoal statistic={myGoalParams} />
+                  </TrainingContainer>
+                  <LibBookTable data={selectedBooks} training />
+                  <Button
+                    onClick={onStartTrainingClick}
+                    textContent={t('startTraining')}
+                    active
+                    size={200}
+                    disabled={!isExistNoSaveTrainingDate}
+                    type="button"
+                  />
+                </>
               )}
             </>
-          ) : (
-            <TrainingContainer
-              trainingStarted={isTrainingStarted ? true : false}
-            >
-              <CenterFlexBox>
-                {isTrainingStarted ? (
-                  <>
-                    <Timer endDate={finishDate} />
-                    {exception && (
-                      <MyGoal
-                        trainingStarted
-                        statistic={myGoalParamsTrainingStarted}
-                      />
-                    )}
-                  </>
-                ) : (
-                  <TrainingDataSelection />
-                )}
-
-                <>
-                  <LibBookTable
-                    data={isTrainingStarted ? books : selectedBooks}
-                    startedTraining={isTrainingStarted ? true : false}
-                    training={isTrainingStarted ? false : true}
-                  />
-                  {!isTrainingStarted && (
-                    <Button
-                      onClick={onStartTrainingClick}
-                      textContent={t('startTraining')}
-                      active
-                      size={200}
-                      disabled={!isExistNoSaveTrainingDate}
-                      type="button"
-                    />
-                  )}
-                  <LineChart
-                    days={days}
-                    totalPagesInTraining={totalPagesInTraining}
-                  />
-                  {isTrainingStarted && !isDesktop && <ReadingInformation />}
-                </>
-              </CenterFlexBox>
-              <SiteBar>
-                {!exception && (
-                  <MyGoal
-                    trainingStarted={isTrainingStarted ? true : false}
-                    statistic={
-                      isTrainingStarted
-                        ? myGoalParamsTrainingStarted
-                        : myGoalParams
-                    }
-                  />
-                )}
-                {isTrainingStarted && isDesktop && <ReadingInformation />}
-              </SiteBar>
-            </TrainingContainer>
           )}
+          {/* {!isMobileDevice && <LibBookTable data={books} training />} */}
         </CenterFlexBox>
       </StyledContainer>
 

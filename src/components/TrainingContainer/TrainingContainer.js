@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 export const TrainingContainer = styled.div`
   display: flex;
-  flex-direction: ${p => (p.trainingStarted ? 'column' : 'column-reverse')};
+  flex-direction: column-reverse;
+  /* flex-direction: ${p =>
+    p.trainingStarted ? 'column' : 'column-reverse'}; */
   gap: 20px;
   padding-top: 20px;
   padding-bottom: 20px;

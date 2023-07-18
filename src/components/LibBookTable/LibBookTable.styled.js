@@ -17,7 +17,7 @@ export const StyledSection = styled.div`
     padding-left: 0;
   }
   @media ${p => p.theme.media.desktop} {
-    /* width: ${p => p.theme.mediaWidth.desktop}px; */
+    margin-bottom: ${p => (p.isTrainingPage ? 40 : 0)}px;
     width: 100%;
   }
 `;

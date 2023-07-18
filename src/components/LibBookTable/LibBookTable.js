@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
 
 import { useModal } from 'hooks/useModal';
+import { useScrollbar } from 'hooks/useScrollbar';
 
 import { BodyBookTable } from 'components/BodyBookTable/BodyBookTable';
 import { HeadBookTable } from 'components/HeadBookTable/HeadBookTable';
@@ -41,20 +42,41 @@ export const LibBookTable = ({ data, training, startedTraining }) => {
     return { ...obj, [stat]: obj[stat] ? [...obj[stat], book] : [book] };
   }, {});
 
+  const isTrainingPage = training || startedTraining;
+  const hasScroll = data?.length > 3 && isTrainingPage;
+  const WrapperTable = useRef(null);
+  useScrollbar(WrapperTable, hasScroll);
+
   return (
     <>
-      <StyledSection>
+      <StyledSection isTrainingPage={isTrainingPage}>
         {startedTraining && !isMobile && (
-          <StyledTable>
-            <HeadBookTable status="toRead" />
-            <BodyBookTable books={data} startedTraining />
-          </StyledTable>
+          <div
+            ref={WrapperTable}
+            style={{
+              height: hasScroll ? '200px' : 'auto',
+              minHeight: '200px',
+            }}
+          >
+            <StyledTable>
+              <HeadBookTable status="toRead" />
+              <BodyBookTable books={data} startedTraining isTrainingPage />
+            </StyledTable>
+          </div>
         )}
         {training && !startedTraining && (
-          <StyledTable>
-            <HeadBookTable status="training" />
-            <BodyBookTable books={statusObj.toRead} training />
-          </StyledTable>
+          <div
+            ref={WrapperTable}
+            style={{
+              height: hasScroll ? '200px' : 'auto',
+              minHeight: '200px',
+            }}
+          >
+            <StyledTable>
+              <HeadBookTable status="training" />
+              <BodyBookTable books={statusObj.toRead} training isTrainingPage />
+            </StyledTable>
+          </div>
         )}
         {statusObj.haveRead && !startedTraining && (
           <>

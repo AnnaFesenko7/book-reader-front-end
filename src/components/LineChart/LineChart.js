@@ -87,6 +87,7 @@ export const LineChart = ({ days, totalPagesInTraining }) => {
     if (index > indexLastDate) {
       return [...acc];
     }
+
     return [
       ...acc,
       resultsByDay[data]
@@ -95,13 +96,17 @@ export const LineChart = ({ days, totalPagesInTraining }) => {
     ];
   }, []);
 
-  const labels = [...labelsArr];
+  const lab = labelsArr.length > 0 ? [...labelsArr] : ['', '', '', ''];
+  const plan = planArr.length > 0 ? [...planArr] : [5];
+  const fact = factArr.length > 0 ? [...factArr] : [4];
+
+  const labels = [...lab];
   const data = {
     labels,
     datasets: [
       {
         label: 'Plan',
-        data: [...planArr],
+        data: [...plan],
         lineTension: 0.3,
         borderColor: '#091e3f',
         pointBackgroundColor: '#091e3f',
@@ -111,7 +116,7 @@ export const LineChart = ({ days, totalPagesInTraining }) => {
       },
       {
         label: 'Fact',
-        data: [...factArr],
+        data: [...fact],
         lineTension: 0.3,
         borderColor: '#ff6b08',
         pointBackgroundColor: '#ff6b08',

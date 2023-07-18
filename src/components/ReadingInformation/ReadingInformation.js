@@ -15,9 +15,9 @@ export const ReadingInformation = () => {
   const completed = useSelector(trainingSelectors.completed);
 
   const onAddResultClick = async val => {
-    const addResult = result => dispatch(trainingThunk.addResultThank(val));
-    await addResult(val);
-    dispatch(trainingThunk.getTrainingThank());
+    dispatch(trainingThunk.addResultThank(val));
+    // await addResult(val);
+    // dispatch(trainingThunk.getTrainingThank());
   };
 
   return (

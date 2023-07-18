@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
     flex-direction: row;
     width: 704px;
     margin-bottom: 53px;
+    justify-content: space-between;
   }
   @media ${p => p.theme.media.desktop} {
     flex-direction: column;

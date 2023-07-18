@@ -9,8 +9,10 @@ export const ChartBox = styled.div`
   @media ${p => p.theme.media.tablet} {
     padding: 25px 35px;
     height: 90%;
+    /* margin-top: ${p => p.theme.space[6]}px; */
   }
   @media ${p => p.theme.media.desktop} {
+    margin-top: ${p => p.theme.space[6]}px;
   }
 `;
 

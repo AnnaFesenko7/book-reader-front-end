@@ -32,7 +32,7 @@ const MobileLibBookTable = () => {
   };
   return (
     <StyledContainer>
-      <CenterFlexBox>
+      <CenterFlexBox style={{ paddingBottom: '100px' }}>
         <LibBookTable data={books} />
         {isMobileDevice && <MobileLinkToForm to="/" />}
         <Button

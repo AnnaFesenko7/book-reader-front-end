@@ -1,13 +1,24 @@
 import styled from 'styled-components';
 
-export const StyledTbody = styled.tbody``;
+export const StyledTbody = styled.tbody`
+  height: ${p => (p.hasScroll ? '150px' : 'auto')};
+  min-height: ${p => (p.training ? '150px' : 'auto')};
+`;
 
 export const StyledTr = styled.tr`
   background-color: ${p => p.theme.colors.white};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   @media ${p => p.theme.media.tablet} {
-    height: ${p => p.theme.space[7]}px;
+    background-color: ${p =>
+      p.isTrainingPage ? p.theme.colors.transparent : p.theme.colors.white};
+    height: ${p => (p.isTrainingPage ? p.theme.space[6] : p.theme.space[7])}px;
+    box-shadow: ${p =>
+      p.isTrainingPage ? 'none' : '0px 4px 4px rgba(0, 0, 0, 0.25)'};
+  }
+
+  @media ${p => p.theme.media.desktop} {
+    height: ${p => (p.isTrainingPage ? p.theme.space[5] : p.theme.space[7])}px;
   }
 `;
 export const StyledTd = styled.td`

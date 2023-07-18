@@ -9,6 +9,7 @@ import { App } from 'components/App';
 import { theme } from 'constants/styleTheme';
 import { PersistGate } from 'redux-persist/integration/react';
 import './i18n';
+import 'overlayscrollbars/overlayscrollbars.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
