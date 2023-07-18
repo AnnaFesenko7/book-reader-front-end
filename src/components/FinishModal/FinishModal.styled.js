@@ -1,21 +1,19 @@
 import styled from 'styled-components';
-import { FaRegThumbsUp } from 'react-icons/fa';
-
-export const ThumbUpIcon = styled(FaRegThumbsUp)`
-  margin-bottom: 4px;
-  width: 54px;
-  height: 54px;
-  color: ${p =>
-    p.completenessReason === 'noUnreadBooks'
-      ? p.theme.colors.accentColor
-      : p.theme.colors.iconColor};
-`;
 
 export const StyledModalContentWrapper = styled.div`
   background-color: rgba(43, 43, 43, 0.1);
   width: 300px;
   padding: 20px 10px;
   text-align: center;
+  svg {
+    margin-bottom: 4px;
+    width: 54px;
+    height: 54px;
+    color: ${p =>
+      p.completenessReason === 'noUnreadBooks'
+        ? p.theme.colors.accentColor
+        : p.theme.colors.iconColor};
+  }
 `;
 
 export const ModalText = styled.p`

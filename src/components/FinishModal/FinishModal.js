@@ -1,11 +1,7 @@
 import { Modal } from 'components/Modal/Modal';
 import { Button } from 'components/StyledButton/StyledButton ';
-
-import {
-  ThumbUpIcon,
-  StyledModalContentWrapper,
-  ModalText,
-} from './FinishModal.styled';
+import { FaRegThumbsUp } from 'react-icons/fa';
+import { StyledModalContentWrapper, ModalText } from './FinishModal.styled';
 
 import { useTranslation } from 'react-i18next';
 
@@ -21,8 +17,8 @@ export const FinishModal = ({
   };
   return (
     <Modal active={isModalOpen}>
-      <StyledModalContentWrapper>
-        <ThumbUpIcon completenessReason={completenessReason} />
+      <StyledModalContentWrapper completenessReason={completenessReason}>
+        <FaRegThumbsUp />
         {completenessReason === 'noUnreadBooks' && (
           <ModalText>{t('You_are_the_best')}</ModalText>
         )}

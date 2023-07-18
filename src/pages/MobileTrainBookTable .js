@@ -6,10 +6,10 @@ import { selectedDatesSelectors } from 'redux/selectedDates';
 import { trainingSelectors } from 'redux/training';
 import { userSelectors } from 'redux/auth';
 
-import { LibBookTable } from 'components/LibBookTable/LibBookTable';
 import { MobileLinkToForm } from 'components/MobileLinkToForm/MobileLinkToForm';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { CenterFlexBox } from 'components/CenterFlexBox/CenterFlexBox';
+import { BookTableMobile } from 'components/BookTableMobile/BookTableMobile';
 
 const MobileTrainBookTable = () => {
   useLogOutRedirect();
@@ -20,7 +20,8 @@ const MobileTrainBookTable = () => {
   return (
     <StyledContainer>
       <CenterFlexBox style={{ paddingBottom: '100px' }}>
-        <LibBookTable data={isTrainingStarted ? books : selectedBooks} />
+        <BookTableMobile books={isTrainingStarted ? books : selectedBooks} />
+        {/* <LibBookTable data={isTrainingStarted ? books : selectedBooks} /> */}
         {isMobileDevice && (
           <>
             <MobileLinkToForm to="/training" />

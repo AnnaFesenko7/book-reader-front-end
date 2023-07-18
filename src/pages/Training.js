@@ -117,6 +117,13 @@ const Training = () => {
             <>
               {isTrainingStarted ? (
                 <>
+                  <Timer endDate={finishDate} />
+
+                  <MyGoal
+                    trainingStarted
+                    statistic={myGoalParamsTrainingStarted}
+                  />
+
                   <BookTableMobile books={books} startedTraining />
                   <LineChart
                     days={days}
