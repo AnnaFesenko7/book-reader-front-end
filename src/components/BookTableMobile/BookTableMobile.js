@@ -1,12 +1,13 @@
 import { useState } from 'react';
-
-import { ResumeButton } from 'components/ResumeButton/ResumeButton';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { FaBookOpen } from 'react-icons/fa';
-import { AiOutlineCheckSquare } from 'react-icons/ai';
+import { AiOutlineCheckSquare, AiOutlineDelete } from 'react-icons/ai';
 
 import { useModal } from 'hooks/useModal';
+import { deleteBook } from 'redux/selectedDates/selectedDatesSlice';
 
+import { ResumeButton } from 'components/ResumeButton/ResumeButton';
 import { ShowRatingStars } from 'components/ShowRatingStars/ShowRatingStars';
 import { Modal } from 'components/Modal/Modal';
 import { ResumeModalContent } from 'components/ResumeModalContent/ResumeModalContent';
@@ -21,11 +22,13 @@ import {
   StyledTr,
   Wrapper,
   BookIcon,
+  DeleteButton,
 } from './BookTableMobile.styled';
 
 export const BookTableMobile = ({ books, startedTraining, training }) => {
   const { isModalOpen, toggleModal } = useModal();
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const [currentBookId, setCurrentBookId] = useState(null);
   const [currentBookResume, setCurrentBookResume] = useState('');
   const [currentBookRating, setCurrentBookRating] = useState(null);
@@ -72,7 +75,11 @@ export const BookTableMobile = ({ books, startedTraining, training }) => {
             ({ _id, status, title, author, year, pages, rating, resume }) => {
               return (
                 <StyledListItem key={_id} isTrainingPage={isTrainingPage}>
-                  <BookIcon status={status} startedTraining={startedTraining}>
+                  <BookIcon
+                    status={status}
+                    startedTraining={startedTraining}
+                    training={training}
+                  >
                     {startedTraining ? (
                       <>
                         {status === 'haveRead' ? (
@@ -85,6 +92,11 @@ export const BookTableMobile = ({ books, startedTraining, training }) => {
                       <FaBookOpen size={'22px'} />
                     )}
                   </BookIcon>
+
+                  <DeleteButton onClick={() => dispatch(deleteBook(_id))}>
+                    <AiOutlineDelete size={'22px'} />
+                  </DeleteButton>
+
                   <StyledTable>
                     <StyledBookTitle>{title}</StyledBookTitle>
                     <tbody>

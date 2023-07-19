@@ -1,17 +1,12 @@
 import EllipsisText from 'react-ellipsis-text';
-// import { useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { FaBookOpen } from 'react-icons/fa';
-import { AiOutlineCheckSquare } from 'react-icons/ai';
+import { AiOutlineCheckSquare, AiOutlineDelete } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { deleteBook } from 'redux/selectedDates/selectedDatesSlice';
-import { AiOutlineDelete } from 'react-icons/ai';
-
-// import { useScrollbar } from 'hooks/useScrollbar';
 
 import { ShowRatingStars } from 'components/ShowRatingStars/ShowRatingStars';
 import { ResumeButton } from 'components/ResumeButton/ResumeButton';
-
 import { UncheckedBox } from 'components/UncheckedBox/UncheckedBox';
 import {
   StyledTr,
@@ -35,17 +30,8 @@ export const BodyBookTable = ({
 
   const dispatch = useDispatch();
 
-  // const hasScroll = books?.length > 6 && training;
-  // const WrapperTable = useRef(null);
-  // useScrollbar(WrapperTBody, hasScroll);
-
   return (
-    <StyledTbody
-    // style={{ height: '50px', overflow: 'scroll' }}
-
-    // hasScroll={hasScroll}
-    // training={training}
-    >
+    <StyledTbody>
       {books?.map(
         ({ _id, status, title, author, year, pages, rating, resume }) => {
           return (

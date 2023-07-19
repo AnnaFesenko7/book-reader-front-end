@@ -31,6 +31,8 @@ export const BookIcon = styled.div`
   color: ${p =>
     p.startedTraining
       ? p.theme.colors.accentColor
+      : p.training
+      ? p.theme.colors.iconColor
       : p.status === 'reading'
       ? p.theme.colors.accentColor
       : p.theme.colors.tableIconColor};
@@ -67,4 +69,16 @@ export const Wrapper = styled.div`
   display: block;
   justify-content: center;
   align-self: center;
+`;
+export const DeleteButton = styled.button`
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  line-height: 0;
+  svg {
+    position: absolute;
+    top: 25px;
+    right: 0;
+    color: ${p => p.theme.colors.iconColor};
+  }
 `;
