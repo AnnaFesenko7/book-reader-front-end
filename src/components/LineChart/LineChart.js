@@ -50,13 +50,14 @@ const options = {
   },
 };
 
-export const LineChart = ({ days, totalPagesInTraining }) => {
+export const LineChart = ({ days, totalPagesInTraining, startDate }) => {
+  console.log('🚀 ~ file: LineChart.js:54 ~ LineChart ~ days:', days);
   const { t } = useTranslation();
   const results = useSelector(trainingSelectors.results);
 
-  const startDate = useSelector(trainingSelectors.startDate);
-
   const labelsArr = Array.apply(null, Array(days));
+  console.log('🚀 ~ file: LineChart.js:61 ~ LineChart ~ labelsArr:', labelsArr);
+
   labelsArr.forEach((_, index, array) => {
     array[index] = format.dayLikeChartLabel(
       new Date(startDate + index * 24 * 60 * 60 * 1000)

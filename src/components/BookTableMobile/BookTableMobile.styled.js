@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledList = styled.div`
-  margin-bottom: ${p => p.theme.space[6]}px;
+  gap: ${p => p.theme.space[6]}px;
+  /* margin-bottom: ${p => p.theme.space[6]}px; */
 `;
 
 export const StyledListItem = styled.div`
@@ -11,9 +12,13 @@ export const StyledListItem = styled.div`
   display: flex;
   flex-direction: column;
 
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background-color: ${p => p.theme.colors.white};
+  box-shadow: ${p =>
+    p.isTrainingPage ? 'none' : '0px 4px 4px rgba(0, 0, 0, 0.25)'};
+  background-color: ${p =>
+    p.isTrainingPage ? p.theme.colors.transparent : p.theme.colors.white};
   margin-bottom: ${p => p.theme.space[4]}px;
+  /* margin-bottom: ${p => (p.isTrainingPage ? 0 : p.theme.space[4])}px; */
+  width: ${p => (p.isTrainingPage ? '288px' : 'auto')};
 
   svg {
   }

@@ -23,13 +23,13 @@ import {
   BookIcon,
 } from './BookTableMobile.styled';
 
-export const BookTableMobile = ({ books, startedTraining }) => {
+export const BookTableMobile = ({ books, startedTraining, training }) => {
   const { isModalOpen, toggleModal } = useModal();
   const { t } = useTranslation();
   const [currentBookId, setCurrentBookId] = useState(null);
   const [currentBookResume, setCurrentBookResume] = useState('');
   const [currentBookRating, setCurrentBookRating] = useState(null);
-
+  const isTrainingPage = training || startedTraining;
   const resetState = () => {
     setCurrentBookId(null);
     setCurrentBookResume('');
@@ -44,7 +44,7 @@ export const BookTableMobile = ({ books, startedTraining }) => {
     <>
       <StyledList>
         {isEmpty && !startedTraining && (
-          <StyledListItem key={'empty'}>
+          <StyledListItem key={'empty'} isTrainingPage={isTrainingPage}>
             <BookIcon>
               <FaBookOpen size={'22px'} />
             </BookIcon>
@@ -71,7 +71,7 @@ export const BookTableMobile = ({ books, startedTraining }) => {
           books.map(
             ({ _id, status, title, author, year, pages, rating, resume }) => {
               return (
-                <StyledListItem key={_id}>
+                <StyledListItem key={_id} isTrainingPage={isTrainingPage}>
                   <BookIcon status={status} startedTraining={startedTraining}>
                     {startedTraining ? (
                       <>

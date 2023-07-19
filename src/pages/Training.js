@@ -39,15 +39,21 @@ const Training = () => {
   const selectedBooks = useSelector(selectedDatesSelectors.booksList);
   const selectedEndDate = useSelector(selectedDatesSelectors.endDate);
   const selectedStartDate = useSelector(selectedDatesSelectors.startDate);
-  const { days: prevPeriod } = convertMs(selectedEndDate - selectedStartDate);
-  const period = selectedEndDate === '' ? 0 : prevPeriod;
+  const deltaSelectedPeriod = selectedEndDate
+    ? selectedEndDate - selectedStartDate
+    : 0;
+  const { days: period } = convertMs(deltaSelectedPeriod);
+
   const myGoalParams = [
     { param: 'books', text: t('amountOfBooks'), amount: selectedBooks.length },
     { param: 'days', text: t('amountOfDays'), amount: period },
   ];
+  const totalPagesInSelectedBooks = selectedBooks.reduce(
+    (previousValue, book) => previousValue + book.pages,
+    0
+  );
 
   const books = useSelector(trainingSelectors.booksList);
-
   const finishDate = useSelector(trainingSelectors.finishDate);
   const startDate = useSelector(trainingSelectors.startDate);
   const id = useSelector(trainingSelectors.id);
@@ -128,6 +134,7 @@ const Training = () => {
                   <LineChart
                     days={days}
                     totalPagesInTraining={totalPagesInTraining}
+                    startDate={startDate}
                   />
                 </>
               ) : (
@@ -173,8 +180,15 @@ const Training = () => {
                     />
                   )}
                   <LineChart
-                    days={days}
-                    totalPagesInTraining={totalPagesInTraining}
+                    startDate={
+                      isTrainingStarted ? startDate : selectedStartDate
+                    }
+                    days={isTrainingStarted ? days : period}
+                    totalPagesInTraining={
+                      isTrainingStarted
+                        ? totalPagesInTraining
+                        : totalPagesInSelectedBooks
+                    }
                   />
                   {isTrainingStarted && !isDesktop && <ReadingInformation />}
                 </>
