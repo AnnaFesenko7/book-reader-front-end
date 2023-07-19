@@ -51,10 +51,12 @@ const options = {
 };
 
 export const LineChart = ({ days, totalPagesInTraining, startDate }) => {
+  console.log('🚀 ~ file: LineChart.js:54 ~ LineChart ~ days:', days);
   const { t } = useTranslation();
   const results = useSelector(trainingSelectors.results);
 
-  const labelsArr = Array.apply(null, Array(days));
+  const labelsArr = days === 0 ? [] : Array.apply(null, Array(days + 1));
+  console.log('🚀 ~ file: LineChart.js:59 ~ LineChart ~ labelsArr:', labelsArr);
 
   labelsArr.forEach((_, index, array) => {
     array[index] = format.dayLikeChartLabel(
@@ -63,7 +65,7 @@ export const LineChart = ({ days, totalPagesInTraining, startDate }) => {
   });
 
   const averageNumberOfPagesPerDay = days > 0 ? totalPagesInTraining / days : 0;
-  const planArr = Array.apply(null, Array(days));
+  const planArr = Array.apply(null, Array(days + 1));
 
   planArr.forEach((_, index, array) => {
     array[index] = Math.round(
@@ -96,6 +98,7 @@ export const LineChart = ({ days, totalPagesInTraining, startDate }) => {
   }, []);
 
   const lab = labelsArr.length > 0 ? [...labelsArr] : ['', '', '', ''];
+
   const plan = planArr.length > 0 ? [...planArr] : [5];
   const fact = factArr.length > 0 ? [...factArr] : [0];
 

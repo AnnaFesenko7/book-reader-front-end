@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const ChartBox = styled.div`
   position: relative;
-  padding: 14px 22px;
+  padding: 80px 22px;
   background-color: ${p => p.theme.colors.white};
   width: 100%;
-  height: 75%;
+  height: 290px;
   @media ${p => p.theme.media.tablet} {
     padding: 25px 35px;
     height: 90%;
@@ -41,7 +41,7 @@ export const LineBox = styled.div`
   position: absolute;
   height: auto;
   right: 10px;
-  top: 100px;
+  top: 150px;
   @media ${p => p.theme.media.tablet} {
     right: 0px;
     top: 130px;
@@ -54,15 +54,18 @@ export const LineList = styled.ul`
   text-align: right;
 
   font-weight: 600;
-  font-size: ${p => p.theme.fontSizes.xs};
+  font-size: ${p => p.theme.fontSizes.ss};
   line-height: 2.5;
   text-transform: uppercase;
   color: ${p => p.theme.colors.statisticColor};
+  @media ${p => p.theme.media.tablet} {
+    font-size: ${p => p.theme.fontSizes.xs};
+  }
 `;
 
 export const LineItem = styled.li`
-  width: 50px;
-  height: 30px;
+  width: 30px;
+  height: 18px;
   margin-right: 11px;
   background-color: rgba(245, 247, 250, 0.85);
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
@@ -73,6 +76,8 @@ export const LineItem = styled.li`
 
   @media ${p => p.theme.media.tablet} {
     margin-right: 45px;
+    width: 50px;
+    height: 30px;
   }
 `;
 
@@ -87,5 +92,8 @@ export const StyledP = styled.p`
   font-size: ${p => p.theme.fontSizes.xs};
   text-transform: uppercase;
   color: ${p => p.theme.colors.statisticColor};
-  margin-top: 16px;
+  margin-top: 8px;
+  @media ${p => p.theme.media.tablet} {
+    margin-top: 16px;
+  }
 `;

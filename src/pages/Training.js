@@ -8,8 +8,10 @@ import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
 
 import { userSelectors, userThunk } from 'redux/auth';
 import { trainingSelectors, trainingThunk } from 'redux/training';
-import { selectedDatesSelectors } from 'redux/selectedDates';
-import { selectedDatesActions } from 'redux/selectedDates';
+import {
+  selectedDatesSelectors,
+  selectedDatesActions,
+} from 'redux/selectedDates';
 
 import { TrainingDataSelection } from 'components/TrainingDataSelection/TrainingDataSelection';
 import { MyGoal } from 'components/MyGoal/MyGoal';

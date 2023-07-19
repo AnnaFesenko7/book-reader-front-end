@@ -16,7 +16,7 @@ export const StyledListItem = styled.div`
     p.isTrainingPage ? 'none' : '0px 4px 4px rgba(0, 0, 0, 0.25)'};
   background-color: ${p =>
     p.isTrainingPage ? p.theme.colors.transparent : p.theme.colors.white};
-  margin-bottom: ${p => p.theme.space[4]}px;
+
   /* margin-bottom: ${p => (p.isTrainingPage ? 0 : p.theme.space[4])}px; */
   width: ${p => (p.isTrainingPage ? '288px' : 'auto')};
 
