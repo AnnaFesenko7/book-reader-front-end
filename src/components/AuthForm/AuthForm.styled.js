@@ -68,7 +68,6 @@ export const StyledLabel = styled.label`
   line-height: ${p => p.theme.lineHeights.body};
   color: ${p => p.theme.colors.white};
   margin: 0;
-  /* margin-bottom: ${p => p.theme.space[3]}px; */
 
   @media ${p => p.theme.media.tablet} {
     color: ${p => p.theme.colors.notActiveText};
@@ -100,6 +99,28 @@ export const StyledField = styled(Field)`
   @media ${p => p.theme.media.tablet} {
     padding: 12px 12px;
     min-width: 320px;
+  }
+`;
+
+export const HideAndShowPasswordIcon = styled.button`
+  position: absolute;
+  right: 8px;
+  top: 20%;
+  line-height: 0;
+  height: 40px;
+  width: 30px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: ${p => p.theme.colors.deepBlue};
+    @media ${p => p.theme.media.tablet} {
+      fill: ${p => p.theme.colors.iconColor};
+    }
   }
 `;
 

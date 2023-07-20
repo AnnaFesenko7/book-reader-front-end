@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 import { loginThunk } from 'redux/auth/authThunk';
 
@@ -15,10 +16,15 @@ const LoginPage = () => {
   const { t } = useTranslation();
 
   useLoginRedirect();
+  const [show, setShow] = useState(false);
 
   const initialValues = {
     email: '',
     password: '',
+  };
+
+  const handleShow = () => {
+    setShow(!show);
   };
 
   const fieldsArray = [
@@ -26,11 +32,13 @@ const LoginPage = () => {
       labelText: t('email'),
       placeholder: 'your@email.com',
       name: 'email',
+      typeField: 'email',
     },
     {
       labelText: t('password'),
       placeholder: t('password'),
       name: 'password',
+      typeField: `${show ? 'text' : 'password'}`,
     },
   ];
 
@@ -43,6 +51,8 @@ const LoginPage = () => {
       <StyledContainer>
         <AuthWrapper>
           <AuthForm
+            show={show}
+            handleShow={handleShow}
             fieldsArray={fieldsArray}
             btnTextContent={t('login')}
             initialValues={initialValues}

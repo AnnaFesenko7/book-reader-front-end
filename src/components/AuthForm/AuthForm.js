@@ -1,4 +1,5 @@
 import { Formik, ErrorMessage } from 'formik';
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { ErrorContainer } from 'components/ErrorContainer/ErrorContainer.styled';
 import { useTranslation } from 'react-i18next';
@@ -10,6 +11,7 @@ import {
   LabelText,
   StyledButton,
   StyledLink,
+  HideAndShowPasswordIcon,
 } from './AuthForm.styled';
 
 export const AuthForm = ({
@@ -19,10 +21,13 @@ export const AuthForm = ({
   validationSchema,
   handelSubmit,
   type,
+  show,
+  handleShow,
+  showConfirm,
+  handleShowConfirm,
 }) => {
   const { t } = useTranslation();
   const onSubmit = (values, { resetForm }) => {
-    // console.log(values);
     handelSubmit(values);
     resetForm();
   };
@@ -36,16 +41,30 @@ export const AuthForm = ({
         type={type}
       >
         <StyledForm autoComplete="off">
-          {fieldsArray.map(({ labelText, placeholder, name }) => {
+          {fieldsArray.map(({ labelText, placeholder, name, typeField }) => {
             return (
-              <StyledLabel key={name} htmlFor={name}>
+              <StyledLabel
+                key={name}
+                htmlFor={name}
+                style={{ position: 'relative' }}
+              >
                 <LabelText>{labelText}</LabelText>
                 <StyledField
                   id={name}
                   name={name}
-                  type="text"
+                  type={typeField}
                   placeholder={placeholder}
                 />
+                {name === 'password' && (
+                  <HideAndShowPasswordIcon onClick={handleShow}>
+                    {show ? <AiFillEyeInvisible /> : <AiFillEye />}
+                  </HideAndShowPasswordIcon>
+                )}
+                {name === 'confirmPassword' && (
+                  <HideAndShowPasswordIcon onClick={handleShowConfirm}>
+                    {showConfirm ? <AiFillEyeInvisible /> : <AiFillEye />}
+                  </HideAndShowPasswordIcon>
+                )}
                 <ErrorContainer>
                   <ErrorMessage name={name} />
                 </ErrorContainer>

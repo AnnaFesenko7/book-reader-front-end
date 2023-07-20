@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { registrationThunk } from 'redux/auth/authThunk';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,6 +17,8 @@ const RegistrationPage = () => {
   const isRegistered = useSelector(isRegisteredSelector);
   const { t } = useTranslation();
 
+  const [show, setShow] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   useEffect(() => {
     console.log(isRegistered);
     if (isRegistered) {
@@ -36,26 +38,37 @@ const RegistrationPage = () => {
     dispatch(registrationThunk(values));
   };
 
+  const handleShow = () => {
+    setShow(!show);
+  };
+  const handleShowConfirm = () => {
+    setShowConfirm(!showConfirm);
+  };
+
   const fieldsArray = [
     {
       labelText: t('name'),
       placeholder: '...',
       name: 'name',
+      typeField: 'text',
     },
     {
       labelText: t('email'),
       placeholder: 'your@email.com',
       name: 'email',
+      typeField: 'email',
     },
     {
       labelText: t('password'),
       placeholder: t('password'),
       name: 'password',
+      typeField: `${show ? 'text' : 'password'}`,
     },
     {
       labelText: t('confirmPassword'),
       placeholder: t('password'),
       name: 'confirmPassword',
+      typeField: `${showConfirm ? 'text' : 'password'}`,
     },
   ];
 
@@ -64,6 +77,10 @@ const RegistrationPage = () => {
       <StyledContainer>
         <AuthWrapper>
           <AuthForm
+            show={show}
+            showConfirm={showConfirm}
+            handleShow={handleShow}
+            handleShowConfirm={handleShowConfirm}
             fieldsArray={fieldsArray}
             btnTextContent={t('signUp')}
             initialValues={initialValues}
@@ -71,14 +88,6 @@ const RegistrationPage = () => {
             handelSubmit={handelSubmit}
           />
           <RegistrationText />
-          {/* <div className={styles.right__block}>
-            <div className={styles.log__text}>
-              <svg className={styles.svg__qutation}>
-                <use href={svgPath.quatation + '#quatation'}></use>
-              </svg>
-              <LoginPhrase />
-            </div>
-          </div> */}
         </AuthWrapper>
       </StyledContainer>
     </section>
