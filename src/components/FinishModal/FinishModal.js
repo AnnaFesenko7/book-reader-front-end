@@ -19,12 +19,12 @@ export const FinishModal = ({
     <Modal active={isModalOpen}>
       <StyledModalContentWrapper completenessReason={completenessReason}>
         <FaRegThumbsUp />
-        {completenessReason === 'noUnreadBooks' && (
+        {completenessReason === 'noUnreadBooks' ? (
           <ModalText>{t('You_are_the_best')}</ModalText>
-        )}
-        {completenessReason === 'hasDeadlinePassed' && (
+        ) : (
           <ModalText>{t('Youre_doing_fine')}</ModalText>
         )}
+
         <Button
           active
           textContent={t('new_training_after_finish')}
@@ -32,7 +32,6 @@ export const FinishModal = ({
           size="130"
           onClick={onNewTrainingAfterFinishBtnClick}
         />
-        {/* </div> */}
       </StyledModalContentWrapper>
     </Modal>
   );

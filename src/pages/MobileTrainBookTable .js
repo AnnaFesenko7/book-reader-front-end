@@ -62,32 +62,34 @@ const MobileTrainBookTable = () => {
 
   return (
     <StyledContainer>
-      <CenterFlexBox style={{ paddingBottom: '100px' }}>
-        <MyGoal statistic={myGoalParams} />
-        <BookTableMobile
-          books={isTrainingStarted ? books : selectedBooks}
-          startedTraining={isTrainingStarted ? true : false}
-          training={isTrainingStarted ? false : true}
-        />
-        <Button
-          onClick={onStartTrainingClick}
-          textContent={t('startTraining')}
-          active
-          size={171}
-          disabled={!isExistNoSaveTrainingDate}
-          type="button"
-        />
-        <LineChart
-          days={period}
-          totalPagesInTraining={totalPagesInSelectedBooks}
-          startDate={selectedStartDate}
-        />
-        {isMobileDevice && (
-          <>
-            <MobileLinkToForm to="/training" />
-          </>
-        )}
-      </CenterFlexBox>
+      {!isTrainingStarted && (
+        <CenterFlexBox style={{ paddingBottom: '100px' }}>
+          <MyGoal statistic={myGoalParams} />
+          <BookTableMobile
+            books={isTrainingStarted ? books : selectedBooks}
+            startedTraining={isTrainingStarted ? true : false}
+            training={isTrainingStarted ? false : true}
+          />
+          <Button
+            onClick={onStartTrainingClick}
+            textContent={t('startTraining')}
+            active
+            size={171}
+            disabled={!isExistNoSaveTrainingDate}
+            type="button"
+          />
+          <LineChart
+            days={period}
+            totalPagesInTraining={totalPagesInSelectedBooks}
+            startDate={selectedStartDate}
+          />
+          {isMobileDevice && (
+            <>
+              <MobileLinkToForm to="/training" />
+            </>
+          )}
+        </CenterFlexBox>
+      )}
     </StyledContainer>
   );
 };

@@ -26,7 +26,7 @@ export const Layout = () => {
       {isMobileDevice && isLoggedIn && (
         <Modal active={isModalOpen} closeModal={closeModal}>
           <ModalContentWrapper>
-            <Info />
+            <Info modal />
             <Button
               active
               size="127"

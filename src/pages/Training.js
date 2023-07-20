@@ -58,6 +58,7 @@ const Training = () => {
   const books = useSelector(trainingSelectors.booksList);
   const finishDate = useSelector(trainingSelectors.finishDate);
   const startDate = useSelector(trainingSelectors.startDate);
+
   const id = useSelector(trainingSelectors.id);
 
   const isTrainingCompleted = useSelector(trainingSelectors.completed);
@@ -72,15 +73,16 @@ const Training = () => {
 
   const deltaTime = finishDate ? finishDate - startDate : 0;
   const { days } = convertMs(deltaTime);
+
+  const daysAmount = finishDate ? days + 1 : 0;
   const booksLeft = books?.filter(book => book.status !== 'haveRead')?.length;
   const myGoalParamsTrainingStarted = [
     { param: 'books', text: t('amountOfBooks'), amount: books?.length },
-    { param: 'days', text: t('amountOfDays'), amount: days },
+    { param: 'days', text: t('amountOfDays'), amount: daysAmount },
     { param: 'booksLeft', text: t('booksLeft'), amount: booksLeft },
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [isModalOpen, setIsModalOpen] = useState(true);
 
   useEffect(() => {
     if (isTrainingStarted) {
@@ -134,10 +136,17 @@ const Training = () => {
 
                   <BookTableMobile books={books} startedTraining />
                   <LineChart
-                    days={days}
-                    totalPagesInTraining={totalPagesInTraining}
-                    startDate={startDate}
+                    startDate={
+                      isTrainingStarted ? startDate : selectedStartDate
+                    }
+                    days={isTrainingStarted ? daysAmount : period}
+                    totalPagesInTraining={
+                      isTrainingStarted
+                        ? totalPagesInTraining
+                        : totalPagesInSelectedBooks
+                    }
                   />
+                  <ReadingInformation />
                 </>
               ) : (
                 <>
@@ -185,7 +194,7 @@ const Training = () => {
                     startDate={
                       isTrainingStarted ? startDate : selectedStartDate
                     }
-                    days={isTrainingStarted ? days : period}
+                    days={isTrainingStarted ? daysAmount : period}
                     totalPagesInTraining={
                       isTrainingStarted
                         ? totalPagesInTraining

@@ -21,6 +21,7 @@ export const selectedDatesSlice = createSlice({
     resetSelectedDates(state) {
       state.endDate = '';
       state.list = [];
+      state.startDate = Date.now();
     },
   },
 });

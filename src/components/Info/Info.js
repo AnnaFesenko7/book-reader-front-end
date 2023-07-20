@@ -4,7 +4,7 @@ import { InfoItem } from './InfoItem';
 import { useTranslation } from 'react-i18next';
 import { Wrapper, StyledList } from './Info.styled';
 
-export const Info = () => {
+export const Info = ({ modal }) => {
   const { t } = useTranslation();
 
   const infoContent = [
@@ -23,7 +23,7 @@ export const Info = () => {
   ];
 
   return (
-    <Wrapper>
+    <Wrapper modal={modal}>
       <StyledList>
         {infoContent.map((item, index) => (
           <li key={index}>

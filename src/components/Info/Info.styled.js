@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   margin-right: auto;
   margin-top: ${p => p.theme.space[6]}px;
 
-  box-shadow: ${p => p.theme.boxShadow.infoBox};
+  box-shadow: ${p => (p.modal ? 'none' : p.theme.boxShadow.infoBox)};
 
   @media ${p => p.theme.media.tablet} {
     width: 608px;
