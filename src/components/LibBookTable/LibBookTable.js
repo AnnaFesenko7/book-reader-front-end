@@ -1,13 +1,12 @@
 import { useState, useRef } from 'react';
-import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
 
 import { useModal } from 'hooks/useModal';
 import { useScrollbar } from 'hooks/useScrollbar';
+import { separateBooksByStatus } from 'helpers/separateBooksByStatus';
 
 import { BodyBookTable } from 'components/BodyBookTable/BodyBookTable';
 import { HeadBookTable } from 'components/HeadBookTable/HeadBookTable';
-import { BookTableMobile } from 'components/BookTableMobile/BookTableMobile';
 import { Modal } from 'components/Modal/Modal';
 import { ResumeModalContent } from 'components/ResumeModalContent/ResumeModalContent';
 
@@ -18,7 +17,6 @@ import {
 } from './LibBookTable.styled';
 
 export const LibBookTable = ({ data, training, startedTraining }) => {
-  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const { isModalOpen, toggleModal } = useModal();
 
   const { t } = useTranslation();
@@ -37,10 +35,7 @@ export const LibBookTable = ({ data, training, startedTraining }) => {
     rating: currentBookRating,
   };
 
-  const statusObj = data?.reduce((obj, book) => {
-    const stat = book.status;
-    return { ...obj, [stat]: obj[stat] ? [...obj[stat], book] : [book] };
-  }, {});
+  const statusObj = separateBooksByStatus(data);
 
   const isTrainingPage = training || startedTraining;
   const hasScroll = data?.length > 3 && isTrainingPage;
@@ -50,7 +45,7 @@ export const LibBookTable = ({ data, training, startedTraining }) => {
   return (
     <>
       <StyledSection isTrainingPage={isTrainingPage}>
-        {startedTraining && !isMobile && (
+        {startedTraining && (
           <div
             ref={WrapperTable}
             style={{
@@ -78,61 +73,35 @@ export const LibBookTable = ({ data, training, startedTraining }) => {
             </StyledTable>
           </div>
         )}
-        {statusObj.haveRead && !startedTraining && (
-          <>
-            <StyledTable>
-              <StyledCaption>{t('alreadyRead')}</StyledCaption>
-              {isMobile ? (
-                <></>
-              ) : (
-                <>
-                  <HeadBookTable status="haveRead" />
-                  <BodyBookTable
-                    books={statusObj.haveRead}
-                    toggleModal={toggleModal}
-                    setCurrentBookId={setCurrentBookId}
-                    setCurrentBookResume={setCurrentBookResume}
-                    setCurrentBookRating={setCurrentBookRating}
-                  />
-                </>
-              )}
-            </StyledTable>
-            {isMobile && <BookTableMobile books={statusObj.haveRead} />}
-          </>
+        {statusObj.haveRead && !isTrainingPage && (
+          <StyledTable>
+            <StyledCaption>{t('alreadyRead')}</StyledCaption>
+
+            <HeadBookTable status="haveRead" />
+            <BodyBookTable
+              books={statusObj.haveRead}
+              toggleModal={toggleModal}
+              setCurrentBookId={setCurrentBookId}
+              setCurrentBookResume={setCurrentBookResume}
+              setCurrentBookRating={setCurrentBookRating}
+            />
+          </StyledTable>
         )}
 
-        {statusObj.reading && !startedTraining && (
-          <>
-            <StyledTable>
-              <StyledCaption> {t('readingNow')} </StyledCaption>
-              {isMobile ? (
-                <></>
-              ) : (
-                <>
-                  <HeadBookTable status="reading" />
-                  <BodyBookTable books={statusObj.reading} />
-                </>
-              )}
-            </StyledTable>
-            {isMobile && <BookTableMobile books={statusObj.reading} />}
-          </>
+        {statusObj.reading && !isTrainingPage && (
+          <StyledTable>
+            <StyledCaption> {t('readingNow')} </StyledCaption>
+            <HeadBookTable status="reading" />
+            <BodyBookTable books={statusObj.reading} />
+          </StyledTable>
         )}
 
-        {!training && statusObj.toRead && !startedTraining && (
-          <>
-            <StyledTable>
-              <StyledCaption> {t('goingToRead')} </StyledCaption>
-              {isMobile ? (
-                <></>
-              ) : (
-                <>
-                  <HeadBookTable status="toRead" />
-                  <BodyBookTable books={statusObj.toRead} />
-                </>
-              )}
-            </StyledTable>
-            {isMobile && <BookTableMobile books={statusObj.toRead} />}
-          </>
+        {statusObj.toRead && !isTrainingPage && (
+          <StyledTable>
+            <StyledCaption> {t('goingToRead')} </StyledCaption>
+            <HeadBookTable status="toRead" />
+            <BodyBookTable books={statusObj.toRead} />
+          </StyledTable>
         )}
       </StyledSection>
       <Modal active={isModalOpen} closeModal={toggleModal}>

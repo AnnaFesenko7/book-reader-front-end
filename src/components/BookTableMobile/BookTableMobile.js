@@ -92,7 +92,7 @@ export const BookTableMobile = ({ books, startedTraining, training }) => {
                       <FaBookOpen size={'22px'} />
                     )}
                   </BookIcon>
-                  {!startedTraining && (
+                  {isTrainingPage && !isTrainingPage && (
                     <DeleteButton onClick={() => dispatch(deleteBook(_id))}>
                       <AiOutlineDelete size={'22px'} />
                     </DeleteButton>

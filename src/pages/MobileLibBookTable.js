@@ -5,9 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 
 import { booksSelectors, booksThunk } from 'redux/books';
+import { separateBooksByStatus } from 'helpers/separateBooksByStatus';
 
 import { useLogOutRedirect } from 'hooks/useLogOutRedirect';
-import { LibBookTable } from 'components/LibBookTable/LibBookTable';
+
+import { StyledCaption } from 'components/StyledCaption/StyledCaption';
+import { BookTableMobile } from 'components/BookTableMobile/BookTableMobile';
 import { MobileLinkToForm } from 'components/MobileLinkToForm/MobileLinkToForm';
 import { StyledContainer } from 'components/StyledContainer/StyledContainer.styled';
 import { Button } from 'components/StyledButton/StyledButton ';
@@ -30,10 +33,29 @@ const MobileLibBookTable = () => {
   const onMyTrainingBtnClick = () => {
     navigate('/training', { replace: true });
   };
+
+  const statusObj = separateBooksByStatus(books);
   return (
     <StyledContainer>
       <CenterFlexBox style={{ paddingBottom: '100px' }}>
-        <LibBookTable data={books} />
+        {statusObj.haveRead && (
+          <>
+            <StyledCaption>{t('alreadyRead')}</StyledCaption>
+            <BookTableMobile books={statusObj.haveRead} />
+          </>
+        )}
+        {statusObj.reading && (
+          <>
+            <StyledCaption> {t('readingNow')} </StyledCaption>
+            <BookTableMobile books={statusObj.reading} />
+          </>
+        )}
+        {statusObj.toRead && (
+          <>
+            <StyledCaption> {t('goingToRead')} </StyledCaption>
+            <BookTableMobile books={statusObj.toRead} />
+          </>
+        )}
         {isMobileDevice && <MobileLinkToForm to="/" />}
         <Button
           active

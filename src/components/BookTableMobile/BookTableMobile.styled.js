@@ -18,7 +18,7 @@ export const StyledListItem = styled.div`
     p.isTrainingPage ? p.theme.colors.transparent : p.theme.colors.white};
 
   /* margin-bottom: ${p => (p.isTrainingPage ? 0 : p.theme.space[4])}px; */
-  width: ${p => (p.isTrainingPage ? '288px' : 'auto')};
+  width: 288px;
 
   svg {
   }
