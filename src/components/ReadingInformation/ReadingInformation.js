@@ -6,7 +6,11 @@ import { trainingSelectors, trainingThunk } from 'redux/training';
 import { SendResultsForm } from 'components/SendResultsForm/SendResultsForm';
 import { StatisticsList } from 'components/StatisticsList/StatisticsList';
 
-import { Wrapper, StyledTitle } from './ReadingInformation.styled';
+import {
+  Wrapper,
+  StyledTitle,
+  StatisticsBox,
+} from './ReadingInformation.styled';
 
 export const ReadingInformation = () => {
   const { t } = useTranslation();
@@ -30,10 +34,10 @@ export const ReadingInformation = () => {
             completed={completed}
           />
         </div>
-        <div>
+        <StatisticsBox>
           <StyledTitle> {t('statistics')}</StyledTitle>
           <StatisticsList results={results} />
-        </div>
+        </StatisticsBox>
       </Wrapper>
     </>
   );

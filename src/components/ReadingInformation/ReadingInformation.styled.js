@@ -34,3 +34,12 @@ export const StyledTitle = styled.h2`
     line-height: 1.21;
   }
 `;
+
+export const StatisticsBox = styled.div`
+  @media ${p => p.theme.media.tablet} {
+    width: 280px;
+  }
+  @media ${p => p.theme.media.desktop} {
+    width: auto;
+  }
+`;

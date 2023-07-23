@@ -55,22 +55,15 @@ export const LineChart = ({
   totalPagesInTraining = 0,
   startDate = Date.now(),
 }) => {
-  console.log('🚀 ~ file: LineChart.js:54 ~ LineChart ~ startDate:', startDate);
-  console.log('🚀 ~ file: LineChart.js:54 ~ LineChart ~ days:', days);
   const { t } = useTranslation();
   const results = useSelector(trainingSelectors.results);
 
   const labelsArr = days === 0 ? [] : Array.apply(null, Array(days + 1));
-  console.log('🚀 ~ file: LineChart.js:59 ~ LineChart ~ labelsArr:', labelsArr);
 
   labelsArr.forEach((_, index, array) => {
     array[index] = format.dayLikeChartLabel(
       // new Date(startDate + index * 24 * 60 * 60 * 1000)
       new Date(startDate)
-    );
-    console.log(
-      '🚀 ~ file: LineChart.js:65 ~ labelsArr.forEach ~ array[index]:',
-      array[index]
     );
   });
 
