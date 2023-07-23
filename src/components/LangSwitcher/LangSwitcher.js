@@ -1,22 +1,27 @@
+import { useState, useEffect } from 'react';
+import { BallButton, StyledTrack, StyledSpan } from './LangSwitcher.styled';
+
 export const LangSwitcher = ({ onChangeLanguage, currentLang }) => {
-  // console.log(currentLang);
-  const handleChange = event => {
-    if (event.target.value === 'ua') {
-      onChangeLanguage('ua');
+  const [lang, setLang] = useState(currentLang);
+
+  useEffect(() => {
+    onChangeLanguage(lang);
+  }, [lang, onChangeLanguage]);
+
+  const handleChange = () => {
+    if (lang === 'en') {
+      setLang('ua');
     } else {
-      onChangeLanguage('en');
+      setLang('en');
     }
   };
 
   return (
-    <div>
-      <button value="ua" type="button" onClick={handleChange}>
-        {'UA'}
-      </button>
-
-      <button value="en" type="button" onClick={handleChange}>
-        {'EN'}
-      </button>
+    <div onClick={handleChange}>
+      <StyledTrack>
+        <BallButton className={lang}></BallButton>
+        <StyledSpan lang={lang}>{lang === 'en' ? 'En' : 'Ua'}</StyledSpan>
+      </StyledTrack>
     </div>
   );
 };
