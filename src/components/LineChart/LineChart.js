@@ -62,8 +62,8 @@ export const LineChart = ({
 
   labelsArr.forEach((_, index, array) => {
     array[index] = format.dayLikeChartLabel(
-      // new Date(startDate + index * 24 * 60 * 60 * 1000)
-      new Date(startDate)
+      new Date(startDate + index * 24 * 60 * 60 * 1000)
+      // new Date(startDate)
     );
   });
 
