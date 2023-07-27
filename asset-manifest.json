@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/book-reader-front-end/static/css/main.5fec47b1.css",
-    "main.js": "/book-reader-front-end/static/js/main.45591593.js",
-    "static/js/186.966af56a.chunk.js": "/book-reader-front-end/static/js/186.966af56a.chunk.js",
-    "static/js/494.9215717b.chunk.js": "/book-reader-front-end/static/js/494.9215717b.chunk.js",
-    "static/js/303.aa8bb9cc.chunk.js": "/book-reader-front-end/static/js/303.aa8bb9cc.chunk.js",
+    "main.js": "/book-reader-front-end/static/js/main.3911998d.js",
+    "static/js/186.f3fdb522.chunk.js": "/book-reader-front-end/static/js/186.f3fdb522.chunk.js",
+    "static/js/494.c26cd2da.chunk.js": "/book-reader-front-end/static/js/494.c26cd2da.chunk.js",
+    "static/js/303.964011ec.chunk.js": "/book-reader-front-end/static/js/303.964011ec.chunk.js",
     "static/js/492.9b41b3a3.chunk.js": "/book-reader-front-end/static/js/492.9b41b3a3.chunk.js",
     "static/js/344.2448aa02.chunk.js": "/book-reader-front-end/static/js/344.2448aa02.chunk.js",
     "static/js/175.9f946953.chunk.js": "/book-reader-front-end/static/js/175.9f946953.chunk.js",
@@ -14,7 +14,7 @@
     "static/css/44.4b7b33cb.chunk.css": "/book-reader-front-end/static/css/44.4b7b33cb.chunk.css",
     "static/js/44.38779508.chunk.js": "/book-reader-front-end/static/js/44.38779508.chunk.js",
     "static/js/739.3dad9d6e.chunk.js": "/book-reader-front-end/static/js/739.3dad9d6e.chunk.js",
-    "static/js/96.c0523716.chunk.js": "/book-reader-front-end/static/js/96.c0523716.chunk.js",
+    "static/js/96.42bead5f.chunk.js": "/book-reader-front-end/static/js/96.42bead5f.chunk.js",
     "static/media/background2.jpg": "/book-reader-front-end/static/media/background2.1065ac0c23029c4e7b76.jpg",
     "static/media/background3.jpg": "/book-reader-front-end/static/media/background3.4eb17edd7123c073db0e.jpg",
     "static/media/background1.jpg": "/book-reader-front-end/static/media/background1.bf9ad2780587b6f86f4f.jpg",
@@ -22,10 +22,10 @@
     "static/media/quatation.svg": "/book-reader-front-end/static/media/quatation.596e0f7554016a674c759c2aad378ade.svg",
     "static/media/getFetch.cjs": "/book-reader-front-end/static/media/getFetch.40f37ddea2378391108f.cjs",
     "main.5fec47b1.css.map": "/book-reader-front-end/static/css/main.5fec47b1.css.map",
-    "main.45591593.js.map": "/book-reader-front-end/static/js/main.45591593.js.map",
-    "186.966af56a.chunk.js.map": "/book-reader-front-end/static/js/186.966af56a.chunk.js.map",
-    "494.9215717b.chunk.js.map": "/book-reader-front-end/static/js/494.9215717b.chunk.js.map",
-    "303.aa8bb9cc.chunk.js.map": "/book-reader-front-end/static/js/303.aa8bb9cc.chunk.js.map",
+    "main.3911998d.js.map": "/book-reader-front-end/static/js/main.3911998d.js.map",
+    "186.f3fdb522.chunk.js.map": "/book-reader-front-end/static/js/186.f3fdb522.chunk.js.map",
+    "494.c26cd2da.chunk.js.map": "/book-reader-front-end/static/js/494.c26cd2da.chunk.js.map",
+    "303.964011ec.chunk.js.map": "/book-reader-front-end/static/js/303.964011ec.chunk.js.map",
     "492.9b41b3a3.chunk.js.map": "/book-reader-front-end/static/js/492.9b41b3a3.chunk.js.map",
     "344.2448aa02.chunk.js.map": "/book-reader-front-end/static/js/344.2448aa02.chunk.js.map",
     "175.9f946953.chunk.js.map": "/book-reader-front-end/static/js/175.9f946953.chunk.js.map",
@@ -35,10 +35,10 @@
     "44.4b7b33cb.chunk.css.map": "/book-reader-front-end/static/css/44.4b7b33cb.chunk.css.map",
     "44.38779508.chunk.js.map": "/book-reader-front-end/static/js/44.38779508.chunk.js.map",
     "739.3dad9d6e.chunk.js.map": "/book-reader-front-end/static/js/739.3dad9d6e.chunk.js.map",
-    "96.c0523716.chunk.js.map": "/book-reader-front-end/static/js/96.c0523716.chunk.js.map"
+    "96.42bead5f.chunk.js.map": "/book-reader-front-end/static/js/96.42bead5f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5fec47b1.css",
-    "static/js/main.45591593.js"
+    "static/js/main.3911998d.js"
   ]
 }
