@@ -30,7 +30,7 @@ export const LibBookTable = ({ data, training, startedTraining }) => {
     setCurrentBookResume('');
     setCurrentBookRating(null);
   };
-  const initialValues = {
+  const savedValues = {
     resume: currentBookResume,
     rating: currentBookRating,
   };
@@ -108,7 +108,7 @@ export const LibBookTable = ({ data, training, startedTraining }) => {
         <ResumeModalContent
           closeModal={toggleModal}
           id={currentBookId}
-          initialValues={initialValues}
+          savedValues={savedValues}
           resetState={resetState}
         />
       </Modal>

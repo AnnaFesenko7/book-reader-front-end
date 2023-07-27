@@ -89,8 +89,15 @@ export const handleDeleteTrainingFulfilled = state => {
   state.completenessReason = '';
 };
 export const handleFeedbackFulfilled = (state, { payload }) => {
+  console.log(
+    '🚀 ~ file: operations.js:92 ~ handleFeedbackFulfilled ~ payload:',
+    payload
+  );
+
   const { _id } = payload;
   const index = state.entities.findIndex(book => book._id === _id);
+
+  // state.entities = [...state.entities, payload];
   state.entities = state.entities.splice(index, 1, payload);
   state.isLoading = false;
 };

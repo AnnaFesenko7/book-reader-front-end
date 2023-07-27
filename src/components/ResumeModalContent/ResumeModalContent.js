@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useDispatch } from 'react-redux';
 import ReactStars from 'react-rating-stars-component';
@@ -18,9 +19,19 @@ import {
 export const ResumeModalContent = ({
   closeModal,
   id,
-  initialValues,
+  savedValues,
   resetState,
 }) => {
+  const initialValues = {
+    resume: '',
+    rating: 0,
+  };
+  const [formValues, setFormValues] = useState(null);
+
+  useEffect(() => {
+    setFormValues(savedValues);
+  }, [savedValues]);
+
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
@@ -36,15 +47,18 @@ export const ResumeModalContent = ({
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={formValues || initialValues}
       onSubmit={handleSubmit}
       validationSchema={schemaValidChooseRating}
+      enableReinitialize
     >
       <StyledForm>
         <StyledLabel htmlFor="rating">{t('chooseRating')} </StyledLabel>
         <Field name="rating">
           {({ form, field, meta }) => {
             const { setFieldValue } = form;
+            const { value } = field;
+            console.log('🚀 ~ file: ResumeModalContent.js:61 ~  value:', value);
 
             return (
               <ReactStars
@@ -55,6 +69,7 @@ export const ResumeModalContent = ({
                 activeColor="#FF6B08"
                 size={17}
                 color="#A6ABB9"
+                value={value}
                 onChange={val => {
                   setFieldValue('rating', val);
                 }}
