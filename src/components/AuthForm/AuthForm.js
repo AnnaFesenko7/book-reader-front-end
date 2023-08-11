@@ -1,8 +1,11 @@
 import { Formik, ErrorMessage } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+
+import { AuthThroughGoogle } from 'components/AuthThroughGoogle/AuthThroughGoogle';
 import { ErrorContainer } from 'components/ErrorContainer/ErrorContainer.styled';
-import { useTranslation } from 'react-i18next';
+
 import {
   FormContainer,
   StyledForm,
@@ -41,6 +44,7 @@ export const AuthForm = ({
         type={type}
       >
         <StyledForm autoComplete="off">
+          <AuthThroughGoogle />
           {fieldsArray.map(({ labelText, placeholder, name, typeField }) => {
             return (
               <StyledLabel

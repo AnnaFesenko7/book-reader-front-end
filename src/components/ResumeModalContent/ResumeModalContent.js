@@ -36,11 +36,13 @@ export const ResumeModalContent = ({
   const { t } = useTranslation();
   const isMobileDevice = useMediaQuery({ query: '(max-width: 767px)' });
 
-  const handleSubmit = val => {
+  const handleSubmit = (val, { resetForm }) => {
     dispatch(booksThunk.feedbackThunk({ feedback: val, id: id }));
     closeModal();
     resetState();
+    resetForm();
   };
+
   const sizeDetermination = () => {
     return isMobileDevice ? 97 : 130;
   };
