@@ -60,7 +60,6 @@ export const ResumeModalContent = ({
           {({ form, field, meta }) => {
             const { setFieldValue } = form;
             const { value } = field;
-            console.log('🚀 ~ file: ResumeModalContent.js:61 ~  value:', value);
 
             return (
               <ReactStars

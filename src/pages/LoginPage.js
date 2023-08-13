@@ -19,7 +19,6 @@ const LoginPage = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const query = queryString.parse(location.search);
-  console.log('🚀 ~ file: LoginPage.js:21 ~ LoginPage ~ query:', query);
 
   useLoginRedirect();
   const [show, setShow] = useState(false);
