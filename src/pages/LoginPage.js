@@ -1,7 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import queryString from 'query-string';
+import { useLocation } from 'react-router-dom';
 
 import { loginThunk } from 'redux/auth/authThunk';
+import { googleLogIn } from 'redux/auth/authSlice';
 
 import { useLoginRedirect } from 'hooks/useLoginRedirect';
 import { loginSchema } from 'validSchemas/loginSchema';
@@ -14,9 +17,18 @@ import { useTranslation } from 'react-i18next';
 const LoginPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const location = useLocation();
+  const query = queryString.parse(location.search);
+  console.log('🚀 ~ file: LoginPage.js:21 ~ LoginPage ~ query:', query);
 
   useLoginRedirect();
   const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (query.token) {
+      dispatch(googleLogIn(query));
+    }
+  }, [dispatch, query]);
 
   const initialValues = {
     email: '',

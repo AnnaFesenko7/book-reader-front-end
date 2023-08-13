@@ -39,33 +39,13 @@ export const authSlice = createSlice({
     changeLanguageAction(state, action) {
       state.currentLang = action.payload;
     },
-    // googleLogIn(state, action) {
-    //   state.token = action?.payload.token;
-    //   state.name = action?.payload.name;
-    //   state.avatarGoogle = action?.payload.avatar;
-    //   state.isLoggedIn = true;
-    //   state.isLogging = false;
-    //   state.loginError = null;
-    // },
-    // setTrainingState(state, action) {
-    //   if (action.payload === 'true') {
-    //     state.trainingStatus = true;
-    //   }
-    //   if (action.payload === 'false') {
-    //     state.trainingStatus = false;
-    //   }
-    // },
-    // setTrainingStatusJustCompleted(state, action) {
-    //   if (action.payload === 'false') {
-    //     state.trainingStatusJustCompleted = 'false';
-    //   }
-    //   if (action.payload === 'completedByPages') {
-    //     state.trainingStatusJustCompleted = 'completedByPages';
-    //   }
-    //   if (action.payload === 'completedByTime') {
-    //     state.trainingStatusJustCompleted = 'completedByTime';
-    //   }
-    // },
+    googleLogIn(state, action) {
+      state.token = action?.payload.token;
+      state.name = action?.payload.name;
+      state.avatarGoogle = action?.payload.avatar;
+      state.isLoggedIn = true;
+      state.email = false;
+    },
   },
   extraReducers: builder => {
     builder
@@ -86,4 +66,5 @@ export const authSlice = createSlice({
       .addMatcher(isAnyOf(...fn('rejected')), operations.handleRejected);
   },
 });
-export const { resetUserAction, changeLanguageAction } = authSlice.actions;
+export const { resetUserAction, changeLanguageAction, googleLogIn } =
+  authSlice.actions;

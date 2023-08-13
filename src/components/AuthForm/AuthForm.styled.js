@@ -47,7 +47,6 @@ export const StyledForm = styled(Form)`
   justify-content: center;
   gap: ${p => p.theme.space[3]}px;
   flex-direction: column;
-  /* text-align: center; */
   max-width: 280px;
 
   @media ${p => p.theme.media.tablet} {

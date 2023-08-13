@@ -13,6 +13,7 @@ export async function login(credentials) {
   setToken(token);
   return token;
 }
+
 export async function logout() {
   return await instance('auth/logout');
 }
